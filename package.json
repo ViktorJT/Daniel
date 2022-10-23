@@ -1,10 +1,8 @@
 {
-    "name": "next-three-fiber",
+    "name": "daniel-arfwedson",
     "version": "1.0.0",
     "private": true,
-    "authors": [
-        "AliiScript <https://twitter.com/aliiscript>"
-    ],
+    "authors": "Viktor Jensen-Torp",
     "license": "MIT",
     "scripts": {
         "dev": "next dev",
@@ -15,6 +13,7 @@
     "dependencies": {
         "@react-three/drei": "^9.5.3",
         "@react-three/fiber": "^8.0.12",
+        "@react-three/flex": "^1.0.0",
         "glsl-random": "^0.0.5",
         "leva": "^0.9.23",
         "next": "12.1.5",

@@ -11,7 +11,7 @@ const DomLayout = ({ children }: any) => {
     return <StyledDOMWrapper ref={ref}>{children}</StyledDOMWrapper>;
 };
 
-const StyledDOMWrapper = styled.div`
+const StyledDOMWrapper = styled.main`
     position: absolute;
     top: 0;
     left: 0;
