@@ -102,9 +102,13 @@ body {
   color: #FFF6E5;
 }
 
-h2 {
+h2, h3, h4, h5, h6 {
   font-size: 2.5rem;
-  font-weight: 400;
+  font-weight: normal;
+}
+
+p, a {
+  text-transform: uppercase;
 }
 
 @media screen and (min-width: 600px) {
