@@ -36,13 +36,11 @@ export const StyledHtml = styled(Scroll)`
 `;
 
 export const StyledThree = styled(Scroll)`
-  // position: absolute;
-  // width: 100%;
 `;
 
 export const StyledHero = styled.section`
   margin: 0 auto;
-  max-width: var(--containerWidth);
+  padding: 0 5%;
 
   min-height: 100vh;
 
@@ -58,18 +56,15 @@ export const StyledProject = styled.section`
   counter-increment: project;
   display: flex;
   height: ${({ isLandscape }) => isLandscape ? "50vh" : "100vh"};
-  // margin-bottom: 5vh;
 
   ::before {
     content: counter(project, decimal-leading-zero);
     letter-spacing: 0.5vw;
     margin-top: -10px;
-    width: 100%;
     text-align: right;
-    margin-right: 16px;
+    padding-right: 16px;
     
-    // flex: 0 0 80px;
-    width: 5vw;
+    width: 5%;
   }
 
   > div {
@@ -77,21 +72,20 @@ export const StyledProject = styled.section`
     border-top: 1px solid #FFF6E5;
     
     flex: 1 1 100%;
-    gap: 16px;
 
     span {
       flex-grow: 1;
     }
 
     .details {
-      flex: 1 1 50%;
+      flex: 0 1 33%;
         
       display: flex;
       flex-flow: row wrap;
       align-content: flex-end;
       justify-content: space-between;
+      padding-right: 16px;
 
-      max-width: 540px;
       max-height: 50%; 
 
       h3 {
@@ -114,7 +108,16 @@ export const StyledProject = styled.section`
     content: '';
     
     border-top: 1px solid #FFF6E5;
-    width: 5vw;
-    // flex: 0 0 80px;
+    width: 5%;
   }
 `;
+
+export const StyledFooter = styled.footer`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  height: 20vh;
+  background-color: #131313;
+  border-top: 1px solid #FFF6E5;
+`
