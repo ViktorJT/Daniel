@@ -62,10 +62,9 @@ declare global {
 
 
 const Asset = ({ src, boxWidth, boxHeight, aspectRatio }: AssetType) => {
-  if (!aspectRatio) return null;
-
   const img = useTexture(src);
   const material: any = useRef();
+  const scroll = useScroll();
 
   // ! Find way to use isLandscape here
 
@@ -82,7 +81,6 @@ const Asset = ({ src, boxWidth, boxHeight, aspectRatio }: AssetType) => {
     ? new THREE.Vector3(-xOffset / 2, 0, 0)
     : new THREE.Vector3(0, yOffset / 2, 0);
 
-  const scroll = useScroll();
   const factor = 20;
 
   let last = scroll.offset;

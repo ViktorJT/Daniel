@@ -16,8 +16,8 @@ export interface Image {
   src: string;
   width: number;
   height: number;
-  isLandscape?: boolean;
-  aspectRatio?: {
+  isLandscape: boolean;
+  aspectRatio: {
     width: number;
     height: number;
   };
@@ -118,7 +118,7 @@ const Home: NextPage<HomeProps> = ({ height, projects }) => {
 };
 
 export async function getStaticProps() {
-  const data: Data[] = [
+  const data: any = [
     {
       title: "Project title",
       client: "Client name",
@@ -152,7 +152,7 @@ export async function getStaticProps() {
     };
   });
 
-  const height = data.reduce((sum, { image }) => {
+  const height = data.reduce((sum: number, { image }) => {
     const factor = image.isLandscape ? 0.5 : 1;
     return sum + factor;
   }, 1.2); // 1 = Hero, .2 = Footer
