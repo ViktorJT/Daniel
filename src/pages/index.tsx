@@ -96,12 +96,6 @@ const Home: NextPage<HomeProps> = ({ height, projects }) => {
           pages={height} // Each page takes 100% of the height of the canvas
           distance={1}
           damping={4}
-          style={{
-            width: "100%",
-            display: "flex",
-            flexFlow: "column nowrap",
-            counterReset: "project",
-          }}
         >
           <Suspense fallback={null}>
             <Scroll html>
@@ -141,7 +135,7 @@ export async function getStaticProps() {
     },
   ];
 
-  data.forEach(({ image }) => {
+  data.forEach(({ image }: any) => {
     const isLandscape = image.width > image.height;
     const heightAspectRatio = image.height / image.width;
     const widthAspectRatio = image.width / image.height;
@@ -152,7 +146,7 @@ export async function getStaticProps() {
     };
   });
 
-  const height = data.reduce((sum: number, { image }) => {
+  const height = data.reduce((sum: number, { image }: any) => {
     const factor = image.isLandscape ? 0.5 : 1;
     return sum + factor;
   }, 1.2); // 1 = Hero, .2 = Footer

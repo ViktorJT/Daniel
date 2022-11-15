@@ -18,6 +18,7 @@ const Project = ({ title, client, director, image }: Data) => {
         </div>
         <Image
           {...image}
+          alt=""
           layout="responsive"
           objectFit="contain"
           objectPosition="top left"
