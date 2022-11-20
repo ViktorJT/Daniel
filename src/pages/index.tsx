@@ -70,6 +70,7 @@ const Html = ({ projects, featured }: PropsType) => {
         display: "flex",
         flexFlow: "column nowrap",
         counterReset: "project",
+        minWidth: '100vw'
       }}
     >
       <HtmlHero featured={featured} />
@@ -103,7 +104,7 @@ const Home: NextPage<HomeProps> = ({ height, projects, featured }) => {
           damping={5}
         >
           <Suspense fallback={null}>
-            <Scroll style={{ width: "100%" }} html>
+            <Scroll html>
               <Html projects={projects} featured={featured} />
             </Scroll>
             <Scroll>
