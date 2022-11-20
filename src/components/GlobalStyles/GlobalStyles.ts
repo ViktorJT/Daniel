@@ -110,13 +110,6 @@ h2, h3, h4, h5, h6 {
 p, a {
   text-transform: uppercase;
 }
-
-@media screen and (min-width: 600px) {
-  h2 {
-    font-size: 4rem;
-  }
-}
-
 `;
 
 export default GlobalStyles;

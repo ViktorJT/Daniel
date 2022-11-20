@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const StyledProject = styled.section`
   counter-increment: project;
   display: flex;
-  height: ${({ isLandscape }: {isLandscape: boolean | undefined}) => (isLandscape ? "50vh" : "100vh")};
+  width: 100%;
+  height: ${({ isLandscape }: { isLandscape: boolean | undefined }) =>
+    isLandscape ? "50vh" : "100vh"};
 
   ::before {
     content: counter(project, decimal-leading-zero);
@@ -12,12 +14,11 @@ export const StyledProject = styled.section`
     text-align: right;
     padding-right: 16px;
 
-    width: 5%;
+    width: 5vw;
   }
 
   > div {
     display: flex;
-    border-top: 1px solid #fff6e5;
 
     flex: 1 1 100%;
 
@@ -26,28 +27,36 @@ export const StyledProject = styled.section`
     }
 
     .details {
+      opacity: 0;
       flex: 0 1 33%;
+      max-height: 25vh;
 
       display: flex;
-      flex-flow: row wrap;
-      align-content: flex-end;
-      justify-content: space-between;
-      padding-right: 16px;
+      flex-direction: column;
 
-      max-height: 50%;
+      padding-right: 3vw;
 
-      h3 {
-        flex: 1 0 100%;
-        margin-bottom: 16px;
+      .title {
+        flex: 1 0 80%;
+        align-items: center;
       }
 
-      p span {
-        display: block;
+      .headings,
+      .labels,
+      .title {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .labels {
         font-weight: bold;
       }
 
-      p:last-of-type {
-        text-align: right;
+      .labels,
+      .headings {
+        p:last-of-type {
+          text-align: right;
+        }
       }
     }
   }
@@ -55,7 +64,6 @@ export const StyledProject = styled.section`
   ::after {
     content: "";
 
-    border-top: 1px solid #fff6e5;
-    width: 5%;
+    width: 5vw;
   }
 `;

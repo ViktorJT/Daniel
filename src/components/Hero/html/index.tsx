@@ -1,6 +1,8 @@
 import { StyledHero } from "./styles";
 
-const Hero = () => {
+const Hero = ({ featured }) => {
+  console.log("dont forget to do the html hero also", featured.length);
+
   return (
     <StyledHero>
       <h2>

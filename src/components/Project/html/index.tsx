@@ -1,29 +1,34 @@
 import { StyledProject } from "./styles";
 import Image from "next/image";
 
+
 import type { Data } from "../../../pages/index";
 
-const Project = ({ title, client, director, image }: Data) => {
+const Project = ({ title, client, director, asset}: Data) => {
   return (
-    <StyledProject isLandscape={image.isLandscape}>
+    <StyledProject isLandscape={asset.isLandscape}>
       <div>
         <div className="details">
-          <h3>{title}</h3>
-          <p className="client">
-            Client<span>{client}</span>
-          </p>
-          <p className="director">
-            Director<span>{director}</span>
-          </p>
+          <div className="title">
+            <h3>{title}</h3>
+          </div>
+          <div className="headings">
+            <p>Client</p>
+            <p>Director</p>
+          </div>
+          <div className="labels">
+            <p>{client}</p>
+            <p>{director}</p>
+          </div>
         </div>
-        <Image
-          {...image}
+        {asset.mimeType === 'image' ? <Image
+          {...asset}
           alt=""
           layout="responsive"
           objectFit="contain"
           objectPosition="top left"
           style={{ opacity: 0 }}
-        />
+        />: null}
       </div>
     </StyledProject>
   );
