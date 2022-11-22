@@ -7,6 +7,7 @@ interface ThreeAssetType extends AssetType {
   boxWidth: number;
   boxHeight: number;
   index?: number;
+  centered?: boolean;
 }
 
 interface SrcType {
@@ -24,11 +25,11 @@ const Video = ({ src }: SrcType) => {
 };
 
 const Asset = (
-  { src, mimeType, boxWidth, boxHeight, aspectRatio, index }: ThreeAssetType,
+  { src, mimeType, boxWidth, boxHeight, aspectRatio, index, centered = false }: ThreeAssetType,
 ) => {
   // ! Find way to use isLandscape here
 
-  const yOffset = boxHeight - boxWidth * aspectRatio.height;
+  const yOffset = centered ? 0 : boxHeight - boxWidth * aspectRatio.height;
   const xOffset = boxWidth - boxHeight * aspectRatio.width;
   const arHeight = boxWidth * aspectRatio.height;
   const isOverflowing = arHeight > boxHeight;

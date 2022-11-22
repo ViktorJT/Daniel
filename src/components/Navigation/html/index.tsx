@@ -1,6 +1,16 @@
 import Link from "next/link";
+import Moon from '../icons/moon.svg';
+import Sun from '../icons/sun.svg';
+import { StyledNavigation, StyledThemeSwitcher } from "./styles";
 
-import { StyledNavigation } from "./styles";
+const ThemeSwitcher = () => {
+  return (
+    <StyledThemeSwitcher>
+      <Moon />
+      <Sun />
+    </StyledThemeSwitcher>
+  );
+};
 
 const Navigation = () => {
   return (
@@ -13,7 +23,7 @@ const Navigation = () => {
           <Link href="/about">About</Link>
         </li>
         <li className="theme">
-          <button>click me</button>
+          <ThemeSwitcher />
         </li>
       </ul>
     </StyledNavigation>

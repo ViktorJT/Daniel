@@ -10,6 +10,7 @@ import Effects from "../components/Effects/";
 
 import { HtmlProject, ThreeProject } from "../components/Project/";
 import { HtmlHero, ThreeHero } from "../components/Hero/";
+import Navigation from '../components/Navigation/html';
 import Footer from "../components/Footer/html";
 
 import type { NextPage } from "next";
@@ -88,6 +89,7 @@ const Html = ({ projects, featured }: PropsType) => {
 const Home: NextPage<HomeProps> = ({ height, projects, featured }) => {
   return (
     <>
+      <Navigation />
       <Canvas
         linear={true}
         style={{

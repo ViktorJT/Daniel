@@ -14,11 +14,19 @@ interface HeroType {
 }
 
 const Hero = ({ featured, viewport }: HeroType) => {
+
+  // This setup needs at least four images
+
+  // Use ref on each asset instead, and move it to the back of the group once its passed the screen?
+  // Something like: if asset.x = viewport.width (its off screen) => asset.x = -featured.length * viewport.width / 3 (put it at the back)
+  
   const first = useRef<any>();
   const second = useRef<any>();
   const assetWidth = viewport.width / 3;
   const groupWidth = featured.length * assetWidth;
   const threshold = groupWidth + viewport.width;
+
+  // const margin = (viewport.height / 100) * 6; // 6vh
 
   useFrame((_, delta) => {
     if (first.current && second.current) {
@@ -29,7 +37,7 @@ const Hero = ({ featured, viewport }: HeroType) => {
         second.current.position.x = 0;
       }
 
-      // Lerp this with acceleration from scrollSpeed up / down
+      // Lerp with acceleration from scrollSpeed up / down?
 
       first.current.position.x += delta;
       second.current.position.x += delta;
@@ -50,6 +58,7 @@ const Hero = ({ featured, viewport }: HeroType) => {
               {featured.map((project, i) => (
                 <Asset
                   index={i}
+                  centered
                   key={`hero-a-${i}`}
                   boxWidth={boxWidth / 3}
                   boxHeight={boxHeight}
@@ -61,6 +70,7 @@ const Hero = ({ featured, viewport }: HeroType) => {
               {featured.map((project, i) => (
                 <Asset
                   index={i}
+                  centered
                   key={`hero-b-${i}`}
                   boxWidth={boxWidth / 3}
                   boxHeight={boxHeight}
