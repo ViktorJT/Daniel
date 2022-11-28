@@ -91,7 +91,6 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 :root {
@@ -100,11 +99,15 @@ body,
 
 body {
   color: #FFF6E5;
+  background-color: #131313;
 }
 
-h2, h3, h4, h5, h6 {
-  font-size: 2.5rem;
+h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
+}
+
+h2 {
+  font-size: 2.5rem;
 }
 
 p, a {

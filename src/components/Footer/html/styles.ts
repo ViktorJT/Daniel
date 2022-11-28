@@ -8,4 +8,6 @@ export const StyledFooter = styled.footer`
   height: 20vh;
   background-color: #131313;
   border-top: 1px solid #fff6e5;
+
+  width: 100vw;
 `;

@@ -10,7 +10,6 @@ export const StyledThemeSwitcher = styled.button`
   color: #1c1c1c;
   align-items: center;
   justify-content: space-between;
-
   cursor: pointer;
 `;
 
@@ -20,13 +19,12 @@ export const StyledNavigation = styled.nav`
   width: 100%;
   display: flex;
   align-items: center;
-  /* border-bottom: 1px solid #fff6e5; */
-  /* padding: 1rem 0; */
   height: 6vh;
   background-color: rgba(28, 28, 28, 0.3);
-  backdrop-filter: blur(5px) saturate(90%);
+  backdrop-filter: blur(2px) saturate(90%);
 
   ul {
+    padding: 0 40px;
     width: 100%;
     max-width: var(--containerWidth);
     margin: 0 auto;

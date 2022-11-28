@@ -26,6 +26,8 @@ export const StyledProject = styled.section`
       flex-grow: 1;
     }
 
+    margin-bottom: 5vh;
+
     .details {
       opacity: 0;
       flex: 0 1 33%;

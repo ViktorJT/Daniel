@@ -9,12 +9,12 @@ interface ProjectType {
   title: string;
   client: string;
   director: string;
-  asset: AssetType;
+  featured: AssetType;
   viewport: any;
 }
 
 const ThreeProject = (
-  { title, client, director, asset, viewport }: ProjectType,
+  { title, client, director, featured, viewport }: ProjectType,
 ) => {
   return (
     <>
@@ -26,10 +26,11 @@ const ThreeProject = (
       </Box>
       <Box
         dir="row"
-        height={asset.isLandscape ? viewport.height / 2 : viewport.height}
+        height={featured.isLandscape ? viewport.height / 2 : viewport.height}
         width="100%"
         align="flex-start"
         justify="flex-start"
+        paddingBottom={(viewport.height / 100) * 5}
       >
         <Box
           dir="column"
@@ -144,7 +145,7 @@ const ThreeProject = (
             <Asset
               boxWidth={boxWidth}
               boxHeight={boxHeight}
-              {...asset}
+              {...featured}
             />
           )}
         </Box>

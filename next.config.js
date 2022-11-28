@@ -7,6 +7,9 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const nextConfig = {
+  images: {
+    domains: ["media.graphassets.com"],
+  },
   reactStrictMode: true,
   compiler: {
     // ssr and displayName are configured by default

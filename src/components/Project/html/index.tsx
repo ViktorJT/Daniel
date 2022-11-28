@@ -1,12 +1,11 @@
 import { StyledProject } from "./styles";
 import Image from "next/image";
 
-
 import type { Data } from "../../../pages/index";
 
-const Project = ({ title, client, director, asset}: Data) => {
+const Project = ({ title, client, director, featured }: Data) => {
   return (
-    <StyledProject isLandscape={asset.isLandscape}>
+    <StyledProject isLandscape={featured.isLandscape}>
       <div>
         <div className="details">
           <div className="title">
@@ -21,14 +20,18 @@ const Project = ({ title, client, director, asset}: Data) => {
             <p>{director}</p>
           </div>
         </div>
-        {asset.mimeType === 'image' ? <Image
-          {...asset}
-          alt=""
-          layout="responsive"
-          objectFit="contain"
-          objectPosition="top left"
-          style={{ opacity: 0 }}
-        />: null}
+        {featured.mimeType === "image"
+          ? (
+            <Image
+              {...featured}
+              alt=""
+              layout="responsive"
+              objectFit="contain"
+              objectPosition="top left"
+              style={{ opacity: 0 }}
+            />
+          )
+          : null}
       </div>
     </StyledProject>
   );

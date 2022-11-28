@@ -7,29 +7,24 @@ interface ThreeAssetType extends AssetType {
   boxWidth: number;
   boxHeight: number;
   index?: number;
-  centered?: boolean;
 }
 
-interface SrcType {
-  src: string;
-}
-
-const Image = ({ src }: SrcType) => {
-  const map = useTexture(src);
+const Image = ({ url }: { url: string }) => {
+  const map = useTexture(url);
   return <meshBasicMaterial map={map} toneMapped={false} />;
 };
 
-const Video = ({ src }: SrcType) => {
-  const map = useVideoTexture(src, { loop: true });
+const Video = ({ url }: { url: string }) => {
+  const map = useVideoTexture(url, { loop: true });
   return <meshBasicMaterial map={map} toneMapped={false} />;
 };
 
 const Asset = (
-  { src, mimeType, boxWidth, boxHeight, aspectRatio, index, centered = false }: ThreeAssetType,
+  { url, mimeType, boxWidth, boxHeight, aspectRatio, index }: ThreeAssetType,
 ) => {
   // ! Find way to use isLandscape here
 
-  const yOffset = centered ? 0 : boxHeight - boxWidth * aspectRatio.height;
+  const yOffset = boxHeight - boxWidth * aspectRatio.height;
   const xOffset = boxWidth - boxHeight * aspectRatio.width;
   const arHeight = boxWidth * aspectRatio.height;
   const isOverflowing = arHeight > boxHeight;
@@ -49,7 +44,7 @@ const Asset = (
   return (
     <mesh scale={scale} position={position}>
       <planeGeometry args={[1, 1, 32, 32]} />
-      {mimeType === "image" ? <Image src={src} /> : <Video src={src} />}
+      {mimeType.startsWith("image") ? <Image url={url} /> : <Video url={url} />}
     </mesh>
   );
 };

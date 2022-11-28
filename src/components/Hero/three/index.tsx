@@ -15,18 +15,17 @@ interface HeroType {
 
 const Hero = ({ featured, viewport }: HeroType) => {
 
-  // This setup needs at least four images
-
+  console.log(featured)
   // Use ref on each asset instead, and move it to the back of the group once its passed the screen?
   // Something like: if asset.x = viewport.width (its off screen) => asset.x = -featured.length * viewport.width / 3 (put it at the back)
-  
+
   const first = useRef<any>();
   const second = useRef<any>();
   const assetWidth = viewport.width / 3;
   const groupWidth = featured.length * assetWidth;
   const threshold = groupWidth + viewport.width;
 
-  // const margin = (viewport.height / 100) * 6; // 6vh
+  const margin = (viewport.height / 100) * 6; // 6vh
 
   useFrame((_, delta) => {
     if (first.current && second.current) {
@@ -53,28 +52,26 @@ const Hero = ({ featured, viewport }: HeroType) => {
     >
       {(boxWidth, boxHeight) => {
         return (
-          <group position={new THREE.Vector3(-groupWidth, 0, 0)}>
+          <group position={new THREE.Vector3(-groupWidth, -margin, 0)}>
             <group ref={first} position={new THREE.Vector3(groupWidth, 0, 0)}>
-              {featured.map((project, i) => (
+              {featured.map(({id, ...project}, i) => (
                 <Asset
                   index={i}
-                  centered
-                  key={`hero-a-${i}`}
+                  key={`hero-a-${id}`}
                   boxWidth={boxWidth / 3}
                   boxHeight={boxHeight}
-                  {...project.asset}
+                  {...project}
                 />
               ))}
             </group>
             <group ref={second} position={new THREE.Vector3(0, 0, 0)}>
-              {featured.map((project, i) => (
+              {featured.map(({id, ...project}, i) => (
                 <Asset
                   index={i}
-                  centered
-                  key={`hero-b-${i}`}
+                  key={`hero-b-${id}`}
                   boxWidth={boxWidth / 3}
                   boxHeight={boxHeight}
-                  {...project.asset}
+                  {...project}
                 />
               ))}
             </group>
