@@ -2,18 +2,8 @@
 // TODO: remove GUIs (lava & perf)
 import type { NextPage } from "next";
 import styled from "styled-components";
-import Footer from "../components/Footer/html";
-
-interface ContactInfo {
-  label: string;
-  contact: string;
-}
-
-interface AboutProps {
-  title: string;
-  subtitle: string;
-  contactInfo: ContactInfo[];
-}
+import { ContactItem } from "../components/ContactItem/html";
+import { getAbout } from "../queries/getAbout";
 
 const StyledPage = styled.div`
   margin-top: 6vh;
@@ -34,7 +24,7 @@ const StyledPage = styled.div`
     
     justify-content: space-between;
     
-    h2 {
+    h1 {
       flex: 0 1 560px;
     }
 
@@ -46,8 +36,9 @@ const StyledPage = styled.div`
 
       gap: 40px;
 
-      h3 {
+      h2 {
         flex: 1 1 40%;
+        font-size: 1rem;
       }
 
       ul {
@@ -69,22 +60,21 @@ const StyledPage = styled.div`
   }
 `;
 
-const Home: NextPage<AboutProps> = ({ title, subtitle, contactInfo }) => {
+const Home: NextPage<any> = ({ about }) => {
   return (
     <StyledPage>
       <section>
-        <h2>
-          {title}
-        </h2>
+        <h1>
+          {about.heading}
+        </h1>
         <div>
-          <h3>
-            {subtitle}
-          </h3>
+          <h2>
+            {about.subHeading}
+          </h2>
           <ul>
-            {contactInfo.map(({ label, contact }, i) => (
-              <li key={i}>
-                <p>{label}</p>
-                <p>{contact}</p>
+            {about.contacts.map(({ id, ...contact }: any) => (
+              <li key={`p-${id}`}>
+                <ContactItem heading {...contact} />
               </li>
             ))}
           </ul>
@@ -95,20 +85,7 @@ const Home: NextPage<AboutProps> = ({ title, subtitle, contactInfo }) => {
 };
 
 export async function getStaticProps() {
-  const data: any = {
-    title: "Ipsum aute quis qui cupidatat veniam exercitation",
-    subtitle: "Esse sit proident tempor exercitation tempor id cupidatat",
-    contactInfo: [
-      {
-        label: "Email",
-        contact: "Hello@Example.com",
-      },
-      {
-        label: "Phone",
-        contact: "+31 01 23 34 56 67",
-      },
-    ],
-  };
+  const data = await getAbout();
 
   return {
     props: {

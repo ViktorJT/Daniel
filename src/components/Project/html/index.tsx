@@ -1,42 +1,56 @@
-import { StyledProject, StyledPlayerWrapper, StyledReactPlayer } from "./styles";
+import { StyledProject } from "./styles";
 import Image from "next/image";
-
 import type { Data } from "../../../pages/index";
+
+import dynamic from "next/dynamic";
+
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+
+const Asset = ({ mimeType, ...props }: any) => {
+  if (mimeType.startsWith("image")) {
+    return (
+      <Image
+        alt=""
+        src={props.url}
+        className="image"
+        layout="responsive"
+        objectFit="contain"
+        width={props.width}
+        height={props.height}
+        objectPosition="top left"
+      />
+    );
+  }
+
+  if (mimeType.startsWith("video")) {
+    return (
+      <ReactPlayer
+        style={{ position: "absolute", top: 0, left: 0, height: "400px" }}
+        height="100%"
+        width="100%"
+        url="https://media.graphassets.com/RiAOYDxMQHqXtLum1P42"
+        playing
+      />
+    );
+  }
+
+  return <></>;
+};
 
 const Project = ({ title, client, director, featured }: Data) => {
   return (
-    <StyledProject isLandscape={featured.isLandscape}>
-      <div>
+    <StyledProject>
+      <div className="wrapper">
         <div className="details">
-          <div className="title">
-            <h3>{title}</h3>
-          </div>
-          <div className="headings">
-            <p>Client</p>
-            <p>Director</p>
-          </div>
-          <div className="labels">
-            <p>{client}</p>
-            <p>{director}</p>
-          </div>
+          <h2>{title}</h2>
+          <p className="heading">Client</p>
+          <p className="heading">Director</p>
+          <p className="labels">{client}</p>
+          <p className="labels">{director}</p>
         </div>
-        {featured.mimeType.startsWith("image")
-          ? (
-            <Image
-              className="image"
-              src={featured.url}
-              {...featured}
-              alt=""
-              layout="responsive"
-              objectFit="contain"
-              objectPosition="top left"
-            />
-          )
-          : (
-            <StyledPlayerWrapper>
-              {/* <StyledReactPlayer light muted playing {...featured} /> */}
-            </StyledPlayerWrapper>
-          )}
+        <div className="asset">
+          <Asset {...featured} />
+        </div>
       </div>
     </StyledProject>
   );

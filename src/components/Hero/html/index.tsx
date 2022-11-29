@@ -1,13 +1,22 @@
-import { Data } from "../../../pages";
-import { StyledHero } from "./styles";
+import Asset from "../../Asset/html";
+import { StyledHero, StyledMarquee } from "./styles";
 
-const Hero = ({ featured }: { featured: Data[] }) => {
+const Hero = ({ heading, featured }: any) => {
   return (
     <StyledHero>
-      <h2>
-        Excepteur cupidatat Lorem laborum tempor dolore culpa dolor exercitation
-        aute id.
-      </h2>
+      <StyledMarquee gradient={false} direction="right" speed={100}>
+        {featured.map((asset: any) => (
+          <div className="asset">
+            <Asset
+              mimeType={asset.mimeType}
+              url={asset.url}
+              width={asset.width}
+              height={asset.height}
+            />
+          </div>
+        ))}
+      </StyledMarquee>
+      <h1>{heading}</h1>
     </StyledHero>
   );
 };

@@ -1,60 +1,32 @@
 // TODO: remove orbit controls from CanvasLayout
 // TODO: remove GUIs (lava & perf)
+import type { NextPage } from "next";
+
+import styled from "styled-components";
 import { Suspense } from "react";
-import cleanProject from "../helpers/cleanProject";
 
-import { Canvas, useThree } from "@react-three/fiber";
 import { Preload, Scroll, ScrollControls } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Box, Flex } from "@react-three/flex";
-
-import Effects from "../components/Effects/";
 
 import { HtmlProject, ThreeProject } from "../components/Project/";
 import { HtmlHero, ThreeHero } from "../components/Hero/";
-import Footer from "../components/Footer/html";
+import Effects from "../components/Effects/";
 
-import type { NextPage } from "next";
-import styled from "styled-components";
-import { getAllProjects } from "../queries/getAllProjects";
+import { getHome } from "../queries/getHome";
+
 import useWindowSize from "../helpers/useWindowSize";
-
-export interface AssetType {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-  isLandscape: boolean;
-  mimeType: string;
-  aspectRatio: {
-    width: number;
-    height: number;
-  };
-}
-
-export interface Data {
-  id?: string;
-  title: string;
-  client: string;
-  director: string;
-  featured: AssetType;
-  assets: AssetType[];
-}
-
-type PropsType = Omit<HomeProps, "height">;
-
-interface HomeProps {
-  projects: Data[];
-  featured: Data[];
-  height: number;
-}
+import cleanProject from "../helpers/cleanProject";
 
 const StyledPage = styled.div`
   display: flex;
   flex-flow: column nowrap;
   counter-reset: 'project';
+  
+  gap: 160px;
 `;
 
-const Three = ({ projects, featured }: PropsType) => {
+const Three = ({ heading, projects, featured }: any) => {
   const { viewport } = useThree();
 
   const margin = viewport.width / 20; // 5vw
@@ -65,9 +37,9 @@ const Three = ({ projects, featured }: PropsType) => {
       position={[-viewport.width / 2, viewport.height / 2, 0]}
       size={[viewport.width, viewport.height, 0]}
     >
-      <ThreeHero viewport={viewport} featured={featured} />
+      <ThreeHero viewport={viewport} heading={heading} featured={featured} />
       <Box paddingLeft={margin} paddingRight={margin}>
-        {projects.map(({ id, ...project }) => {
+        {projects.map(({ id, ...project }: any) => {
           return (
             <ThreeProject key={`t-${id}`} viewport={viewport} {...project} />
           );
@@ -77,11 +49,11 @@ const Three = ({ projects, featured }: PropsType) => {
   );
 };
 
-const Html = ({ projects, featured }: PropsType) => {
+const Html = ({ heading, projects, featured }: any) => {
   return (
     <StyledPage>
-      <HtmlHero featured={featured} />
-      {projects.map(({ id, ...project }) => (
+      <HtmlHero heading={heading} featured={featured} />
+      {projects.map(({ id, ...project }: any) => (
         <HtmlProject
           key={`h-${id}`}
           {...project}
@@ -91,9 +63,9 @@ const Html = ({ projects, featured }: PropsType) => {
   );
 };
 
-const Home: NextPage<HomeProps> = ({ height, featured, projects }) => {
+const Home: NextPage<any> = ({ heading, height, featured, projects }) => {
   const { width } = useWindowSize();
-  
+
   const isDesktop = width > 1100;
 
   return isDesktop
@@ -115,36 +87,25 @@ const Home: NextPage<HomeProps> = ({ height, featured, projects }) => {
           damping={5}
         >
           <Suspense fallback={null}>
-            <Scroll html>
-              <Html projects={projects} featured={featured} />
-              <Footer />
-            </Scroll>
             <Scroll>
-              <Three projects={projects} featured={featured} />
+              <Three
+                heading={heading}
+                projects={projects}
+                featured={featured}
+              />
               <Effects />
             </Scroll>
           </Suspense>
         </ScrollControls>
       </Canvas>
     )
-    : (
-      <>
-        <Html projects={projects} featured={featured} />
-        <Footer />
-      </>
-    );
+    : <Html heading={heading} projects={projects} featured={featured} />;
 };
 
 export async function getStaticProps() {
-  const { projects } = await getAllProjects();
+  const { home, contacts } = await getHome();
 
-  if (!projects || projects.length === 0) {
-    return {
-      notFound: true,
-    };
-  }
-
-  const data = projects.map((project: any) => cleanProject(project));
+  const data = home.projects.map((project: any) => cleanProject(project));
 
   const featured = data.map(({ title, director, client, featured }: any) => ({
     title,
@@ -160,6 +121,8 @@ export async function getStaticProps() {
 
   return {
     props: {
+      contacts: contacts,
+      heading: home.heading,
       projects: data,
       featured,
       height,

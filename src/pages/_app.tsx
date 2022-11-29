@@ -9,14 +9,16 @@ const StyledLayout = styled.main`
   flex-flow: column nowrap;
   height: 100%;
   width: 100%;
-`
+`;
 
 function MyApp({ Component, pageProps }: AppProps) {
+
   return (
     <>
-      <Navigation />
       <StyledLayout>
+        <Navigation />
         <Component {...pageProps} />
+        <Footer contacts={pageProps.contacts}/>
       </StyledLayout>
       <GlobalStyles />
     </>

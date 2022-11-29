@@ -2,12 +2,40 @@ import styled from "styled-components";
 
 export const StyledFooter = styled.footer`
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-
-  height: 20vh;
-  background-color: #131313;
-  border-top: 1px solid #fff6e5;
+  
+  background-color: var(--primary-tint);
+  border-top: 1px solid var(--secondary);
 
   width: 100vw;
+
+  margin-top: 160px;
+
+  div {
+    width: 100%;
+    max-width: var(--containerWidth);
+    gap: 40px; 
+    padding: 40px;
+    
+    display: inherit;
+    flex-flow: inherit;
+    justify-content: inherit;
+  }
+
+  p {
+    font-weight: bold;
+  }
+
+  ul {
+    display: inherit;
+    flex-flow: inherit;
+    gap: 24px;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--secondary);
+  }
 `;

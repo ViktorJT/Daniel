@@ -2,19 +2,10 @@ import { Box } from "@react-three/flex";
 import { Line, Text } from "@react-three/drei";
 import Asset from "../../Asset/three";
 
-import type { AssetType } from "../../../pages/index";
 import * as THREE from "three";
 
-interface ProjectType {
-  title: string;
-  client: string;
-  director: string;
-  featured: AssetType;
-  viewport: any;
-}
-
 const ThreeProject = (
-  { title, client, director, featured, viewport }: ProjectType,
+  { title, client, director, featured, viewport }: any,
 ) => {
   return (
     <>

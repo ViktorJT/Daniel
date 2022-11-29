@@ -1,8 +1,10 @@
 import { gql, GraphQLClient } from "graphql-request";
 
-export async function getAllProjects() {
+export async function getHome() {
   const query = gql`
-      query getProjectBySlug {
+    query getHome {
+      homes {
+        heading
         projects {
           id
           title
@@ -29,7 +31,14 @@ export async function getAllProjects() {
           }
         }
       }
-    `;
+      contacts {
+        id
+        type
+        label
+        value
+      }
+    }
+  `;
 
   const client = new GraphQLClient(process.env.GRAPHCMS_PROJECT_API!, {
     headers: {
@@ -38,7 +47,7 @@ export async function getAllProjects() {
     },
   });
 
-  const data = await client.request(query);
+  const { homes, contacts } = await client.request(query);
 
-  return data;
+  return { home: homes[0], contacts };
 }

@@ -2,6 +2,28 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 
+:root {
+  --containerWidth: 1440px;
+  --spacer: 160px;
+
+  --white: #FFFFFF;
+  --light: #FFF6E5;
+  --light-transparent: rgba(229, 229, 229, 0.3);
+
+  --black: #000000;
+  --dark: #131313;
+  --dark-transparent: rgba(28, 28, 28, 0.3);
+
+  --primary: var(--dark);
+  --secondary: var(--light);
+
+  --primary-tint: var(--black);
+  --secondary-tint: var(--white);
+
+  --primary-transparent: var(--dark-transparent);
+  --secondary-transparent: var(--light-transparent);
+}
+
 @font-face {
   font-family: 'Neue Montreal';
   src: url('/fonts/PPNeueMontreal-Book.otf') format('opentype');
@@ -93,21 +115,14 @@ body,
   padding: 0;
 }
 
-:root {
-  --containerWidth: 1440px;
-}
-
 body {
-  color: #FFF6E5;
-  background-color: #131313;
+  color: var(--secondary);
+  background-color: var(--primary);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
-}
-
-h2 {
   font-size: 2.5rem;
+  font-weight: normal;
 }
 
 p, a {

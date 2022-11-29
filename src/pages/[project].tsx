@@ -3,10 +3,9 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
 import Image from "next/image";
-import { Data } from ".";
 import dynamic from "next/dynamic";
 import { getAllProjects } from "../queries/getAllProjects";
-import { getProjectBySlug } from "../queries/getProjectBySlug";
+import { getProject } from "../queries/getProject";
 import cleanProject from "../helpers/cleanProject";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
@@ -177,7 +176,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { project } = await getProjectBySlug(params.project);
+  const { project } = await getProject(params.project);
 
   if (!project) return { notFound: true };
 

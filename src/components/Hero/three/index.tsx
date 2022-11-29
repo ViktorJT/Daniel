@@ -1,19 +1,11 @@
-import type { Data } from "../../../pages";
 import { Box } from "@react-three/flex";
 import Asset from "../../Asset/three";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-interface HeroType {
-  featured: Data[];
-  viewport: {
-    width: number;
-    height: number;
-  };
-}
 
-const Hero = ({ featured, viewport }: HeroType) => {
+const Hero = ({ centered = true, featured, viewport }: any) => {
 
   // Use ref on each asset instead, and move it to the back of the group once its passed the screen?
   // Something like: if asset.x = viewport.width (its off screen) => asset.x = -featured.length * viewport.width / 3 (put it at the back)
@@ -24,7 +16,7 @@ const Hero = ({ featured, viewport }: HeroType) => {
   const groupWidth = featured.length * assetWidth;
   const threshold = groupWidth + viewport.width;
 
-  const margin = (viewport.height / 100) * 6; // 6vh
+  const margin = centered ? 0 : (viewport.height / 100) * 6; // 6vh
 
   useFrame((_, delta) => {
     if (first.current && second.current) {
@@ -53,8 +45,9 @@ const Hero = ({ featured, viewport }: HeroType) => {
         return (
           <group position={new THREE.Vector3(-groupWidth, -margin, 0)}>
             <group ref={first} position={new THREE.Vector3(groupWidth, 0, 0)}>
-              {featured.map(({id, ...project}, i) => (
+              {featured.map(({id, ...project}: any, i: number) => (
                 <Asset
+                  centered
                   index={i}
                   key={`hero-a-${id}`}
                   boxWidth={boxWidth / 3}
@@ -64,8 +57,9 @@ const Hero = ({ featured, viewport }: HeroType) => {
               ))}
             </group>
             <group ref={second} position={new THREE.Vector3(0, 0, 0)}>
-              {featured.map(({id, ...project}, i) => (
+              {featured.map(({id, ...project}: any, i: number) => (
                 <Asset
+                  centered
                   index={i}
                   key={`hero-b-${id}`}
                   boxWidth={boxWidth / 3}

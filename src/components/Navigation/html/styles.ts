@@ -1,16 +1,24 @@
 import styled from "styled-components";
 
 export const StyledThemeSwitcher = styled.button`
-  background-color: black;
+  background-color: var(--secondary);
   border: none;
   padding: 8px 12px;
   width: 72px;
   border-radius: 24px;
   display: flex;
-  color: #1c1c1c;
+  
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+
+  svg.active {
+    fill: var(--primary);
+  }
+  
+  svg {
+    fill: var(--primary-transparent);
+  }
 `;
 
 export const StyledNavigation = styled.nav`
@@ -20,8 +28,8 @@ export const StyledNavigation = styled.nav`
   display: flex;
   align-items: center;
   height: 6vh;
-  background-color: rgba(28, 28, 28, 0.3);
-  backdrop-filter: blur(2px) saturate(90%);
+  background-color: var(--primary-transparent);
+  backdrop-filter: blur(6px) saturate(90%);
 
   ul {
     padding: 0 40px;
@@ -35,7 +43,7 @@ export const StyledNavigation = styled.nav`
 
     li a {
       text-decoration: none;
-      color: #fff6e5;
+      color: var(--secondary);
     }
 
     li.home {
