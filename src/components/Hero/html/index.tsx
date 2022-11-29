@@ -5,8 +5,8 @@ const Hero = ({ heading, featured }: any) => {
   return (
     <StyledHero>
       <StyledMarquee gradient={false} direction="right" speed={100}>
-        {featured.map((asset: any) => (
-          <div className="asset">
+        {featured.map(({id, ...asset}: any) => (
+          <div className="asset" key={`a-${id}`}>
             <Asset
               mimeType={asset.mimeType}
               url={asset.url}

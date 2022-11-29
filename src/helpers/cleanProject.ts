@@ -1,4 +1,4 @@
-const cleanProject = (project) => {
+const cleanProject = (project: any) => {
   const { id, title, director, client, featured, assets, slug } = project;
 
   const featuredWidth = featured.videoWidth || featured.width; 
@@ -23,7 +23,7 @@ const cleanProject = (project) => {
     slug
   };
 
-  const cleanAssets = assets.map(asset => {
+  const cleanAssets = assets.map((asset: any) => {
     const width = asset.videoWidth || asset.width;
     const height = asset.videoHeight || asset.height;
 

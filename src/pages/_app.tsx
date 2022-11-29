@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <StyledLayout>
         <Navigation />
         <Component {...pageProps} />
-        <Footer contacts={pageProps.contacts}/>
+        <Footer contacts={pageProps.contacts || []}/>
       </StyledLayout>
       <GlobalStyles />
     </>

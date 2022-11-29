@@ -37,8 +37,8 @@ const ThemeSwitcher = () => {
 
   return (
     <StyledThemeSwitcher  onClick={() => toggleTheme()}>
-      <Moon className={active === "dark" && "active"} />
-      <Sun className={active === "light" && "active"} />
+      <Moon className={active === "dark" ? "active" : undefined} />
+      <Sun className={active === "light" ? "active" : undefined} />
     </StyledThemeSwitcher>
   );
 };

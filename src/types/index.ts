@@ -49,6 +49,7 @@ export interface Contact {
   type: 'Email' | 'Phone' | 'Link';
   value: string;
   label: string;
+  id: string;
 }
 
 export interface AboutProps {

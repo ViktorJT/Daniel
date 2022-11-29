@@ -1,7 +1,7 @@
 import { useTexture, useVideoTexture } from "@react-three/drei";
 import * as THREE from "three";
 
-const Image = ({ url }: { url: string }) => {
+const ThreeImage = ({ url }: { url: string }) => {
   const map = useTexture(url);
   return <meshBasicMaterial map={map} toneMapped={false} />;
 };
@@ -36,7 +36,7 @@ const Asset = (
   return (
     <mesh scale={scale} position={position}>
       <planeGeometry args={[1, 1, 32, 32]} />
-      {mimeType.startsWith("image") ? <Image url={url} /> : <Video url={url} />}
+      {mimeType.startsWith("image") ? <ThreeImage url={url} /> : <Video url={url} />}
     </mesh>
   );
 };

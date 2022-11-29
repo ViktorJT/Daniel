@@ -8,8 +8,8 @@ const Footer = ({ contacts }: { contacts: Contact[] }) => {
       <div>
         <p>Daniel Arfwedson</p>
         <ul>
-          {contacts.map((contact) => (
-            <li>
+          {contacts.map(({id, ...contact}) => (
+            <li key={`f-${id}`}>
               <ContactItem {...contact} />
             </li>
           ))}

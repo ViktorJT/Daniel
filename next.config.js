@@ -7,6 +7,11 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const nextConfig = {
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+    localeDetection: false,
+  },
   images: {
     domains: ["media.graphassets.com"],
   },
@@ -51,14 +56,6 @@ const nextConfig = {
     return config;
   },
 };
-
-// manage i18n
-if (process.env.EXPORT !== "true") {
-  nextConfig.i18n = {
-    locales: ["en-US"],
-    defaultLocale: "en-US",
-  };
-}
 
 module.exports = plugins(
   [

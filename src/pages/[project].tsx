@@ -99,6 +99,7 @@ const Asset = (asset: any) => {
   if (asset.mimeType.startsWith("image")) {
     return (
       <Image
+        alt=""
         objectFit="contain"
         src={asset.url}
         width={asset.width}
@@ -121,15 +122,17 @@ const Asset = (asset: any) => {
   return <></>;
 };
 
-const Home: NextPage<Data> = (
+const Home: NextPage<any> = (
   { title, director, client, featured, assets },
 ) => {
+
   return (
     <StyledPage>
       <StyledHero>
         {featured.mimeType.startsWith("image")
           ? (
             <Image
+              priority
               src={featured.url}
               layout="fill"
               objectFit="cover"
@@ -157,7 +160,7 @@ const Home: NextPage<Data> = (
       </StyledIntro>
       <StyledAssets>
         <div>
-          {assets.map((asset, i) => <Asset key={i} {...asset} />)}
+          {assets.map(({id, ...asset}: any) => <Asset key={`pr=${id}`} {...asset} />)}
         </div>
       </StyledAssets>
     </StyledPage>
@@ -166,8 +169,8 @@ const Home: NextPage<Data> = (
 
 export async function getStaticPaths() {
   const { projects } = await getAllProjects();
-
-  const paths = projects.map(({ slug }) => ({ params: { project: slug } }));
+  
+  const paths = projects.map(({ slug }: any) => ({ params: { project: slug }, locale: 'en'}));
 
   return {
     paths,
@@ -175,14 +178,15 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const { project } = await getProject(params.project);
+export async function getStaticProps({ params }: any) {
+  
+  const { project, contacts } = await getProject(params.project);
 
   if (!project) return { notFound: true };
 
   const data = cleanProject(project);
 
-  return { props: { ...data } };
+  return { props: { ...data, contacts } };
 }
 
 export default Home;

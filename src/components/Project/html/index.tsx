@@ -1,6 +1,5 @@
 import { StyledProject } from "./styles";
 import Image from "next/image";
-import type { Data } from "../../../pages/index";
 
 import dynamic from "next/dynamic";
 
@@ -37,7 +36,7 @@ const Asset = ({ mimeType, ...props }: any) => {
   return <></>;
 };
 
-const Project = ({ title, client, director, featured }: Data) => {
+const Project = ({ title, client, director, featured }: any) => {
   return (
     <StyledProject>
       <div className="wrapper">

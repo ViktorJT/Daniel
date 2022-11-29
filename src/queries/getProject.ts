@@ -1,8 +1,8 @@
 import { gql, GraphQLClient } from "graphql-request";
 
-export async function getProjectBySlug(slug: string) {
+export async function getProject(slug: string) {
   const query = gql`
-    query getProjectBySlug($slug: String!) {
+    query getProject($slug: String!) {
       project(where: { slug: $slug }) {
         id
         title
