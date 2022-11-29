@@ -81,8 +81,8 @@ const Home: NextPage<AboutProps> = ({ title, subtitle, contactInfo }) => {
             {subtitle}
           </h3>
           <ul>
-            {contactInfo.map(({ label, contact }) => (
-              <li>
+            {contactInfo.map(({ label, contact }, i) => (
+              <li key={i}>
                 <p>{label}</p>
                 <p>{contact}</p>
               </li>

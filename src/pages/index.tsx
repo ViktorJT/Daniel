@@ -16,6 +16,7 @@ import Footer from "../components/Footer/html";
 import type { NextPage } from "next";
 import styled from "styled-components";
 import { getAllProjects } from "../queries/getAllProjects";
+import useWindowSize from "../helpers/useWindowSize";
 
 export interface AssetType {
   id: string;
@@ -23,7 +24,7 @@ export interface AssetType {
   width: number;
   height: number;
   isLandscape: boolean;
-  mimeType: "image" | "video";
+  mimeType: string;
   aspectRatio: {
     width: number;
     height: number;
@@ -67,8 +68,9 @@ const Three = ({ projects, featured }: PropsType) => {
       <ThreeHero viewport={viewport} featured={featured} />
       <Box paddingLeft={margin} paddingRight={margin}>
         {projects.map(({ id, ...project }) => {
-          console.log(id, project)
-          return <ThreeProject key={`t-${id}`} viewport={viewport} {...project} />;
+          return (
+            <ThreeProject key={`t-${id}`} viewport={viewport} {...project} />
+          );
         })}
       </Box>
     </Flex>
@@ -79,7 +81,7 @@ const Html = ({ projects, featured }: PropsType) => {
   return (
     <StyledPage>
       <HtmlHero featured={featured} />
-      {projects.map(({id, ...project}) => (
+      {projects.map(({ id, ...project }) => (
         <HtmlProject
           key={`h-${id}`}
           {...project}
@@ -90,36 +92,47 @@ const Html = ({ projects, featured }: PropsType) => {
 };
 
 const Home: NextPage<HomeProps> = ({ height, featured, projects }) => {
-  return (
-    <Canvas
-      linear={true}
-      style={{
-        position: "absolute",
-        top: 0,
-        touchAction: "none",
-        backgroundColor: "#1c1c1c",
-        overflow: "hidden",
-      }}
-    >
-      <Preload all />
-      <ScrollControls
-        pages={height} // Each page takes 100% of the height of the canvas
-        distance={1}
-        damping={5}
+  const { width } = useWindowSize();
+  
+  const isDesktop = width > 1100;
+
+  return isDesktop
+    ? (
+      <Canvas
+        linear={true}
+        style={{
+          position: "absolute",
+          top: 0,
+          touchAction: "none",
+          backgroundColor: "#1c1c1c",
+          overflow: "hidden",
+        }}
       >
-        <Suspense fallback={null}>
-          <Scroll html>
-            <Html projects={projects} featured={featured} />
-            <Footer />
-          </Scroll>
-          <Scroll>
-            <Three projects={projects} featured={featured} />
-            <Effects />
-          </Scroll>
-        </Suspense>
-      </ScrollControls>
-    </Canvas>
-  );
+        <Preload all />
+        <ScrollControls
+          pages={height} // Each page takes 100% of the height of the canvas
+          distance={1}
+          damping={5}
+        >
+          <Suspense fallback={null}>
+            <Scroll html>
+              <Html projects={projects} featured={featured} />
+              <Footer />
+            </Scroll>
+            <Scroll>
+              <Three projects={projects} featured={featured} />
+              <Effects />
+            </Scroll>
+          </Suspense>
+        </ScrollControls>
+      </Canvas>
+    )
+    : (
+      <>
+        <Html projects={projects} featured={featured} />
+        <Footer />
+      </>
+    );
 };
 
 export async function getStaticProps() {

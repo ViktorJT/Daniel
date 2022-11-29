@@ -15,7 +15,6 @@ interface HeroType {
 
 const Hero = ({ featured, viewport }: HeroType) => {
 
-  console.log(featured)
   // Use ref on each asset instead, and move it to the back of the group once its passed the screen?
   // Something like: if asset.x = viewport.width (its off screen) => asset.x = -featured.length * viewport.width / 3 (put it at the back)
 

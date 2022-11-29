@@ -1,4 +1,4 @@
-import { StyledProject } from "./styles";
+import { StyledProject, StyledPlayerWrapper, StyledReactPlayer } from "./styles";
 import Image from "next/image";
 
 import type { Data } from "../../../pages/index";
@@ -20,18 +20,23 @@ const Project = ({ title, client, director, featured }: Data) => {
             <p>{director}</p>
           </div>
         </div>
-        {featured.mimeType === "image"
+        {featured.mimeType.startsWith("image")
           ? (
             <Image
+              className="image"
+              src={featured.url}
               {...featured}
               alt=""
               layout="responsive"
               objectFit="contain"
               objectPosition="top left"
-              style={{ opacity: 0 }}
             />
           )
-          : null}
+          : (
+            <StyledPlayerWrapper>
+              {/* <StyledReactPlayer light muted playing {...featured} /> */}
+            </StyledPlayerWrapper>
+          )}
       </div>
     </StyledProject>
   );
