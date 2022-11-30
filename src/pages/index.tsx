@@ -1,5 +1,3 @@
-// TODO: remove orbit controls from CanvasLayout
-// TODO: remove GUIs (lava & perf)
 import type { NextPage } from "next";
 
 import styled from "styled-components";
@@ -76,7 +74,6 @@ const Home: NextPage<any> = ({ heading, height, featured, projects }) => {
           position: "absolute",
           top: 0,
           touchAction: "none",
-          backgroundColor: "#1c1c1c",
           overflow: "hidden",
         }}
       >

@@ -3,6 +3,7 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
 import { ContactItem } from "../components/ContactItem/html";
+import Footer from "../components/Footer/html";
 import { getAbout } from "../queries/getAbout";
 
 const StyledPage = styled.div`
@@ -60,7 +61,7 @@ const StyledPage = styled.div`
   }
 `;
 
-const Home: NextPage<any> = ({ about }) => {
+const Home: NextPage<any> = ({ contacts, about }) => {
   return (
     <StyledPage>
       <section>
@@ -80,6 +81,7 @@ const Home: NextPage<any> = ({ about }) => {
           </ul>
         </div>
       </section>
+      <Footer contacts={contacts} />
     </StyledPage>
   );
 };

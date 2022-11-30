@@ -5,9 +5,10 @@ export const StyledFooter = styled.footer`
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  
+
   background-color: var(--primary-tint);
-  border-top: 1px solid var(--secondary);
+  border-top: 1px solid;
+  border-color: var(--secondary);
 
   width: 100vw;
 
@@ -16,9 +17,9 @@ export const StyledFooter = styled.footer`
   div {
     width: 100%;
     max-width: var(--containerWidth);
-    gap: 40px; 
+    gap: 40px;
     padding: 40px;
-    
+
     display: inherit;
     flex-flow: inherit;
     justify-content: inherit;

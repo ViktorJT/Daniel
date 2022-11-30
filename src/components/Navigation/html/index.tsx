@@ -9,34 +9,31 @@ const ThemeSwitcher = () => {
 
   const toggleTheme = () => {
     if (document !== undefined) {
-      const root: any = document.querySelector(":root");
-      
+      const root: HTMLElement = document.documentElement;
       if (active === "dark") {
-        root.style.setProperty("--primary", "--light");
-        root.style.setProperty("--primary-tint", "--white");
-        root.style.setProperty("--primary-transparent", "--white-transparent");
+        root.style.setProperty("--primary", "var(--light)");
+        root.style.setProperty("--primary-tint", "var(--light-tint)");
+        root.style.setProperty("--primary-transparent", "var(--white-transparent)");
         
-        root.style.setProperty("--secondary", "--dark");
-        root.style.setProperty("--secondary-tint", "--black");
-        root.style.setProperty("--secondary-transparent", "--black-transparent");
+        root.style.setProperty("--secondary", "var(--dark)");
+        root.style.setProperty("--secondary-tint", "var(--dark-tint)");
+        root.style.setProperty("--secondary-transparent", "var(--black-transparent)");
         setActive('light');
-      } 
-      
-      if (active === "light") {
-        root.style.setProperty("--primary", "--dark");
-        root.style.setProperty("--primary-tint", "--black");
-        root.style.setProperty("--primary-transparent", "--dark-transparent");
+      } else if (active === "light") {
+        root.style.removeProperty("--primary");
+        root.style.removeProperty("--primary-tint");
+        root.style.removeProperty("--primary-transparent");
         
-        root.style.setProperty("--secondary", "--light");
-        root.style.setProperty("--secondary-tint", "--white");
-        root.style.setProperty("--secondary-transparent", "--white-transparent");
+        root.style.removeProperty("--secondary");
+        root.style.removeProperty("--secondary-tint");
+        root.style.removeProperty("--secondary-transparent");
         setActive('dark');
       }
     }
   };
 
   return (
-    <StyledThemeSwitcher  onClick={() => toggleTheme()}>
+    <StyledThemeSwitcher onClick={() => toggleTheme()}>
       <Moon className={active === "dark" ? "active" : undefined} />
       <Sun className={active === "light" ? "active" : undefined} />
     </StyledThemeSwitcher>

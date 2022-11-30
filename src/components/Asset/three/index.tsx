@@ -3,11 +3,17 @@ import * as THREE from "three";
 
 const ThreeImage = ({ url }: { url: string }) => {
   const map = useTexture(url);
+  
+  // const map = useTexture(url, (texture: any) => {
+  //   texture.encoding = THREE.LinearEncoding;
+  // });
+
   return <meshBasicMaterial map={map} toneMapped={false} />;
 };
 
 const Video = ({ url }: { url: string }) => {
   const map = useVideoTexture(url, { loop: true });
+  // map.encoding = THREE.LinearEncoding;
   return <meshBasicMaterial map={map} toneMapped={false} />;
 };
 
@@ -36,7 +42,9 @@ const Asset = (
   return (
     <mesh scale={scale} position={position}>
       <planeGeometry args={[1, 1, 32, 32]} />
-      {mimeType.startsWith("image") ? <ThreeImage url={url} /> : <Video url={url} />}
+      {mimeType.startsWith("image")
+        ? <ThreeImage url={url} />
+        : <Video url={url} />}
     </mesh>
   );
 };

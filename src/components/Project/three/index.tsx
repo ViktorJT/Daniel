@@ -7,12 +7,22 @@ import * as THREE from "three";
 const ThreeProject = (
   { title, client, director, featured, viewport }: any,
 ) => {
+  let secondary = "#FFF6E5";
+
+  if (document !== undefined) {
+    const documentStyles = getComputedStyle(document.documentElement);
+    secondary = documentStyles.getPropertyValue("--secondary");
+  }
+
   return (
     <>
       <Box>
         <Line
-          points={[new THREE.Vector3(-0.05, 0, 0), new THREE.Vector3(viewport.width, 0, 0)]}
-          color="#fff6e5"
+          points={[
+            new THREE.Vector3(-0.05, 0, 0),
+            new THREE.Vector3(viewport.width, 0, 0),
+          ]}
+          color={secondary}
         />
       </Box>
       <Box

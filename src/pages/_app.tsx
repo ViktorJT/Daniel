@@ -1,6 +1,5 @@
 import type { AppProps } from "next/app";
 import styled from "styled-components";
-import Footer from "../components/Footer/html";
 import GlobalStyles from "../components/GlobalStyles";
 import Navigation from "../components/Navigation/html";
 
@@ -12,15 +11,13 @@ const StyledLayout = styled.main`
 `;
 
 function MyApp({ Component, pageProps }: AppProps) {
-
   return (
     <>
+      <GlobalStyles />
       <StyledLayout>
         <Navigation />
         <Component {...pageProps} />
-        <Footer contacts={pageProps.contacts || []}/>
       </StyledLayout>
-      <GlobalStyles />
     </>
   );
 }

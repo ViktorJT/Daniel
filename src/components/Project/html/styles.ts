@@ -15,7 +15,8 @@ export const StyledProject = styled.section`
   }
 
   .wrapper {
-    border-top: 1px solid var(--secondary);
+    border-top: 1px solid;
+    border-color: var(--secondary);
 
     display: inherit;
     flex-flow: column-reverse nowrap;
@@ -51,7 +52,8 @@ export const StyledProject = styled.section`
 
   ::after {
     content: "";
-    border-top: solid 1px var(--secondary);
+    border-top: solid 1px;
+    border-color: var(--secondary);
 
     width: 5vw;
   }

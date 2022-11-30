@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import { getAllProjects } from "../queries/getAllProjects";
 import { getProject } from "../queries/getProject";
 import cleanProject from "../helpers/cleanProject";
+import Footer from "../components/Footer/html";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -123,7 +124,7 @@ const Asset = (asset: any) => {
 };
 
 const Home: NextPage<any> = (
-  { title, director, client, featured, assets },
+  { contacts, title, director, client, featured, assets },
 ) => {
 
   return (
@@ -133,6 +134,7 @@ const Home: NextPage<any> = (
           ? (
             <Image
               priority
+              alt=""
               src={featured.url}
               layout="fill"
               objectFit="cover"
@@ -163,6 +165,7 @@ const Home: NextPage<any> = (
           {assets.map(({id, ...asset}: any) => <Asset key={`pr=${id}`} {...asset} />)}
         </div>
       </StyledAssets>
+      <Footer contacts={contacts} />
     </StyledPage>
   );
 };

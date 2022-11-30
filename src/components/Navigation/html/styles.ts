@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledThemeSwitcher = styled.button`
-  background-color: var(--secondary);
+  background-color: var(--primary-tint);
   border: none;
   padding: 8px 12px;
   width: 72px;
@@ -13,11 +13,12 @@ export const StyledThemeSwitcher = styled.button`
   cursor: pointer;
 
   svg.active {
-    fill: var(--primary);
+    opacity: 1;
   }
   
   svg {
-    fill: var(--primary-transparent);
+    fill: var(--secondary);
+    opacity: 0.3;
   }
 `;
 
@@ -28,8 +29,7 @@ export const StyledNavigation = styled.nav`
   display: flex;
   align-items: center;
   height: 6vh;
-  background-color: var(--primary-transparent);
-  backdrop-filter: blur(6px) saturate(90%);
+  backdrop-filter: blur(3px) saturate(90%);
 
   ul {
     padding: 0 40px;

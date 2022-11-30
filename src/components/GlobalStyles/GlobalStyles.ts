@@ -6,22 +6,21 @@ const GlobalStyles = createGlobalStyle`
   --containerWidth: 1440px;
   --spacer: 160px;
 
-  --white: #FFFFFF;
   --light: #FFF6E5;
-  --light-transparent: rgba(229, 229, 229, 0.3);
+  --light-tint: #FFFFFF;
+  --light-shade: #FFDFB8;
 
-  --black: #000000;
   --dark: #131313;
-  --dark-transparent: rgba(28, 28, 28, 0.3);
+  --dark-shade: #000000;
+  --dark-tint: #2B2B2B;
 
   --primary: var(--dark);
+  --primary-tint: var(--dark-tint);
+  --primary-shade: var(--dark-shade);
+
   --secondary: var(--light);
-
-  --primary-tint: var(--black);
-  --secondary-tint: var(--white);
-
-  --primary-transparent: var(--dark-transparent);
-  --secondary-transparent: var(--light-transparent);
+  --secondary-tint: var(--light-tint);
+  --secondary-shade: var(--light-shade);
 }
 
 @font-face {
