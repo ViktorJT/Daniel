@@ -21,10 +21,10 @@ const StyledPage = styled.div`
   flex-flow: column nowrap;
   counter-reset: 'project';
   
-  gap: 160px;
+  gap: var(--spacer);
 `;
 
-const Three = ({ heading, projects, featured }: any) => {
+const Three = ({ theme, heading, projects, featured }: any) => {
   const { viewport } = useThree();
 
   const margin = viewport.width / 20; // 5vw
@@ -39,7 +39,7 @@ const Three = ({ heading, projects, featured }: any) => {
       <Box paddingLeft={margin} paddingRight={margin}>
         {projects.map(({ id, ...project }: any) => {
           return (
-            <ThreeProject key={`t-${id}`} viewport={viewport} {...project} />
+            <ThreeProject key={`t-${id}`} theme={theme} viewport={viewport} {...project} />
           );
         })}
       </Box>
@@ -61,7 +61,7 @@ const Html = ({ heading, projects, featured }: any) => {
   );
 };
 
-const Home: NextPage<any> = ({ heading, height, featured, projects }) => {
+const Home: NextPage<any> = ({ theme, heading, height, featured, projects }) => {
   const { width } = useWindowSize();
 
   const isDesktop = width > 1100;
@@ -86,6 +86,7 @@ const Home: NextPage<any> = ({ heading, height, featured, projects }) => {
           <Suspense fallback={null}>
             <Scroll>
               <Three
+                theme={theme}
                 heading={heading}
                 projects={projects}
                 featured={featured}

@@ -1,46 +1,49 @@
 import Link from "next/link";
-import { useState } from "react";
 import Moon from "../icons/moon.svg";
 import Sun from "../icons/sun.svg";
 import { StyledNavigation, StyledThemeSwitcher } from "./styles";
 
-const ThemeSwitcher = () => {
-  const [active, setActive] = useState("dark");
-
+const ThemeSwitcher = ({ theme, setTheme }: any) => {
   const toggleTheme = () => {
     if (document !== undefined) {
       const root: HTMLElement = document.documentElement;
-      if (active === "dark") {
+      if (theme === "dark") {
         root.style.setProperty("--primary", "var(--light)");
         root.style.setProperty("--primary-tint", "var(--light-tint)");
-        root.style.setProperty("--primary-transparent", "var(--white-transparent)");
-        
+        root.style.setProperty(
+          "--primary-transparent",
+          "var(--white-transparent)",
+        );
+
         root.style.setProperty("--secondary", "var(--dark)");
         root.style.setProperty("--secondary-tint", "var(--dark-tint)");
-        root.style.setProperty("--secondary-transparent", "var(--black-transparent)");
-        setActive('light');
-      } else if (active === "light") {
+        root.style.setProperty(
+          "--secondary-transparent",
+          "var(--black-transparent)",
+        );
+        setTheme("light");
+      } else if (theme === "light") {
         root.style.removeProperty("--primary");
         root.style.removeProperty("--primary-tint");
         root.style.removeProperty("--primary-transparent");
-        
+
         root.style.removeProperty("--secondary");
         root.style.removeProperty("--secondary-tint");
         root.style.removeProperty("--secondary-transparent");
-        setActive('dark');
+        setTheme("dark");
       }
     }
   };
 
   return (
     <StyledThemeSwitcher onClick={() => toggleTheme()}>
-      <Moon className={active === "dark" ? "active" : undefined} />
-      <Sun className={active === "light" ? "active" : undefined} />
+      <Moon className={theme === "dark" ? "active" : undefined} />
+      <Sun className={theme === "light" ? "active" : undefined} />
     </StyledThemeSwitcher>
   );
 };
 
-const Navigation = () => {
+const Navigation = (theme: any) => {
   return (
     <StyledNavigation>
       <ul>
@@ -51,7 +54,7 @@ const Navigation = () => {
           <Link href="/about">About</Link>
         </li>
         <li className="theme">
-          <ThemeSwitcher />
+          <ThemeSwitcher {...theme} />
         </li>
       </ul>
     </StyledNavigation>

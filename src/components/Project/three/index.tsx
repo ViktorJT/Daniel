@@ -5,15 +5,11 @@ import Asset from "../../Asset/three";
 import * as THREE from "three";
 
 const ThreeProject = (
-  { title, client, director, featured, viewport }: any,
+  { theme, title, client, director, featured, viewport }: any,
 ) => {
-  let secondary = "#FFF6E5";
 
-  if (document !== undefined) {
-    const documentStyles = getComputedStyle(document.documentElement);
-    secondary = documentStyles.getPropertyValue("--secondary");
-  }
-
+  const color = theme === 'dark' ? '#FFF6E5' : '#131313';
+  
   return (
     <>
       <Box>
@@ -22,7 +18,7 @@ const ThreeProject = (
             new THREE.Vector3(-0.05, 0, 0),
             new THREE.Vector3(viewport.width, 0, 0),
           ]}
-          color={secondary}
+          color={color}
         />
       </Box>
       <Box
@@ -48,6 +44,7 @@ const ThreeProject = (
             <Box width="100%">
               {(boxWidth) => (
                 <Text
+                  color={color}
                   maxWidth={boxWidth}
                   font="/fonts/PPNeueMontreal-Book.otf"
                   fontSize={0.335}
@@ -71,6 +68,7 @@ const ThreeProject = (
             <Box width="100%">
               {(boxWidth) => (
                 <Text
+                  color={color}
                   maxWidth={boxWidth / 2}
                   font="/fonts/PPNeueMontreal-Book.otf"
                   fontSize={0.135}
@@ -86,6 +84,7 @@ const ThreeProject = (
             <Box width="100%">
               {(boxWidth) => (
                 <Text
+                  color={color}
                   maxWidth={boxWidth / 2}
                   font="/fonts/PPNeueMontreal-Book.otf"
                   fontSize={0.135}
@@ -107,6 +106,7 @@ const ThreeProject = (
             <Box width="100%">
               {(boxWidth) => (
                 <Text
+                  color={color}
                   maxWidth={boxWidth / 2 + 0.1}
                   letterSpacing={0.0085}
                   font="/fonts/PPNeueMontreal-Bold.otf"
@@ -123,6 +123,7 @@ const ThreeProject = (
             <Box width="100%">
               {(boxWidth) => (
                 <Text
+                  color={color}
                   maxWidth={boxWidth / 2 + 0.1}
                   font="/fonts/PPNeueMontreal-Bold.otf"
                   fontSize={0.135}

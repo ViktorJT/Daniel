@@ -3,17 +3,11 @@ import * as THREE from "three";
 
 const ThreeImage = ({ url }: { url: string }) => {
   const map = useTexture(url);
-  
-  // const map = useTexture(url, (texture: any) => {
-  //   texture.encoding = THREE.LinearEncoding;
-  // });
-
   return <meshBasicMaterial map={map} toneMapped={false} />;
 };
 
 const Video = ({ url }: { url: string }) => {
   const map = useVideoTexture(url, { loop: true });
-  // map.encoding = THREE.LinearEncoding;
   return <meshBasicMaterial map={map} toneMapped={false} />;
 };
 

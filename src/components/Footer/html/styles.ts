@@ -12,7 +12,7 @@ export const StyledFooter = styled.footer`
 
   width: 100vw;
 
-  margin-top: 160px;
+  margin-top: var(--spacer);
 
   div {
     width: 100%;

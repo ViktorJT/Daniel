@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const StyledLayout = styled.main`
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 100%;
+`;
+
 export const StyledThemeSwitcher = styled.button`
   background-color: var(--primary-tint);
   border: none;
