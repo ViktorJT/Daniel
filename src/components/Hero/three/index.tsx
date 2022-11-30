@@ -1,36 +1,30 @@
 import { Box } from "@react-three/flex";
 import Asset from "../../Asset/three";
-import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-
+import { createRef, useMemo } from "react";
 
 const Hero = ({ centered = true, featured, viewport }: any) => {
+  const refs = useMemo(() => {
+    return featured.map((_: any) => createRef());
+  }, [featured]);
 
-  // Use ref on each asset instead, and move it to the back of the group once its passed the screen?
-  // Something like: if asset.x = viewport.width (its off screen) => asset.x = -featured.length * viewport.width / 3 (put it at the back)
+  const itemsOnScreen = 3;
+  const assetWidth = viewport.width / itemsOnScreen;
 
-  const first = useRef<any>();
-  const second = useRef<any>();
-  const assetWidth = viewport.width / 3;
-  const groupWidth = featured.length * assetWidth;
-  const threshold = groupWidth + viewport.width;
+  const screenRight = viewport.width - assetWidth;
+  const backOfTheLine = -(featured.length - (itemsOnScreen - 1)) * assetWidth;
 
-  const margin = centered ? 0 : (viewport.height / 100) * 6; // 6vh
+  // const margin = centered ? 0 : (viewport.height / 100) * 6; // 6vh
 
   useFrame((_, delta) => {
-    if (first.current && second.current) {
-      if (first.current.position.x > threshold) {
-        first.current.position.x = 0;
-      }
-      if (second.current.position.x > threshold) {
-        second.current.position.x = 0;
-      }
-
-      // Lerp with acceleration from scrollSpeed up / down?
-
-      first.current.position.x += delta;
-      second.current.position.x += delta;
+    const loaded = refs.every((ref: any) => ref.current);
+    if (loaded) {
+      refs.forEach((ref: any) => {
+        ref.current.position.x += delta;
+        if (ref.current.position.x > screenRight) {
+          ref.current.position.x = backOfTheLine;
+        }
+      });
     }
   }, 0.1);
 
@@ -41,36 +35,20 @@ const Hero = ({ centered = true, featured, viewport }: any) => {
       dir="row"
       centerAnchor
     >
-      {(boxWidth, boxHeight) => {
-        return (
-          <group position={new THREE.Vector3(-groupWidth, -margin, 0)}>
-            <group ref={first} position={new THREE.Vector3(groupWidth, 0, 0)}>
-              {featured.map(({id, ...project}: any, i: number) => (
-                <Asset
-                  centered
-                  index={i}
-                  key={`hero-a-${id}`}
-                  boxWidth={boxWidth / 3}
-                  boxHeight={boxHeight}
-                  {...project}
-                />
-              ))}
-            </group>
-            <group ref={second} position={new THREE.Vector3(0, 0, 0)}>
-              {featured.map(({id, ...project}: any, i: number) => (
-                <Asset
-                  centered
-                  index={i}
-                  key={`hero-b-${id}`}
-                  boxWidth={boxWidth / 3}
-                  boxHeight={boxHeight}
-                  {...project}
-                />
-              ))}
-            </group>
-          </group>
-        );
-      }}
+      {(_, boxHeight) =>
+        featured.map(({ id, ...asset }: any, i: number) => {
+          return (
+            <Asset
+              index={i}
+              ref={refs[i]}
+              centered={centered}
+              key={`hero-a-${id}`}
+              boxHeight={boxHeight}
+              boxWidth={assetWidth}
+              {...asset}
+            />
+          );
+        })}
     </Box>
   );
 };

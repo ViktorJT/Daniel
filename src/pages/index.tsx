@@ -115,7 +115,7 @@ export async function getStaticProps() {
   const height = featured.reduce((sum: number, project: any) => {
     const factor = project.isLandscape ? 0.5 : 1;
     return sum + factor;
-  }, 1.2); // 1 = Hero, .2 = Footer
+  }, 1); // 1 = Hero
 
   return {
     props: {
