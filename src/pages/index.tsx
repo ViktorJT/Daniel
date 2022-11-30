@@ -35,11 +35,11 @@ const Three = ({ theme, heading, projects, featured }: any) => {
       position={[-viewport.width / 2, viewport.height / 2, 0]}
       size={[viewport.width, viewport.height, 0]}
     >
-      <ThreeHero viewport={viewport} heading={heading} featured={featured} />
+      <ThreeHero theme={theme} viewport={viewport} heading={heading} featured={featured} />
       <Box paddingLeft={margin} paddingRight={margin}>
-        {projects.map(({ id, ...project }: any) => {
+        {projects.map(({ id, ...project }: any, i: number) => {
           return (
-            <ThreeProject key={`t-${id}`} theme={theme} viewport={viewport} {...project} />
+            <ThreeProject key={`t-${id}`} index={i + 1} theme={theme} viewport={viewport} {...project} />
           );
         })}
       </Box>

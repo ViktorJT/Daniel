@@ -5,11 +5,12 @@ import Asset from "../../Asset/three";
 import * as THREE from "three";
 
 const ThreeProject = (
-  { theme, title, client, director, featured, viewport }: any,
+  { theme, title, client, director, featured, viewport, index }: any,
 ) => {
+  const color = theme === "dark" ? "#FFF6E5" : "#131313";
 
-  const color = theme === 'dark' ? '#FFF6E5' : '#131313';
-  
+  index = index < 10 ? `0${index}` : index;
+
   return (
     <>
       <Box>
@@ -20,6 +21,19 @@ const ThreeProject = (
           ]}
           color={color}
         />
+        <Text
+          color={color}
+          fontSize={0.1}
+          letterSpacing={0.5}
+          anchorX="left"
+          lineHeight={1.5}
+          anchorY="middle"
+          textAlign="left"
+          position={new THREE.Vector3(-(viewport.width / 100) * 5 + 0.25, 0, 0)}
+          font="/fonts/PPNeueMontreal-Book.otf"
+        >
+          {index}
+        </Text>
       </Box>
       <Box
         dir="row"
