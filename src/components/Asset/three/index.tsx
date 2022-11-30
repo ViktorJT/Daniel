@@ -17,7 +17,7 @@ const Asset = forwardRef(
     { centered, url, mimeType, boxWidth, boxHeight, aspectRatio, index }: any,
     ref: any,
   ) => {
-
+    
     const yOffset = boxHeight - boxWidth * aspectRatio.height;
     const xOffset = boxWidth - boxHeight * aspectRatio.width;
     const arHeight = boxWidth * aspectRatio.height;
@@ -45,5 +45,7 @@ const Asset = forwardRef(
     );
   },
 );
+
+Asset.displayName = 'Asset';
 
 export default Asset;
