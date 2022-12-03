@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledProject = styled.section`
-  
   counter-increment: project;
   display: flex;
 
@@ -34,6 +33,10 @@ export const StyledProject = styled.section`
         font-size: 1.5rem;
         flex: 1 1 100%;
         padding: 40px 0;
+
+        &:hover {
+          color: var(--secondary-shade);
+        }
       }
 
       p {
@@ -50,7 +53,13 @@ export const StyledProject = styled.section`
     }
 
     .asset {
-      padding-top: 56.5%;
+      transition: all 0.3s;
+      filter: grayscale(0%);
+
+      &:hover {
+        cursor: pointer;
+        filter: grayscale(80%);
+      }
     }
   }
 

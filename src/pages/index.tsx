@@ -11,6 +11,7 @@ import { Box, Flex } from "@react-three/flex";
 import { HtmlProject, ThreeProject } from "../components/Project/";
 import { HtmlHero, ThreeHero } from "../components/Hero/";
 import Effects from "../components/Effects/";
+import { HtmlFooter } from "../components/Footer";
 
 import { getHome } from "../queries/getHome";
 
@@ -59,7 +60,7 @@ const Three = ({ router, theme, heading, projects, featured }: any) => {
   );
 };
 
-const Html = ({ heading, projects, featured }: any) => {
+const Html = ({ contacts, heading, projects, featured }: any) => {
   return (
     <StyledPage>
       <HtmlHero heading={heading} featured={featured} />
@@ -69,12 +70,13 @@ const Html = ({ heading, projects, featured }: any) => {
           {...project}
         />
       ))}
+      <HtmlFooter contacts={contacts} />
     </StyledPage>
   );
 };
 
 const Home: NextPage<any> = (
-  { theme, heading, height, featured, projects },
+  { theme, heading, contacts, height, featured, projects },
 ) => {
   const { width } = useWindowSize();
 
@@ -111,13 +113,31 @@ const Home: NextPage<any> = (
                 />
                 <Effects />
               </Scroll>
+              <Scroll html>
+                <div
+                  style={{
+                    height: `${height * 100}vh`,
+                    display: "flex",
+                    alignItems: "flex-end",
+                  }}
+                >
+                  <HtmlFooter contacts={contacts} />
+                </div>
+              </Scroll>
             </Suspense>
           </ScrollControls>
         </Canvas>
         <Loader />
       </>
     )
-    : <Html heading={heading} projects={projects} featured={featured} />;
+    : (
+      <Html
+        contacts={contacts}
+        heading={heading}
+        projects={projects}
+        featured={featured}
+      />
+    );
 };
 
 export async function getStaticProps() {
@@ -135,7 +155,7 @@ export async function getStaticProps() {
   const height = featured.reduce((sum: number, project: any) => {
     const factor = project.isLandscape ? 0.5 : 1;
     return sum + factor;
-  }, 1); // 1 = Hero
+  }, 1.2); // 1 = Hero .2 = Footer
 
   return {
     props: {

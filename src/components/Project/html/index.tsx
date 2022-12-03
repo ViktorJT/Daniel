@@ -3,13 +3,17 @@ import Image from "next/image";
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
-const Asset = ({ mimeType, ...props }: any) => {
+const Asset = ({ slug, mimeType, ...props }: any) => {
+  const router = useRouter();
+
   if (mimeType.startsWith("image")) {
     return (
       <Image
+        onClick={() => router.push(slug)}
         alt=""
         src={props.url}
         className="image"
@@ -24,16 +28,18 @@ const Asset = ({ mimeType, ...props }: any) => {
 
   if (mimeType.startsWith("video")) {
     return (
-      <div className="asset">
-        <ReactPlayer
-          top={0}
-          left={0}
-          height="100%"
-          position="absolute"
-          width="100%"
-          url="https://media.graphassets.com/RiAOYDxMQHqXtLum1P42"
-        />
-      </div>
+      <ReactPlayer
+        loop
+        muted
+        playing
+        top={0}
+        left={0}
+        width="100%"
+        height="100%"
+        url={props.url}
+        position="absolute"
+        onClick={() => router.push(slug)}
+      />
     );
   }
 
@@ -47,13 +53,15 @@ const Project = ({ slug, title, client, director, featured }: any) => {
         <div className="details">
           <Link href={slug}>
             {title}
-          </Link>   
+          </Link>
           <p className="heading">Client</p>
           <p className="heading">Director</p>
           <p className="labels">{client}</p>
           <p className="labels">{director}</p>
         </div>
-        <Asset {...featured} />
+        <div className="asset">
+          <Asset slug={slug} {...featured} />
+        </div>
       </div>
     </StyledProject>
   );

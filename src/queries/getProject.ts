@@ -34,6 +34,13 @@ export async function getProject(slug: string) {
         label
         value
       }
+      homes {
+        projects {
+          id
+          title
+          slug
+        }
+      }
     }
   `;
 

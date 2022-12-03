@@ -2,7 +2,7 @@ import { Contact } from "../../../types";
 import { HtmlContactItem } from "../../ContactItem";
 import { StyledFooter } from "./styles";
 
-export const Footer = ({ contacts }: { contacts: Contact[] }) => {
+const Footer = ({ contacts }: { contacts: Contact[] }) => {
   return (
     <StyledFooter>
       <div>
