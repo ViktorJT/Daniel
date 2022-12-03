@@ -1,4 +1,4 @@
-import { Box} from "@react-three/flex";
+import { Box } from "@react-three/flex";
 import { Line, Text } from "@react-three/drei";
 import Asset from "../../Asset/three";
 
@@ -14,7 +14,7 @@ const ThreeProject = (
   index = index < 10 ? `0${index}` : index;
 
   return (
-    <group>
+    <Box>
       <Box>
         <Line
           points={[
@@ -172,12 +172,9 @@ const ThreeProject = (
           }}
         </Box>
       </Box>
-    </group>
+    </Box>
   );
 };
 
 export default ThreeProject;
-function useFlex() {
-    throw new Error("Function not implemented.");
-}
 

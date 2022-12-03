@@ -27,7 +27,10 @@ export const StyledProject = styled.section`
       flex-flow: row wrap;
       flex: 1 1 auto;
 
-      h2 {
+      a {
+        color: var(--secondary);
+        text-decoration: none;
+        font-size: 1.5rem;
         flex: 1 1 100%;
         padding: 40px 0;
       }
@@ -46,6 +49,8 @@ export const StyledProject = styled.section`
     }
 
     .asset {
+      height: 100%;
+      min-height: 300px;
       position: relative;
     }
   }
