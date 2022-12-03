@@ -277,6 +277,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: any) {
   const { homes, project, contacts } = await getProject(params.project);
+  
+  if (!project) return { notFound: true };
 
   const allProjects = homes[0].projects;
 
@@ -287,7 +289,7 @@ export async function getStaticProps({ params }: any) {
   );
 
   const isFirstProject = currentIndex === 0;
-  const isLastProject = currentIndex === allProjects.length;
+  const isLastProject = currentIndex === allProjects.length - 1;
 
   const previousProject = isFirstProject
     ? allProjects[allProjects.length - 1]
@@ -297,7 +299,6 @@ export async function getStaticProps({ params }: any) {
     ? allProjects[0]
     : allProjects[currentIndex + 1];
 
-  if (!project) return { notFound: true };
 
   const data = cleanProject(project);
 
