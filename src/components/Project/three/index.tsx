@@ -1,18 +1,23 @@
 import { Box } from "@react-three/flex";
-import { Line, Text } from "@react-three/drei";
+import { Line, Text, useCursor } from "@react-three/drei";
 import Asset from "../../Asset/three";
 
 import * as THREE from "three";
+import { useThree } from "@react-three/fiber";
+import { useRef, useState } from "react";
 
 const ThreeProject = (
-  { theme, title, client, director, featured, viewport, index }: any,
+  { theme, router, slug, title, client, director, featured, index }: any,
 ) => {
+  const ref: any = useRef();
+  
   const color = theme === "dark" ? "#FFF6E5" : "#131313";
+  const { viewport } = useThree();
 
   index = index < 10 ? `0${index}` : index;
 
   return (
-    <>
+    <group ref={ref}>
       <Box>
         <Line
           points={[
@@ -29,7 +34,7 @@ const ThreeProject = (
           lineHeight={1.5}
           anchorY="middle"
           textAlign="left"
-          position={new THREE.Vector3(-(viewport.width / 100) * 5 + 0.25, 0, 0)}
+          position={new THREE.Vector3(-(viewport.width / 100) * 3, 0, 0)}
           font="/fonts/PPNeueMontreal-Book.otf"
         >
           {index}
@@ -157,16 +162,18 @@ const ThreeProject = (
           height="100%"
           centerAnchor
         >
-          {(boxWidth, boxHeight) => (
-            <Asset
-              boxWidth={boxWidth}
-              boxHeight={boxHeight}
-              {...featured}
-            />
-          )}
+          {(boxWidth, boxHeight) => {
+            return (
+              <Asset
+                boxWidth={boxWidth}
+                boxHeight={boxHeight}
+                {...featured}
+              />
+            );
+          }}
         </Box>
       </Box>
-    </>
+    </group>
   );
 };
 

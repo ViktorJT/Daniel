@@ -1,16 +1,16 @@
 import { Contact } from "../../../types";
-import { ContactItem } from "../../ContactItem/html";
+import { HtmlContactItem } from "../../ContactItem";
 import { StyledFooter } from "./styles";
 
-const Footer = ({ contacts }: { contacts: Contact[] }) => {
+export const Footer = ({ contacts }: { contacts: Contact[] }) => {
   return (
     <StyledFooter>
       <div>
         <p>Daniel Arfwedson</p>
         <ul>
-          {contacts.map(({id, ...contact}) => (
-            <li key={`f-${id}`}>
-              <ContactItem {...contact} />
+          {contacts.map(({id, ...contact}, i: number) => (
+            <li key={`f-${i}-${id}`}>
+              <HtmlContactItem {...contact} />
             </li>
           ))}
         </ul>

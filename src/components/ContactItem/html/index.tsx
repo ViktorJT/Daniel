@@ -13,7 +13,7 @@ const Link = styled.a<any>`
   }
 `;
 
-export const ContactItem = ({ heading = false, type, value, label }: any) => {
+const ContactItem = ({ heading = false, type, value, label }: any) => {
   switch (type) {
     case "Email":
       return (
@@ -42,3 +42,5 @@ export const ContactItem = ({ heading = false, type, value, label }: any) => {
       return <></>;
   }
 };
+
+export default ContactItem;

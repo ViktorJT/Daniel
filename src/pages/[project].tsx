@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import { getAllProjects } from "../queries/getAllProjects";
 import { getProject } from "../queries/getProject";
 import cleanProject from "../helpers/cleanProject";
-import Footer from "../components/Footer/html";
+import { HtmlFooter } from "../components/Footer";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -126,7 +126,6 @@ const Asset = (asset: any) => {
 const Home: NextPage<any> = (
   { contacts, title, director, client, featured, assets },
 ) => {
-
   return (
     <StyledPage>
       <StyledHero>
@@ -162,18 +161,23 @@ const Home: NextPage<any> = (
       </StyledIntro>
       <StyledAssets>
         <div>
-          {assets.map(({id, ...asset}: any) => <Asset key={`pr=${id}`} {...asset} />)}
+          {assets.map(({ id, ...asset }: any) => (
+            <Asset key={`pr=${id}`} {...asset} />
+          ))}
         </div>
       </StyledAssets>
-      <Footer contacts={contacts} />
+      <HtmlFooter contacts={contacts} />
     </StyledPage>
   );
 };
 
 export async function getStaticPaths() {
   const { projects } = await getAllProjects();
-  
-  const paths = projects.map(({ slug }: any) => ({ params: { project: slug }, locale: 'en'}));
+
+  const paths = projects.map(({ slug }: any) => ({
+    params: { project: slug },
+    locale: "en",
+  }));
 
   return {
     paths,
@@ -182,7 +186,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  
   const { project, contacts } = await getProject(params.project);
 
   if (!project) return { notFound: true };

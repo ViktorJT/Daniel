@@ -2,8 +2,8 @@
 // TODO: remove GUIs (lava & perf)
 import type { NextPage } from "next";
 import styled from "styled-components";
-import { ContactItem } from "../components/ContactItem/html";
-import Footer from "../components/Footer/html";
+import { HtmlContactItem } from "../components/ContactItem";
+import { HtmlFooter } from "../components/Footer";
 import { getAbout } from "../queries/getAbout";
 
 const StyledPage = styled.div`
@@ -12,10 +12,10 @@ const StyledPage = styled.div`
   flex: 1 1 100%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
   align-items: center;
     
   section {
+    height: 100%;
     max-width: var(--containerWidth);
     padding: 0 40px;
     
@@ -24,6 +24,7 @@ const StyledPage = styled.div`
     gap: 40px;
     
     justify-content: space-between;
+    align-items: center;
     
     h1 {
       flex: 0 1 560px;
@@ -31,7 +32,7 @@ const StyledPage = styled.div`
 
     div {
       flex: 1 1 400px;
-      padding-top: 10px;
+      padding-top: 48px;
       display: inherit;
       flex-flow: inherit;
 
@@ -73,15 +74,15 @@ const Home: NextPage<any> = ({ contacts, about }) => {
             {about.subHeading}
           </h2>
           <ul>
-            {about.contacts.map(({ id, ...contact }: any) => (
-              <li key={`p-${id}`}>
-                <ContactItem heading {...contact} />
+            {about.contacts.map(({ id, ...contact }: any, i: number) => (
+              <li key={`p-${i}-${id}`}>
+                <HtmlContactItem heading {...contact} />
               </li>
             ))}
           </ul>
         </div>
       </section>
-      <Footer contacts={contacts} />
+      <HtmlFooter contacts={contacts} />
     </StyledPage>
   );
 };

@@ -2,8 +2,9 @@ import type { NextPage } from "next";
 
 import styled from "styled-components";
 import { Suspense } from "react";
+import { useRouter } from "next/router";
 
-import { Preload, Scroll, ScrollControls } from "@react-three/drei";
+import { Loader, Preload, Scroll, ScrollControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Box, Flex } from "@react-three/flex";
 
@@ -24,7 +25,7 @@ const StyledPage = styled.div`
   gap: var(--spacer);
 `;
 
-const Three = ({ theme, heading, projects, featured }: any) => {
+const Three = ({ router, theme, heading, projects, featured }: any) => {
   const { viewport } = useThree();
 
   const margin = viewport.width / 20; // 5vw
@@ -35,11 +36,22 @@ const Three = ({ theme, heading, projects, featured }: any) => {
       position={[-viewport.width / 2, viewport.height / 2, 0]}
       size={[viewport.width, viewport.height, 0]}
     >
-      <ThreeHero theme={theme} viewport={viewport} heading={heading} featured={featured} />
+      <ThreeHero
+        router={router}
+        theme={theme}
+        heading={heading}
+        featured={featured}
+      />
       <Box paddingLeft={margin} paddingRight={margin}>
         {projects.map(({ id, ...project }: any, i: number) => {
           return (
-            <ThreeProject key={`t-${id}`} index={i + 1} theme={theme} viewport={viewport} {...project} />
+            <ThreeProject
+              key={`t-${i}-${id}`}
+              router={router}
+              index={i + 1}
+              theme={theme}
+              {...project}
+            />
           );
         })}
       </Box>
@@ -51,9 +63,9 @@ const Html = ({ heading, projects, featured }: any) => {
   return (
     <StyledPage>
       <HtmlHero heading={heading} featured={featured} />
-      {projects.map(({ id, ...project }: any) => (
+      {projects.map(({ id, ...project }: any, i: number) => (
         <HtmlProject
-          key={`h-${id}`}
+          key={`h-${i}-${id}`}
           {...project}
         />
       ))}
@@ -61,41 +73,49 @@ const Html = ({ heading, projects, featured }: any) => {
   );
 };
 
-const Home: NextPage<any> = ({ theme, heading, height, featured, projects }) => {
+const Home: NextPage<any> = (
+  { theme, heading, height, featured, projects },
+) => {
   const { width } = useWindowSize();
+
+  const router = useRouter();
 
   const isDesktop = width > 1100;
 
   return isDesktop
     ? (
-      <Canvas
-        linear={true}
-        style={{
-          position: "absolute",
-          top: 0,
-          touchAction: "none",
-          overflow: "hidden",
-        }}
-      >
-        <Preload all />
-        <ScrollControls
-          pages={height} // Each page takes 100% of the height of the canvas
-          distance={1}
-          damping={5}
+      <>
+        <Canvas
+          linear={true}
+          style={{
+            position: "absolute",
+            top: 0,
+            touchAction: "none",
+            overflow: "hidden",
+          }}
         >
-          <Suspense fallback={null}>
-            <Scroll>
-              <Three
-                theme={theme}
-                heading={heading}
-                projects={projects}
-                featured={featured}
-              />
-              <Effects />
-            </Scroll>
-          </Suspense>
-        </ScrollControls>
-      </Canvas>
+          <Preload all />
+          <ScrollControls
+            pages={height} // Each page takes 100% of the height of the canvas
+            distance={1}
+            damping={5}
+          >
+            <Suspense fallback={null}>
+              <Scroll>
+                <Three
+                  router={router}
+                  theme={theme}
+                  heading={heading}
+                  projects={projects}
+                  featured={featured}
+                />
+                <Effects />
+              </Scroll>
+            </Suspense>
+          </ScrollControls>
+        </Canvas>
+        <Loader />
+      </>
     )
     : <Html heading={heading} projects={projects} featured={featured} />;
 };
