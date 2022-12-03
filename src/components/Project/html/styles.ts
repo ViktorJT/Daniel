@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StyledProject = styled.section`
+  
   counter-increment: project;
   display: flex;
 
@@ -49,9 +50,7 @@ export const StyledProject = styled.section`
     }
 
     .asset {
-      height: 100%;
-      min-height: 300px;
-      position: relative;
+      padding-top: 56.5%;
     }
   }
 

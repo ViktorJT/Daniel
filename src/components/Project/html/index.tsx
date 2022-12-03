@@ -24,13 +24,16 @@ const Asset = ({ mimeType, ...props }: any) => {
 
   if (mimeType.startsWith("video")) {
     return (
-      <ReactPlayer
-        light
-        style={{ position: "absolute", top: 0, left: 0 }}
-        height="100%"
-        width="100%"
-        url="https://media.graphassets.com/RiAOYDxMQHqXtLum1P42"
-      />
+      <div className="asset">
+        <ReactPlayer
+          top={0}
+          left={0}
+          height="100%"
+          position="absolute"
+          width="100%"
+          url="https://media.graphassets.com/RiAOYDxMQHqXtLum1P42"
+        />
+      </div>
     );
   }
 
@@ -44,15 +47,13 @@ const Project = ({ slug, title, client, director, featured }: any) => {
         <div className="details">
           <Link href={slug}>
             {title}
-          </Link>
+          </Link>   
           <p className="heading">Client</p>
           <p className="heading">Director</p>
           <p className="labels">{client}</p>
           <p className="labels">{director}</p>
         </div>
-        <div className="asset">
-          <Asset {...featured} />
-        </div>
+        <Asset {...featured} />
       </div>
     </StyledProject>
   );
