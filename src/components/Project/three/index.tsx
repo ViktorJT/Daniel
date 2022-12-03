@@ -1,23 +1,20 @@
-import { Box } from "@react-three/flex";
-import { Line, Text, useCursor } from "@react-three/drei";
+import { Box} from "@react-three/flex";
+import { Line, Text } from "@react-three/drei";
 import Asset from "../../Asset/three";
 
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
-import { useRef, useState } from "react";
 
 const ThreeProject = (
   { theme, router, slug, title, client, director, featured, index }: any,
 ) => {
-  const ref: any = useRef();
-  
   const color = theme === "dark" ? "#FFF6E5" : "#131313";
   const { viewport } = useThree();
 
   index = index < 10 ? `0${index}` : index;
 
   return (
-    <group ref={ref}>
+    <group>
       <Box>
         <Line
           points={[
@@ -165,8 +162,10 @@ const ThreeProject = (
           {(boxWidth, boxHeight) => {
             return (
               <Asset
-                boxWidth={boxWidth}
                 boxHeight={boxHeight}
+                boxWidth={boxWidth}
+                router={router}
+                slug={slug}
                 {...featured}
               />
             );
@@ -178,3 +177,7 @@ const ThreeProject = (
 };
 
 export default ThreeProject;
+function useFlex() {
+    throw new Error("Function not implemented.");
+}
+
