@@ -4,7 +4,7 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { getAllProjects } from "../queries/getAllProjects";
+import { getHome } from "../queries/getHome";
 import { getProject } from "../queries/getProject";
 import cleanProject from "../helpers/cleanProject";
 import { HtmlFooter } from "../components/Footer";
@@ -262,8 +262,10 @@ const Home: NextPage<any> = (
 };
 
 export async function getStaticPaths() {
-  const { projects } = await getAllProjects();
-
+  const { home } = await getHome();
+  
+  const { projects } = home;
+  
   const paths = projects.map(({ slug }: any) => ({
     params: { project: slug },
     locale: "en",
