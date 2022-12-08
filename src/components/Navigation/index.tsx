@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Moon from "../icons/moon.svg";
-import Sun from "../icons/sun.svg";
+import Moon from "./icons/moon.svg";
+import Sun from "./icons/sun.svg";
 import { StyledNavigation, StyledThemeSwitcher } from "./styles";
 
 const ThemeSwitcher = ({ theme, setTheme }: any) => {

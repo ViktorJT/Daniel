@@ -1,14 +1,18 @@
 // TODO: remove orbit controls from CanvasLayout
 // TODO: remove GUIs (lava & perf)
 import type { NextPage } from "next";
+
 import styled from "styled-components";
-import Image from "next/image";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+
+import Footer from "../components/Footer";
+import Link from "next/link";
+
 import { getHome } from "../queries/getHome";
 import { getProject } from "../queries/getProject";
+
 import cleanProject from "../helpers/cleanProject";
-import { HtmlFooter } from "../components/Footer";
-import Link from "next/link";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
@@ -256,7 +260,7 @@ const Home: NextPage<any> = (
           </div>
         </nav>
       </StyledNavigation>
-      <HtmlFooter contacts={contacts} />
+      <Footer contacts={contacts} />
     </StyledPage>
   );
 };

@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { useState } from "react";
 import styled from "styled-components";
 import GlobalStyles from "../components/GlobalStyles";
-import Navigation from "../components/Navigation/html";
+import Navigation from "../components/Navigation";
 
 const StyledLayout = styled.main`
   display: flex;

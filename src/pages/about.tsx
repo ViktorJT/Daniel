@@ -1,9 +1,10 @@
-// TODO: remove orbit controls from CanvasLayout
-// TODO: remove GUIs (lava & perf)
 import type { NextPage } from "next";
+
 import styled from "styled-components";
-import { HtmlContactItem } from "../components/ContactItem";
-import { HtmlFooter } from "../components/Footer";
+
+import ContactItem from "../components/ContactItem";
+import Footer from "../components/Footer";
+
 import { getAbout } from "../queries/getAbout";
 
 const StyledPage = styled.div`
@@ -76,13 +77,13 @@ const Home: NextPage<any> = ({ contacts, about }) => {
           <ul>
             {about.contacts.map(({ id, ...contact }: any, i: number) => (
               <li key={`p-${i}-${id}`}>
-                <HtmlContactItem heading {...contact} />
+                <ContactItem heading {...contact} />
               </li>
             ))}
           </ul>
         </div>
       </section>
-      <HtmlFooter contacts={contacts} />
+      <Footer contacts={contacts} />
     </StyledPage>
   );
 };
