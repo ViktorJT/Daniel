@@ -22,7 +22,6 @@ const StyledPage = styled.div`
   display: flex;
   flex-flow: column nowrap;
   counter-reset: 'project';
-  
   gap: var(--spacer);
 `;
 
