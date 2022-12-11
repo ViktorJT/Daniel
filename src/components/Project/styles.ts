@@ -70,6 +70,10 @@ export const StyledProject = styled.section`
         cursor: pointer;
         filter: grayscale(80%);
       }
+
+      & > * {
+        pointer-events: none;
+      }
     }
   }
 

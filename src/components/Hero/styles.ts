@@ -13,8 +13,8 @@ export const StyledHero = styled.section`
 
   h1 {
     z-index: 10;
-    width: 50%;
-    max-width: var(--containerWidth);
+    width: 100%;
+    max-width: 560px;
   }
 `;
 
@@ -25,7 +25,7 @@ export const StyledMarquee = styled(Marquee)`
   left: 0;
 `;
 
-export const StyledMedia = styled.div<{ title: string }>`
+export const StyledMedia = styled.div`
   margin-right: 40px;
   width: 50vw;
   height: auto;
