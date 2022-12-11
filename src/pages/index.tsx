@@ -16,11 +16,11 @@ const StyledPage = styled.div`
 `;
 
 const Home: NextPage<any> = (
-  { heading, featured, projects },
+  { heading, featuredMedias, projects },
 ) => {
   return (
     <StyledPage>
-      <Hero heading={heading} featured={featured} />
+      <Hero heading={heading} featuredMedias={featuredMedias} />
       {projects.map(({ id, ...project }: any, i: number) => (
         <Project
           key={`h-${i}-${id}`}
@@ -32,12 +32,12 @@ const Home: NextPage<any> = (
 };
 
 export async function getStaticProps() {
-  const { home, featured, contacts } = await getHome();
+  const { home, featuredMedias, contacts } = await getHome();
 
   if (!home) return { notFound: true }
 
   return {
-    props: { ...home, contacts, featured },
+    props: { ...home, contacts, featuredMedias },
   };
 }
 

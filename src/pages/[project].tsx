@@ -4,7 +4,6 @@ import styled from "styled-components";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
-import Footer from "../components/Footer";
 import Link from "next/link";
 
 import { getHome } from "../queries/getHome";
@@ -54,11 +53,17 @@ const StyledIntro = styled.section`
 
     ul {
       flex: 1 1 33%;
+      display: inherit;
+      flex-flow: inherit;
+      justify-content: space-between;
+      
+      gap: 24px;
+        
       padding-top: 10px;
       text-align: right;
 
-      li + li {
-        margin-top: 40px;
+      li {
+        flex: 1 1 40%;
       }
 
       li p:last-of-type {
@@ -129,45 +134,14 @@ const StyledNavigation = styled.section`
   
 `;
 
-// const Asset = (asset: any) => {
-//   if (asset.__typename === "Media") {
-//     return (
-//       <Image
-//         alt=""
-// objectFit="contain"
-// src={asset.url}
-// width={asset.width}
-// height={asset.height}
-// objectPosition="top left"
-//       />
-//     );
-//   }
-//   if (asset.__typename === "VimeoLink") {
-//     return (
-//       <StyledVideoWrapper>
-//         <ReactPlayer
-// loop
-// muted
-// playing
-// controls
-// top={0}
-// left={0}
-// width="100%"
-// height="100%"
-// url={asset.url}
-// position="absolute"
-//         />
-//       </StyledVideoWrapper>
-//     );
-//   }
-//   return <></>;
-// };
-
-const Home: NextPage<any> = (
+const Project: NextPage<any> = (
   {
     title,
     director,
     client,
+    stillsPhotographer,
+    dop,
+    agency,
     featuredMedia,
     projectMedia,
     previousProject,
@@ -216,6 +190,24 @@ const Home: NextPage<any> = (
               <p>Director</p>
               <p>{director}</p>
             </li>
+            {agency && (
+              <li>
+                <p>Agency</p>
+                <p>{agency}</p>
+              </li>
+            )}
+            {dop && (
+              <li>
+                <p>DoP</p>
+                <p>{dop}</p>
+              </li>
+            )}
+            {stillsPhotographer && (
+              <li>
+                <p>Stills</p>
+                <p>{stillsPhotographer}</p>
+              </li>
+            )}
           </ul>
         </div>
       </StyledIntro>
@@ -296,4 +288,4 @@ export async function getStaticProps({ params }: any) {
   return { props: project };
 }
 
-export default Home;
+export default Project;

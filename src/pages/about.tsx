@@ -62,7 +62,7 @@ const StyledPage = styled.div`
   }
 `;
 
-const Home: NextPage<any> = ({ about }) => {
+const About: NextPage<any> = ({ about }) => {
   return (
     <StyledPage>
       <section>
@@ -94,4 +94,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Home;
+export default About;

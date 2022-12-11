@@ -61,7 +61,7 @@ export async function getHome() {
 
   const { homes, contacts } = await client.request(query);
 
-  const featured = homes[0].projects.map(
+  const featuredMedias = homes[0].projects.map(
     ({ title, slug, featuredMedia }: any, i: number) => {
       if (featuredMedia.__typename === "VimeoLink") {
         const unpacked = {
@@ -86,5 +86,5 @@ export async function getHome() {
     }
   );
 
-  return { home: homes[0], featured, contacts };
+  return { home: homes[0], featuredMedias, contacts };
 }
