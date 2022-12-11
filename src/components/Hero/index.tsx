@@ -7,7 +7,6 @@ import { StyledHero, StyledMarquee, StyledMedia } from "./styles";
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
 const Hero = ({ heading, featuredMedias }: any) => {
-  console.log(featuredMedias);
   return (
     <StyledHero>
       <h1>{heading}</h1>

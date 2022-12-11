@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <StyledLayout>
         <Navigation theme={theme} setTheme={setTheme} />
         <Component theme={theme} {...pageProps} />
-        <Footer contacts={pageProps.contacts} />
+        <Footer contacts={pageProps.contacts || []} />
       </StyledLayout>
     </>
   );
