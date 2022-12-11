@@ -26,7 +26,8 @@ export const StyledMarquee = styled(Marquee)`
 `;
 
 export const StyledMedia = styled.div`
-  margin-right: 40px;
+  background-color: var(--primary-tint);
+  margin-right: var(--gap);
   width: 50vw;
   height: auto;
 
