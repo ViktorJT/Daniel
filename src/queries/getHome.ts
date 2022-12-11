@@ -11,23 +11,35 @@ export async function getHome() {
           slug
           client
           director
-          featured {
-            url
-            id
-            height
-            width
-            mimeType
-            videoHeight
-            videoWidth
+          featuredMedia {
+            __typename
+            ... on Media {
+              media {
+                id
+                url
+                height
+                width
+              }
+            }
+            ... on VimeoLink {
+              id
+              url
+            }
           }
-          assets {
-            url
-            id
-            height
-            width
-            mimeType
-            videoHeight
-            videoWidth
+          projectMedia {
+            __typename
+            ... on Media {
+              media {
+                id
+                url
+                height
+                width
+              }
+            }
+            ... on VimeoLink {
+              id
+              url
+            }
           }
         }
       }
@@ -49,5 +61,30 @@ export async function getHome() {
 
   const { homes, contacts } = await client.request(query);
 
-  return { home: homes[0], contacts };
+  const featured = homes[0].projects.map(
+    ({ title, slug, featuredMedia }: any, i: number) => {
+      if (featuredMedia.__typename === "VimeoLink") {
+        const unpacked = {
+          title,
+          slug,
+          ...featuredMedia,
+        };
+
+        homes[0].projects[i].featuredMedia = unpacked;
+        return unpacked;
+      } else if (featuredMedia.__typename === "Media") {
+        const unpacked = {
+          title,
+          slug,
+          __typename: featuredMedia.__typename,
+          ...featuredMedia.media,
+        };
+
+        homes[0].projects[i].featuredMedia = unpacked;
+        return unpacked;
+      }
+    }
+  );
+
+  return { home: homes[0], featured, contacts };
 }

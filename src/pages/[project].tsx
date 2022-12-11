@@ -1,5 +1,3 @@
-// TODO: remove orbit controls from CanvasLayout
-// TODO: remove GUIs (lava & perf)
 import type { NextPage } from "next";
 
 import styled from "styled-components";
@@ -12,9 +10,7 @@ import Link from "next/link";
 import { getHome } from "../queries/getHome";
 import { getProject } from "../queries/getProject";
 
-import cleanProject from "../helpers/cleanProject";
-
-const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
+const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
 const StyledPage = styled.div`
   position: relative;
@@ -92,7 +88,6 @@ const StyledAssets = styled.section`
 `;
 
 const StyledNavigation = styled.section`
-
   nav {
     max-width: var(--containerWidth);
     margin: 0 auto;
@@ -134,60 +129,47 @@ const StyledNavigation = styled.section`
   
 `;
 
-interface VideoWrapperProps {
-  readonly ratio: number;
-}
-
-const StyledVideoWrapper = styled.div<VideoWrapperProps>`
-  position: relative;
-`;
-
-const Asset = (asset: any) => {
-  if (asset.mimeType.startsWith("image")) {
-    return (
-      <Image
-        alt=""
-        objectFit="contain"
-        src={asset.url}
-        width={asset.width}
-        height={asset.height}
-        objectPosition="top left"
-      />
-    );
-  }
-  if (asset.mimeType.startsWith("video")) {
-    return (
-      <StyledVideoWrapper
-        ratio={asset.isLandscape
-          ? asset.aspectRatio.height * 100
-          : asset.aspectRatio.width * 100}
-      >
-        <ReactPlayer
-          loop
-          muted
-          playing
-          controls
-          top={0}
-          left={0}
-          width="100%"
-          height="100%"
-          url={asset.url}
-          position="absolute"
-        />
-      </StyledVideoWrapper>
-    );
-  }
-  return <></>;
-};
+// const Asset = (asset: any) => {
+//   if (asset.__typename === "Media") {
+//     return (
+//       <Image
+//         alt=""
+// objectFit="contain"
+// src={asset.url}
+// width={asset.width}
+// height={asset.height}
+// objectPosition="top left"
+//       />
+//     );
+//   }
+//   if (asset.__typename === "VimeoLink") {
+//     return (
+//       <StyledVideoWrapper>
+//         <ReactPlayer
+// loop
+// muted
+// playing
+// controls
+// top={0}
+// left={0}
+// width="100%"
+// height="100%"
+// url={asset.url}
+// position="absolute"
+//         />
+//       </StyledVideoWrapper>
+//     );
+//   }
+//   return <></>;
+// };
 
 const Home: NextPage<any> = (
   {
-    contacts,
     title,
     director,
     client,
-    featured,
-    assets,
+    featuredMedia,
+    projectMedia,
     previousProject,
     nextProject,
   },
@@ -195,12 +177,12 @@ const Home: NextPage<any> = (
   return (
     <StyledPage>
       <StyledHero>
-        {featured.mimeType.startsWith("image")
+        {featuredMedia.__typename === "Media"
           ? (
             <Image
               priority
               alt=""
-              src={featured.url}
+              src={featuredMedia.url}
               layout="fill"
               objectFit="cover"
               objectPosition="center"
@@ -211,12 +193,12 @@ const Home: NextPage<any> = (
               loop
               muted
               playing
-              top={0}
-              left={0}
               width="100%"
               height="100%"
-              url={featured.url}
-              position="absolute"
+              url={featuredMedia.url}
+              config={{
+                playerOptions: { responsive: true },
+              }}
             />
           )}
       </StyledHero>
@@ -239,9 +221,35 @@ const Home: NextPage<any> = (
       </StyledIntro>
       <StyledAssets>
         <div>
-          {assets.map(({ id, ...asset }: any) => (
-            <Asset key={`pr=${id}`} {...asset} />
-          ))}
+          {projectMedia.map((
+            { id, url, __typename, ...asset }: any,
+            i: number,
+          ) =>
+            __typename === "Media"
+              ? (
+                <Image
+                  key={`pm-${i}-${id}`}
+                  priority
+                  alt=""
+                  src={url}
+                  layout="responsive"
+                  objectFit="contain"
+                  {...asset}
+                />
+              )
+              : (
+                <ReactPlayer
+                  key={`pm-${i}-${id}`}
+                  controls
+                  width="100%"
+                  height="100%"
+                  url={url}
+                  config={{
+                    playerOptions: { responsive: true },
+                  }}
+                />
+              )
+          )}
         </div>
       </StyledAssets>
       <StyledNavigation>
@@ -260,16 +268,15 @@ const Home: NextPage<any> = (
           </div>
         </nav>
       </StyledNavigation>
-      <Footer contacts={contacts} />
     </StyledPage>
   );
 };
 
 export async function getStaticPaths() {
   const { home } = await getHome();
-  
+
   const { projects } = home;
-  
+
   const paths = projects.map(({ slug }: any) => ({
     params: { project: slug },
     locale: "en",
@@ -282,33 +289,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  const { homes, project, contacts } = await getProject(params.project);
-  
+  const project = await getProject(params.project);
+
   if (!project) return { notFound: true };
 
-  const allProjects = homes[0].projects;
-
-  const currentProjectId = project.id;
-
-  const currentIndex = allProjects.findIndex(({ id }: any) =>
-    id === currentProjectId
-  );
-
-  const isFirstProject = currentIndex === 0;
-  const isLastProject = currentIndex === allProjects.length - 1;
-
-  const previousProject = isFirstProject
-    ? allProjects[allProjects.length - 1]
-    : allProjects[currentIndex - 1];
-
-  const nextProject = isLastProject
-    ? allProjects[0]
-    : allProjects[currentIndex + 1];
-
-
-  const data = cleanProject(project);
-
-  return { props: { contacts, previousProject, nextProject, ...data } };
+  return { props: project };
 }
 
 export default Home;

@@ -1,18 +1,12 @@
-import Asset from "../Asset";
 import { StyledHero, StyledMarquee } from "./styles";
 
 const Hero = ({ heading, featured }: any) => {
   return (
     <StyledHero>
       <StyledMarquee gradient={false} direction="right" speed={100}>
-        {featured.map(({id, ...asset}: any) => (
+        {featured.map(({ id, ...asset }: any) => (
           <div className="asset" key={`a-${id}`}>
-            <Asset
-              mimeType={asset.mimeType}
-              url={asset.url}
-              width={asset.width}
-              height={asset.height}
-            />
+            mediaaa heereee
           </div>
         ))}
       </StyledMarquee>

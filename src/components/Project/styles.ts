@@ -7,11 +7,16 @@ export const StyledProject = styled.section`
   ::before {
     content: counter(project, decimal-leading-zero);
     letter-spacing: 0.5vw;
-    margin-top: -40px;
+    margin-top: -10px;
     text-align: left;
-    padding-left: 5vw;
+    padding-left: 1.25vw;
 
     width: 5vw;
+
+    @media (max-width: 970px) {
+      margin-top: -40px;
+      padding-left: 5vw;
+    }
   }
 
   .wrapper {
@@ -19,13 +24,14 @@ export const StyledProject = styled.section`
     border-color: var(--secondary);
 
     display: inherit;
-    flex-flow: column-reverse nowrap;
+    flex-flow: row wrap;
     flex: 1 1 100%;
+    gap: var(--gap);
 
     .details {
       display: inherit;
       flex-flow: row wrap;
-      flex: 1 1 auto;
+      flex: 1 0 400px;
 
       a {
         color: var(--secondary);
@@ -40,19 +46,23 @@ export const StyledProject = styled.section`
       }
 
       p {
-        flex: 0 1 50%;
+        flex: 1 0 50%;
+        width: 100%;
 
-        &:nth-of-type(even) {
-          text-align: right;
-        }
-
-        &.labels {
+        span {
+          display: block;
           font-weight: bold;
         }
+      }
+
+      p:last-of-type {
+        text-align: right;
       }
     }
 
     .asset {
+      display: block;
+      flex: 1 0 50%;
       transition: all 0.3s;
       filter: grayscale(0%);
 

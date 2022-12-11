@@ -3,7 +3,6 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 
 import ContactItem from "../components/ContactItem";
-import Footer from "../components/Footer";
 
 import { getAbout } from "../queries/getAbout";
 
@@ -63,7 +62,7 @@ const StyledPage = styled.div`
   }
 `;
 
-const Home: NextPage<any> = ({ contacts, about }) => {
+const Home: NextPage<any> = ({ about }) => {
   return (
     <StyledPage>
       <section>
@@ -83,18 +82,15 @@ const Home: NextPage<any> = ({ contacts, about }) => {
           </ul>
         </div>
       </section>
-      <Footer contacts={contacts} />
     </StyledPage>
   );
 };
 
 export async function getStaticProps() {
-  const data = await getAbout();
+  const about = await getAbout();
 
   return {
-    props: {
-      ...data,
-    },
+    props: about,
   };
 }
 

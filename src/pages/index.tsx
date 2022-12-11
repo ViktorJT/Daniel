@@ -4,11 +4,8 @@ import styled from "styled-components";
 
 import Project from "../components/Project/";
 import Hero from "../components/Hero/";
-import Footer from "../components/Footer";
 
 import { getHome } from "../queries/getHome";
-
-import cleanProject from "../helpers/cleanProject";
 
 const StyledPage = styled.div`
   display: flex;
@@ -19,7 +16,7 @@ const StyledPage = styled.div`
 `;
 
 const Home: NextPage<any> = (
-  { heading, contacts, featured, projects },
+  { heading, featured, projects },
 ) => {
   return (
     <StyledPage>
@@ -30,30 +27,17 @@ const Home: NextPage<any> = (
           {...project}
         />
       ))}
-      <Footer contacts={contacts} />
     </StyledPage>
   );
 };
 
 export async function getStaticProps() {
-  const { home, contacts } = await getHome();
+  const { home, featured, contacts } = await getHome();
 
-  const data = home.projects.map((project: any) => cleanProject(project));
-
-  const featured = data.map(({ title, director, client, featured }: any) => ({
-    title,
-    director,
-    client,
-    ...featured,
-  }));
+  if (!home) return { notFound: true }
 
   return {
-    props: {
-      contacts: contacts,
-      heading: home.heading,
-      projects: data,
-      featured,
-    },
+    props: { ...home, contacts, featured },
   };
 }
 
