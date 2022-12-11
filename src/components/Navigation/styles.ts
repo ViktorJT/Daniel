@@ -14,7 +14,7 @@ export const StyledThemeSwitcher = styled.button`
   width: 72px;
   border-radius: 24px;
   display: flex;
-  
+
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
@@ -22,7 +22,7 @@ export const StyledThemeSwitcher = styled.button`
   svg.active {
     opacity: 1;
   }
-  
+
   svg {
     fill: var(--secondary);
     opacity: 0.3;
@@ -59,6 +59,14 @@ export const StyledNavigation = styled.nav`
 
     li.theme {
       margin-left: 2rem;
+    }
+
+    @media (max-width: 970px) {
+      padding: 0 2vw;
+
+      li.theme {
+        margin-left: 16px;
+      }
     }
   }
 `;

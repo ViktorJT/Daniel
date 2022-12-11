@@ -18,6 +18,7 @@ const StyledPage = styled.div`
     height: 100%;
     max-width: var(--containerWidth);
     padding: 0 40px;
+    margin-top: 0;
     
     display: inherit;
     flex-flow: row wrap;
@@ -59,7 +60,10 @@ const StyledPage = styled.div`
         }
       }
     }
-  }
+    @media (max-width: 970px) {
+      padding: 0 2vw;
+      margin-top: var(--gap);
+    }
 `;
 
 const About: NextPage<any> = ({ about }) => {

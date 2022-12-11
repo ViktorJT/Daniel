@@ -15,7 +15,8 @@ export const StyledProject = styled.section`
 
     @media (max-width: 970px) {
       margin-top: -40px;
-      padding-left: 5vw;
+      padding-left: 2vw;
+      width: 2vw;
     }
   }
 
@@ -31,7 +32,7 @@ export const StyledProject = styled.section`
     .details {
       display: inherit;
       flex-flow: row wrap;
-      flex: 1 0 400px;
+      flex: 1 1 400px;
 
       a {
         color: var(--secondary);
@@ -83,5 +84,9 @@ export const StyledProject = styled.section`
     border-color: var(--secondary);
 
     width: 5vw;
+
+    @media (max-width: 970px) {
+      width: 2vw;
+    }
   }
 `;

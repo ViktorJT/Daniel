@@ -70,6 +70,9 @@ const StyledIntro = styled.section`
         font-weight: bold;
       }
     }
+    @media (max-width: 970px) {
+      padding: 80px 2vw;
+    }
   }
 `;
 
@@ -88,6 +91,10 @@ const StyledAssets = styled.section`
 
     & > * {
       flex: 1 1 440px;
+    }
+    
+    @media (max-width: 970px) {
+     padding: 0 2vw;
     }
   }
 `;
@@ -129,6 +136,10 @@ const StyledNavigation = styled.section`
       
       &:first-child {
       }
+    }
+    
+    @media (max-width: 970px) {
+      padding: 40px 2vw;
     }
   }
   
