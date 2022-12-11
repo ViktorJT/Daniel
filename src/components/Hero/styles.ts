@@ -26,7 +26,6 @@ export const StyledMarquee = styled(Marquee)`
 `;
 
 export const StyledMedia = styled.div`
-  background-color: var(--primary-tint);
   margin-right: var(--gap);
   width: 50vw;
   height: auto;
@@ -42,6 +41,10 @@ export const StyledMedia = styled.div`
       top: 0;
       opacity: 1;
     }
+  }
+
+  .wrapper {
+    background-color: var(--primary-shade);
   }
 
   .meta {
