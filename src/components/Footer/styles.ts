@@ -6,7 +6,7 @@ export const StyledFooter = styled.footer`
   align-items: center;
   justify-content: center;
 
-  background-color: var(--primary-tint);
+  background-color: var(--primary-shade);
   border-top: 1px solid;
   border-color: var(--secondary);
 

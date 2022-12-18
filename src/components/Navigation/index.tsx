@@ -11,25 +11,25 @@ const ThemeSwitcher = ({ theme, setTheme }: any) => {
         root.style.setProperty("--primary", "var(--light)");
         root.style.setProperty("--primary-tint", "var(--light-tint)");
         root.style.setProperty(
-          "--primary-transparent",
-          "var(--white-transparent)",
+          "--primary-shade",
+          "var(--light-shade)",
         );
 
         root.style.setProperty("--secondary", "var(--dark)");
         root.style.setProperty("--secondary-tint", "var(--dark-tint)");
         root.style.setProperty(
-          "--secondary-transparent",
-          "var(--black-transparent)",
+          "--secondary-shade",
+          "var(--dark-shade)",
         );
         setTheme("light");
       } else if (theme === "light") {
         root.style.removeProperty("--primary");
         root.style.removeProperty("--primary-tint");
-        root.style.removeProperty("--primary-transparent");
+        root.style.removeProperty("--primary-shade");
 
         root.style.removeProperty("--secondary");
         root.style.removeProperty("--secondary-tint");
-        root.style.removeProperty("--secondary-transparent");
+        root.style.removeProperty("--secondary-shade");
         setTheme("dark");
       }
     }
