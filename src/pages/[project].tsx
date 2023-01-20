@@ -153,6 +153,7 @@ const Project: NextPage<any> = (
     stillsPhotographer,
     dop,
     agency,
+    production,
     featuredMedia,
     projectMedia,
     previousProject,
@@ -205,6 +206,12 @@ const Project: NextPage<any> = (
               <li>
                 <p>Agency</p>
                 <p>{agency}</p>
+              </li>
+            )}
+            {production && (
+              <li>
+                <p>Production</p>
+                <p>{production}</p>
               </li>
             )}
             {dop && (

@@ -29,6 +29,7 @@ export async function getProject(slug: string) {
         client
         director
         agency
+        production
         dop
         stillsPhotographer
         featuredMedia {
@@ -98,12 +99,12 @@ export async function getProject(slug: string) {
   );
 
   if (project.featuredMedia.__typename === "Media") {
-    project.featuredMedia = {...project.featuredMedia.media, __typename: project.featuredMedia.__typename};
+    project.featuredMedia = { ...project.featuredMedia.media, __typename: project.featuredMedia.__typename };
   }
 
   project.projectMedia.forEach((media: any, i: number) => {
     if (media.media) {
-      project.projectMedia[i] = {...media.media, __typename: media.__typename};
+      project.projectMedia[i] = { ...media.media, __typename: media.__typename };
     }
   });
 
