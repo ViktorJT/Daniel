@@ -20,10 +20,11 @@ const Project = ({ slug, title, client, director, featuredMedia }: any) => {
             <span>Client</span>
             {client}
           </p>
-          <p>
+          {director && <p>
             <span>Director</span>
             {director}
           </p>
+          }
         </div>
         <div onClick={() => router.push(slug)} className="asset">
           {featuredMedia.__typename === "Media"

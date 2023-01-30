@@ -198,10 +198,11 @@ const Project: NextPage<any> = (
               <p>Client</p>
               <p>{client}</p>
             </li>
-            <li>
+            {director && <li>
               <p>Director</p>
               <p>{director}</p>
             </li>
+            }
             {agency && (
               <li>
                 <p>Agency</p>
