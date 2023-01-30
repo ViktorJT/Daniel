@@ -55,11 +55,14 @@ export async function getProject(slug: string) {
               url
               height
               width
+              mimeType
             }
+            large
           }
           ... on VimeoLink {
             id
             url
+            large
           }
         }
       }
@@ -70,7 +73,7 @@ export async function getProject(slug: string) {
         value
       }
       homes {
-        projects {
+        projects(first: 100) {
           id
           title
           slug
@@ -104,7 +107,7 @@ export async function getProject(slug: string) {
 
   project.projectMedia.forEach((media: any, i: number) => {
     if (media.media) {
-      project.projectMedia[i] = { ...media.media, __typename: media.__typename };
+      project.projectMedia[i] = { ...media.media, large: media.large, __typename: media.__typename };
     }
   });
 

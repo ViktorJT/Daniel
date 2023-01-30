@@ -5,7 +5,7 @@ export async function getHome() {
     query getHome {
       homes {
         heading
-        projects {
+        projects(first: 100) {
           id
           title
           slug

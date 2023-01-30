@@ -90,11 +90,21 @@ const StyledAssets = styled.section`
     gap: 40px;
 
     & > * {
-      flex: 1 1 440px;
+      flex-basis: 45%;
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+
+    .large {
+      flex-basis: 100%;
     }
     
     @media (max-width: 970px) {
      padding: 0 2vw;
+
+      & > * {
+        flex-basis: 100%;
+      }
     }
   }
 `;
@@ -233,33 +243,45 @@ const Project: NextPage<any> = (
       <StyledAssets>
         <div>
           {projectMedia.map((
-            { id, url, __typename, ...asset }: any,
+            { id, url, large, __typename, ...asset }: any,
             i: number,
           ) =>
-            __typename === "Media"
-              ? (
-                <Image
-                  key={`pm-${i}-${id}`}
-                  priority
-                  alt=""
-                  src={url}
-                  layout="responsive"
-                  objectFit="contain"
-                  {...asset}
-                />
-              )
-              : (
-                <ReactPlayer
-                  key={`pm-${i}-${id}`}
-                  controls
-                  width="100%"
-                  height="100%"
-                  url={url}
-                  config={{
-                    playerOptions: { responsive: true },
-                  }}
-                />
-              )
+            <div key={`pm-${i}-${id}`} className={large ? 'large' : undefined}>
+              {__typename === "Media"
+                ? asset.mimeType.startsWith('image')
+                  ? (
+                    <Image
+                      priority
+                      alt=""
+                      src={url}
+                      layout="responsive"
+                      objectFit="contain"
+                      {...asset}
+                    />
+                  )
+                  : (
+                    <ReactPlayer
+                      controls
+                      {...asset}
+                      width="100%"
+                      height="100%"
+                      config={{
+                        playerOptions: { responsive: true },
+                      }}
+                    />
+                  )
+                : (
+                  <ReactPlayer
+                    controls
+                    width="100%"
+                    height="100%"
+                    url={url}
+                    config={{
+                      playerOptions: { responsive: true },
+                    }}
+                  />
+                )}
+            </div>
           )}
         </div>
       </StyledAssets>
