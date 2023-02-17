@@ -26,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: 'Neue Montreal';
-    src: url('/fonts/PPNeueMontreal-Book.otf') format('opentype');
+    src: url('/fonts/PPNeueMontreal-Book.woff2') format('woff2');
     font-style: normal;
     font-weight: normal;
     font-display: fallback;
@@ -34,7 +34,7 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: 'Neue Montreal';
-    src: url('/fonts/PPNeueMontreal-Bold.otf') format('opentype');
+    src: url('/fonts/PPNeueMontreal-Bold.woff2') format('woff2');
     font-style: normal;
     font-weight: bold;
     font-display: fallback;
