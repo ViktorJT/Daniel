@@ -11,6 +11,8 @@ export async function getHome() {
           slug
           client
           director
+          stillsPhotographer
+          photoProject
           featuredMedia {
             __typename
             ... on Media {

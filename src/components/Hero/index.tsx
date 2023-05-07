@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ReactPlayer from "react-player/vimeo";
 import { useRouter } from "next/router";
+import { isMobile } from 'react-device-detect';
 
 import { StyledHero, StyledMarquee, StyledMedia } from "./styles";
 
@@ -9,11 +10,11 @@ const Hero = ({ heading, featuredMedias }: any) => {
 
   return (
     <StyledHero>
-      <h1>{heading}</h1>
+      <h1><span>{heading}</span></h1>
       <StyledMarquee
         gradient={false}
         direction="right"
-        speed={160}
+        speed={isMobile ? 80 : 160}
       >
         {featuredMedias.map(({ id, title, slug, director, ...asset }: any) => {
           return (

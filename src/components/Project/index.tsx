@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
-const Project = ({ slug, title, client, director, featuredMedia }: any) => {
+const Project = ({ slug, title, client, director, featuredMedia, stillsPhotographer, photoProject = false }: any) => {
   const router = useRouter();
   return (
     <StyledProject>
@@ -20,10 +20,19 @@ const Project = ({ slug, title, client, director, featuredMedia }: any) => {
             <span>Client</span>
             {client}
           </p>
-          {director && <p>
-            <span>Director</span>
-            {director}
-          </p>
+          {photoProject
+            ? stillsPhotographer && (
+              <p>
+                <span>Photographer</span>
+                {stillsPhotographer}
+              </p>
+            )
+            : director && (
+              <p>
+                <span>Director</span>
+                {director}
+              </p>
+            )
           }
         </div>
         <div onClick={() => router.push(slug)} className="asset">

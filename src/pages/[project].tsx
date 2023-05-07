@@ -49,6 +49,7 @@ const StyledIntro = styled.section`
 
     h2 {
       flex: 1 1 560px;
+      line-height: 1.16;
     }
 
     ul {
@@ -60,18 +61,23 @@ const StyledIntro = styled.section`
       gap: 24px;
         
       padding-top: 10px;
-      text-align: right;
+      text-align: left;
 
       li {
         flex: 1 1 40%;
       }
 
       li p:last-of-type {
-        font-weight: bold;
+        font-size: 0.8rem;
       }
     }
+
     @media (max-width: 970px) {
-      padding: 80px 2vw;
+      padding: 80px 20px;
+
+      ul {
+        padding-top: 24px;
+      }
     }
   }
 `;
@@ -100,7 +106,7 @@ const StyledAssets = styled.section`
     }
     
     @media (max-width: 970px) {
-     padding: 0 2vw;
+     padding: 0 20px;
 
       & > * {
         flex-basis: 100%;
@@ -142,9 +148,6 @@ const StyledNavigation = styled.section`
 
       span: {
         display: block;
-      }
-      
-      &:first-child {
       }
     }
     

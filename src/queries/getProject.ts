@@ -47,7 +47,7 @@ export async function getProject(slug: string) {
             url
           }
         }
-        projectMedia {
+        projectMedia(first: 100) {
           __typename
           ... on Media {
             media {

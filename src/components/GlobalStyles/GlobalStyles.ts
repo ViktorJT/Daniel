@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
     --light-tint: #FFFFFF;
     --light-shade: #FFDFB8;
 
-    --dark: #131313;
+    --dark: #1C1C1C;
     --dark-shade: #000000;
     --dark-tint: #2B2B2B;
 
@@ -123,6 +123,12 @@ const GlobalStyles = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     font-size: 2.5rem;
     font-weight: normal;
+  }
+
+  @media (min-width: 970px) {
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 4rem;
+    }
   }
 
   p, a {

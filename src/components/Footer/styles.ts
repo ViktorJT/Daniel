@@ -22,11 +22,11 @@ export const StyledFooter = styled.footer`
 
     display: inherit;
     flex-flow: inherit;
-    justify-content: inherit;
-  }
+    justify-content: flex-end;
 
-  p {
-    font-weight: bold;
+    @media (max-width: 970px) {
+      padding: 40px 20px;
+    }
   }
 
   ul {

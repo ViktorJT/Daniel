@@ -6,16 +6,17 @@ export const StyledProject = styled.section`
 
   ::before {
     content: counter(project, decimal-leading-zero);
-    letter-spacing: 0.5vw;
+    letter-spacing: 0.25vw;
     margin-top: -10px;
-    text-align: left;
-    padding-left: 1.25vw;
+    text-align: right;
+    padding-right: 1.25vw;
 
     width: 5vw;
 
     @media (max-width: 970px) {
       margin-top: -40px;
       padding-left: 2vw;
+      padding-right: 0;
       width: 2vw;
     }
   }
@@ -33,26 +34,33 @@ export const StyledProject = styled.section`
       display: inherit;
       flex-flow: row wrap;
       flex: 1 1 400px;
+      align-items: flex-end;
+      max-height: 640px;
 
       a {
         color: var(--secondary);
         text-decoration: none;
-        font-size: 1.5rem;
+        font-size: 4rem;
         flex: 1 1 100%;
-        padding: 40px 0;
+        padding: 64px 0;
 
         &:hover {
           color: var(--secondary-shade);
+        }
+
+        @media (max-width: 970px) {
+          padding: 0 0 40px 0;
         }
       }
 
       p {
         flex: 1 0 50%;
         width: 100%;
+        font-size: .8rem;
 
         span {
           display: block;
-          font-weight: bold;
+          font-size: 1rem;
         }
       }
 
@@ -74,6 +82,10 @@ export const StyledProject = styled.section`
 
       & > * {
         pointer-events: none;
+      }
+
+      @media (max-width: 970px) {
+        order: -1;
       }
     }
   }

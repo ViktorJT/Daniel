@@ -29,6 +29,8 @@ const StyledPage = styled.div`
     
     h1 {
       flex: 0 1 560px;
+      margin-bottom: 128px;
+      margin-top: 64px;
     }
 
     div {
@@ -48,7 +50,6 @@ const StyledPage = styled.div`
         flex: 1 1 40%;
 
         li {
-          text-align: right;
         }
 
         li + li {
@@ -56,12 +57,12 @@ const StyledPage = styled.div`
         }
 
         li p:last-of-type {
-          font-weight: bold;
+          font-size: 0.8rem;
         }
       }
     }
     @media (max-width: 970px) {
-      padding: 0 2vw;
+      padding: 0 20px;
       margin-top: var(--gap);
     }
 `;

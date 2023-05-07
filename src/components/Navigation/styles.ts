@@ -27,6 +27,16 @@ export const StyledThemeSwitcher = styled.button`
     fill: var(--secondary);
     opacity: 0.3;
   }
+
+  @media (max-width: 970px) {
+    width: 40px;
+    svg {
+      display: none;
+    }
+    svg.active {
+      display: block;
+    }
+  }
 `;
 
 export const StyledNavigation = styled.nav`
@@ -62,10 +72,14 @@ export const StyledNavigation = styled.nav`
     }
 
     @media (max-width: 970px) {
-      padding: 0 2vw;
+      padding: 0 20px;
 
       li.theme {
         margin-left: 16px;
+      }
+
+      li.about {
+        font-size: .8rem;
       }
     }
   }
