@@ -89,7 +89,7 @@ export async function getProject(slug: string) {
     },
   });
 
-  const { project, contacts, homes } = await client.request(query, {
+  const { project, contacts, homes }: any = await client.request(query, {
     slug,
   });
 

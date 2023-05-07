@@ -61,7 +61,7 @@ export async function getHome() {
     },
   });
 
-  const { homes, contacts } = await client.request(query);
+  const { homes, contacts }: any = await client.request(query);
 
   const featuredMedias = homes[0].projects.map(
     ({ title, slug, featuredMedia }: any, i: number) => {

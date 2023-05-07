@@ -28,7 +28,7 @@ export async function getAbout() {
     },
   });
 
-  const { abouts, contacts } = await client.request(query);
+  const { abouts, contacts }: any = await client.request(query);
 
   return { about: abouts[0], contacts };
 }

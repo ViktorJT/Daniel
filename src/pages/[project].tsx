@@ -173,7 +173,6 @@ const Project: NextPage<any> = (
     nextProject,
   },
 ) => {
-  console.log({ projectMedia })
   return (
     <StyledPage>
       <StyledHero>
