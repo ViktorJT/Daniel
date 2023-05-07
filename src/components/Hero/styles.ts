@@ -36,6 +36,10 @@ export const StyledMarquee = styled(Marquee)`
   position: absolute !important;
   left: 0;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .child {
     display: flex;
     align-items: center;
