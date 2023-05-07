@@ -34,11 +34,18 @@ export const StyledMarquee = styled(Marquee)`
 
   position: absolute !important;
   left: 0;
+
+  .child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const StyledMedia = styled.div`
+  position: relative;
   margin-right: var(--gap);
-  width: 50vw;
+  width: 80vw;
   height: auto;
 
   transition: all 0.3s;
@@ -49,7 +56,7 @@ export const StyledMedia = styled.div`
     filter: grayscale(80%);
 
     .meta {
-      top: 0;
+      bottom: -32px;
       opacity: 1;
     }
   }
@@ -59,7 +66,9 @@ export const StyledMedia = styled.div`
   }
 
   .meta {
-    top: 16px;
+    position: absolute;
+    width: 100%;
+    bottom: -54px;
     opacity: 0;
     transition: all 0.25s ease-in-out;
   }
