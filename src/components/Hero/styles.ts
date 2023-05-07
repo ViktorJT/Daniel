@@ -12,6 +12,7 @@ export const StyledHero = styled.section`
   justify-content: center;
 
   h1 {
+    pointer-events: none;
     z-index: 10;
     width: 100%;
     max-width: var(--containerWidth);
