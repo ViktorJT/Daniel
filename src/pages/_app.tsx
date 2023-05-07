@@ -12,7 +12,7 @@ const StyledLayout = styled.main`
   width: 100%;
 `;
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: any) {
   const [theme, setTheme] = useState("dark");
   return (
     <>
