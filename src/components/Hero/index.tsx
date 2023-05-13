@@ -14,7 +14,7 @@ const Hero = ({ heading, featuredMedias }: any) => {
       <StyledMarquee
         gradient={false}
         direction="right"
-        speed={isMobile ? 80 : 160}
+        speed={isMobile ? 60 : 160}
       >
         {featuredMedias.map(({ id, title, slug, director, ...asset }: any) => {
           return (

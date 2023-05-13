@@ -76,6 +76,7 @@ export async function getProject(slug: string) {
         projects(first: 100) {
           id
           title
+          client
           slug
         }
       }

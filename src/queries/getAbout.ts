@@ -6,6 +6,7 @@ export async function getAbout() {
       abouts {
         heading
         subHeading
+        paragraph
         contacts {
           label
           type

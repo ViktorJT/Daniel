@@ -43,13 +43,17 @@ export const StyledProject = styled.section`
         font-size: 4rem;
         flex: 1 1 100%;
         padding: 64px 0;
+        line-height: 100%;
+        text-transform: none;
 
         &:hover {
           color: var(--secondary-shade);
         }
 
         @media (max-width: 970px) {
+          word-break: break-word;
           padding: 0 0 40px 0;
+          font-size: 2.5rem;
         }
       }
 

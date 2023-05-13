@@ -49,9 +49,8 @@ export const StyledNavigation = styled.nav`
   backdrop-filter: blur(3px) saturate(90%);
 
   ul {
-    padding: 0 40px;
+    padding: 0 5vw;
     width: 100%;
-    max-width: var(--containerWidth);
     margin: 0 auto;
 
     display: flex;
@@ -72,7 +71,7 @@ export const StyledNavigation = styled.nav`
     }
 
     @media (max-width: 970px) {
-      padding: 0 20px;
+      padding: 0 2vw;
 
       li.theme {
         margin-left: 16px;

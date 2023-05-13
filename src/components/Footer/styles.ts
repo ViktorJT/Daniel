@@ -16,16 +16,15 @@ export const StyledFooter = styled.footer`
 
   div {
     width: 100%;
-    max-width: var(--containerWidth);
     gap: 40px;
-    padding: 40px;
+    padding: 5vw;
 
     display: inherit;
     flex-flow: inherit;
     justify-content: flex-end;
 
     @media (max-width: 970px) {
-      padding: 40px 20px;
+      padding: 40px 2vw;
     }
   }
 
@@ -38,5 +37,14 @@ export const StyledFooter = styled.footer`
   a {
     text-decoration: none;
     color: var(--secondary);
+  }
+
+
+  @media (max-width: 970px) {
+    ul {
+      flex-flow: column nowrap;
+      gap: 8px;
+      text-align: right;
+    }
   }
 `;

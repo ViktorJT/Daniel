@@ -27,10 +27,12 @@ const StyledHero = styled.section`
   position: relative;
 
   width: 100%;
-  height: 320px;
 
   overflow: hidden;
 
+  &:has(span) {
+    height: 320px;
+  }
 
   video {
     object-fit: cover;
@@ -40,8 +42,7 @@ const StyledHero = styled.section`
 const StyledIntro = styled.section`
   div {
     margin: 0 auto;
-    padding: 80px 40px;
-    max-width: var(--containerWidth);
+    padding: 80px 5vw;
     display: flex;
     flex-flow: row wrap;
     
@@ -61,10 +62,14 @@ const StyledIntro = styled.section`
       gap: 24px;
         
       padding-top: 10px;
-      text-align: left;
+      text-align: right;
 
       li {
         flex: 1 1 40%;
+      }
+
+      li p:first-of-type {
+        font-size: 0.9rem;
       }
 
       li p:last-of-type {
@@ -73,11 +78,17 @@ const StyledIntro = styled.section`
     }
 
     @media (max-width: 970px) {
-      padding: 80px 20px;
-
       ul {
-        padding-top: 24px;
+        padding-top: 80px;
+        text-align: left;
+
+        li:nth-child(2n) p {
+          text-align: right;
+        }
+
       }
+
+      padding: 80px 2vw;
     }
   }
 `;
@@ -85,8 +96,7 @@ const StyledIntro = styled.section`
 const StyledAssets = styled.section`
   & > div {
     overflow: hidden;
-    padding: 0 40px;
-    max-width: var(--containerWidth);
+    padding: 0 5vw;
     margin: 0 auto;
 
     align-items: flex-start;
@@ -106,7 +116,7 @@ const StyledAssets = styled.section`
     }
     
     @media (max-width: 970px) {
-     padding: 0 20px;
+     padding: 0 2vw;
 
       & > * {
         flex-basis: 100%;
@@ -117,10 +127,9 @@ const StyledAssets = styled.section`
 
 const StyledNavigation = styled.section`
   nav {
-    max-width: var(--containerWidth);
     margin: 0 auto;
     
-    padding: 64px 40px;
+    padding: 64px 5vw;
 
     display: flex;
     gap: 40px;
@@ -236,7 +245,7 @@ const Project: NextPage<any> = (
             )}
             {stillsPhotographer && (
               <li>
-                <p>Stills</p>
+                <p>Photographer</p>
                 <p>{stillsPhotographer}</p>
               </li>
             )}
@@ -293,13 +302,13 @@ const Project: NextPage<any> = (
           <div>
             <p>Previous</p>
             <Link href={previousProject.slug}>
-              {`❮ ${previousProject.title}`}
+              {`❮ ${previousProject.client}`}
             </Link>
           </div>
           <div>
             <p>Next</p>
             <Link href={nextProject.slug}>
-              {`${nextProject.title} ❯`}
+              {`${nextProject.client} ❯`}
             </Link>
           </div>
         </nav>

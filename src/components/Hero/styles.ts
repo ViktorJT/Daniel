@@ -15,14 +15,14 @@ export const StyledHero = styled.section`
     pointer-events: none;
     z-index: 10;
     width: 100%;
-    max-width: var(--containerWidth);
-    padding: 20px;
+    padding: 2vw;
 
     @media (min-width: 970px) {
-      padding: 0 40px;
+      padding: 0 5vw;
     }
 
     span {
+      line-height: 100%;
       display: block;
       max-width: 640px;
     }
@@ -50,7 +50,7 @@ export const StyledMarquee = styled(Marquee)`
 export const StyledMedia = styled.div`
   position: relative;
   margin-right: var(--gap);
-  width: 80vw;
+  width: 72vw;
   height: auto;
 
   transition: all 0.3s;
@@ -79,7 +79,7 @@ export const StyledMedia = styled.div`
   }
 
   @media (max-width: 970px) {
-    width: 100vw;
+    width: 160vw;
     margin-right: 16px;
   }
 `;

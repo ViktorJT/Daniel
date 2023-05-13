@@ -12,26 +12,9 @@ const StyledLayout = styled.main`
   width: 100%;
 `;
 
-const StyledUnderConstruction = styled.section`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-function UnderConstruction() {
-  return (
-    <StyledUnderConstruction><h1>This page is under construction</h1></StyledUnderConstruction>
-  )
-}
-
 function MyApp({ Component, pageProps }: any) {
   const [theme, setTheme] = useState("dark");
-
-  const underConstruction = true;
-
-  return underConstruction ? <UnderConstruction /> : (
+  return (
     <>
       <Head>
         <title>Daniel Arfwedson</title>
