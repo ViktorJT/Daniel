@@ -30,6 +30,7 @@ const StyledHero = styled.section`
 
   overflow: hidden;
 
+  height: 320px;
   max-height: 320px;
 
   div div div iframe {
