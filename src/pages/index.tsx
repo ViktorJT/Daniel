@@ -37,7 +37,7 @@ export async function getStaticProps() {
   if (!home) return { notFound: true }
 
   return {
-    props: { ...home, contacts, featuredMedias },
+    props: { ...home, contacts, featuredMedias: featuredMedias.reverse() },
   };
 }
 

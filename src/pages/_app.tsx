@@ -30,9 +30,7 @@ function UnderConstruction() {
 function MyApp({ Component, pageProps }: any) {
   const [theme, setTheme] = useState("dark");
 
-  const underConstruction = process.env.UNDER_CONSTRUCTION === "true";
-
-  return underConstruction ? <UnderConstruction /> : (
+  return process.env.UNDER_CONSTRUCTION === "true" ? <UnderConstruction /> : (
     <>
       <Head>
         <title>Daniel Arfwedson</title>
