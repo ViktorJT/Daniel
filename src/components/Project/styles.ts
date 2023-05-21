@@ -88,8 +88,15 @@ export const StyledProject = styled.section`
         pointer-events: none;
       }
 
-      @media (max-width: 970px) {
+    }
+
+    @media (max-width: 970px) {
+      .asset {
         order: -1;
+      }
+
+      .details {
+        align-items: flex-start;
       }
     }
   }

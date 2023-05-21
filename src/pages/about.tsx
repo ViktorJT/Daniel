@@ -33,7 +33,7 @@ const StyledPage = styled.div`
     }
 
     &>div {
-      flex: 1 0 520px;
+      flex: 1 1 520px;
       display: inherit;
       flex-flow: row nowrap;
 
@@ -79,8 +79,11 @@ const StyledPage = styled.div`
       padding: 0 2vw;
 
       &>div {
-        flex-flow: column nowrap;
-        flex: 1 1 100%;
+        display: block;
+
+        div {
+          margin-bottom: 40px;
+        }
       }
 
       h1 {
@@ -102,17 +105,25 @@ const About: NextPage<any> = ({ about }) => {
   return (
     <StyledPage>
       <section>
-        <h1>
-          {about.heading}
-        </h1>
         <div>
+          <h1>
+            {about.heading}
+          </h1>
           <div>
-            <h2>
-              {about.subHeading}
-            </h2>
-            <p>
-              {about.paragraph}
-            </p>
+            {(about.subHeading || about.paragraph) && (
+              <div>
+                {about.subHeading && (
+                  <h2>
+                    {about.subHeading}
+                  </h2>
+                )}
+                {about.paragraph && (
+                  <p>
+                    {about.paragraph}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
           <ul>
             {about.contacts.map(({ id, ...contact }: any, i: number) => (

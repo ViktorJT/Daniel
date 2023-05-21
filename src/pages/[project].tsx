@@ -30,12 +30,16 @@ const StyledHero = styled.section`
 
   overflow: hidden;
 
-  &:has(span) {
-    height: 320px;
+  max-height: 320px;
+
+  div div div iframe {
+    top: -36% !important;
   }
 
-  video {
-    object-fit: cover;
+  @media (max-width: 970px) {
+    div div div iframe {
+      top: 0 !important;
+    }
   }
 `;
 
@@ -201,11 +205,13 @@ const Project: NextPage<any> = (
               loop
               muted
               playing
-              width="100%"
               height="100%"
+              width="100%"
               url={featuredMedia.url}
               config={{
-                playerOptions: { responsive: true },
+                playerOptions: {
+                  responsive: true,
+                },
               }}
             />
           )}
