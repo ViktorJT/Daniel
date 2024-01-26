@@ -14,7 +14,7 @@ const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 const StyledPage = styled.div`
   position: relative;
   width: 100%;
-  
+
   flex: 1 1 100%;
 
   display: flex;
@@ -23,7 +23,7 @@ const StyledPage = styled.div`
 
 const StyledHero = styled.section`
   margin-top: 6vh;
-  
+
   position: relative;
 
   width: 100%;
@@ -50,7 +50,7 @@ const StyledIntro = styled.section`
     padding: 80px 5vw;
     display: flex;
     flex-flow: row wrap;
-    
+
     justify-content: space-between;
 
     h2 {
@@ -63,9 +63,9 @@ const StyledIntro = styled.section`
       display: inherit;
       flex-flow: inherit;
       justify-content: space-between;
-      
+
       gap: 24px;
-        
+
       padding-top: 10px;
       text-align: right;
 
@@ -90,7 +90,6 @@ const StyledIntro = styled.section`
         li:nth-child(2n) p {
           text-align: right;
         }
-
       }
 
       padding: 80px 2vw;
@@ -119,9 +118,9 @@ const StyledAssets = styled.section`
     .large {
       flex-basis: 100%;
     }
-    
+
     @media (max-width: 970px) {
-     padding: 0 2vw;
+      padding: 0 2vw;
 
       & > * {
         flex-basis: 100%;
@@ -133,14 +132,14 @@ const StyledAssets = styled.section`
 const StyledNavigation = styled.section`
   nav {
     margin: 0 auto;
-    
+
     padding: 64px 5vw;
 
     display: flex;
     gap: 40px;
 
     justify-content: space-between;
-      
+
     div {
       display: flex;
       flex-flow: column nowrap;
@@ -157,81 +156,74 @@ const StyledNavigation = styled.section`
     a {
       text-decoration: none;
 
-
       color: var(--secondary);
 
       span: {
         display: block;
       }
     }
-    
+
     @media (max-width: 970px) {
       padding: 40px 2vw;
     }
   }
-  
 `;
 
-const Project: NextPage<any> = (
-  {
-    title,
-    director,
-    client,
-    stillsPhotographer,
-    dop,
-    agency,
-    production,
-    featuredMedia,
-    projectMedia,
-    previousProject,
-    nextProject,
-  },
-) => {
+const Project: NextPage<any> = ({
+  title,
+  director,
+  client,
+  photographer,
+  dop,
+  agency,
+  production,
+  featuredMedia,
+  projectMedia,
+  previousProject,
+  nextProject,
+}) => {
   return (
     <StyledPage>
       <StyledHero>
-        {featuredMedia.__typename === "Media"
-          ? (
-            <Image
-              priority
-              alt=""
-              src={featuredMedia.url}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-            />
-          )
-          : (
-            <ReactPlayer
-              loop
-              muted
-              playing
-              height="100%"
-              width="100%"
-              url={featuredMedia.url}
-              config={{
-                playerOptions: {
-                  responsive: true,
-                },
-              }}
-            />
-          )}
+        {featuredMedia.__typename === "Media" ? (
+          <Image
+            priority
+            alt=""
+            src={featuredMedia.url}
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+          />
+        ) : (
+          <ReactPlayer
+            loop
+            muted
+            playing
+            height="100%"
+            width="100%"
+            url={featuredMedia.url}
+            config={{
+              playerOptions: {
+                responsive: true,
+              },
+            }}
+          />
+        )}
       </StyledHero>
       <StyledIntro>
         <div>
-          <h2>
-            {title}
-          </h2>
+          <h2>{title}</h2>
           <ul>
             <li>
               <p>Client</p>
               <p>{client}</p>
             </li>
-            {director && <li>
-              <p>Director</p>
-              <p>{director}</p>
-            </li>
-            }
+            {director && (
+              <li>
+                <p>Director</p>
+                <p>{director}</p>
+              </li>
+            )}
             {agency && (
               <li>
                 <p>Agency</p>
@@ -250,10 +242,10 @@ const Project: NextPage<any> = (
                 <p>{dop}</p>
               </li>
             )}
-            {stillsPhotographer && (
+            {photographer && (
               <li>
                 <p>Photographer</p>
-                <p>{stillsPhotographer}</p>
+                <p>{photographer}</p>
               </li>
             )}
           </ul>
@@ -261,14 +253,14 @@ const Project: NextPage<any> = (
       </StyledIntro>
       <StyledAssets>
         <div>
-          {projectMedia.map((
-            { id, url, large, __typename, ...asset }: any,
-            i: number,
-          ) =>
-            <div key={`pm-${i}-${id}`} className={large ? 'large' : undefined}>
-              {__typename === "Media"
-                ? asset.mimeType.startsWith('image')
-                  ? (
+          {projectMedia.map(
+            ({ id, url, large, __typename, ...asset }: any, i: number) => (
+              <div
+                key={`pm-${i}-${id}`}
+                className={large ? "large" : undefined}
+              >
+                {__typename === "Media" ? (
+                  asset.mimeType.startsWith("image") ? (
                     <Image
                       priority
                       alt=""
@@ -277,8 +269,7 @@ const Project: NextPage<any> = (
                       objectFit="contain"
                       {...asset}
                     />
-                  )
-                  : (
+                  ) : (
                     <ReactPlayer
                       controls
                       {...asset}
@@ -289,7 +280,7 @@ const Project: NextPage<any> = (
                       }}
                     />
                   )
-                : (
+                ) : (
                   <ReactPlayer
                     controls
                     width="100%"
@@ -300,7 +291,8 @@ const Project: NextPage<any> = (
                     }}
                   />
                 )}
-            </div>
+              </div>
+            ),
           )}
         </div>
       </StyledAssets>
@@ -314,9 +306,7 @@ const Project: NextPage<any> = (
           </div>
           <div>
             <p>Next</p>
-            <Link href={nextProject.slug}>
-              {`${nextProject.client} ❯`}
-            </Link>
+            <Link href={nextProject.slug}>{`${nextProject.client} ❯`}</Link>
           </div>
         </nav>
       </StyledNavigation>

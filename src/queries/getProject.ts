@@ -2,7 +2,7 @@ import { gql, GraphQLClient } from "graphql-request";
 
 const getProjectNav = (currentProjectId: string, allProjects: any) => {
   const currentIndex = allProjects.findIndex(
-    ({ id }: any) => id === currentProjectId
+    ({ id }: any) => id === currentProjectId,
   );
 
   const isFirstProject = currentIndex === 0;
@@ -31,7 +31,7 @@ export async function getProject(slug: string) {
         agency
         production
         dop
-        stillsPhotographer
+        photographer
         featuredMedia {
           __typename
           ... on Media {
@@ -99,16 +99,23 @@ export async function getProject(slug: string) {
 
   const { previousProject, nextProject } = getProjectNav(
     currentProjectId,
-    allProjects
+    allProjects,
   );
 
   if (project.featuredMedia.__typename === "Media") {
-    project.featuredMedia = { ...project.featuredMedia.media, __typename: project.featuredMedia.__typename };
+    project.featuredMedia = {
+      ...project.featuredMedia.media,
+      __typename: project.featuredMedia.__typename,
+    };
   }
 
   project.projectMedia.forEach((media: any, i: number) => {
     if (media.media) {
-      project.projectMedia[i] = { ...media.media, large: media.large, __typename: media.__typename };
+      project.projectMedia[i] = {
+        ...media.media,
+        large: media.large,
+        __typename: media.__typename,
+      };
     }
   });
 

@@ -4,8 +4,8 @@ const GlobalStyles = createGlobalStyle`
 
   :root {
     --containerWidth: 1440px;
-    --spacer: 160px;
-    --gap: 40px;
+    --spacer: 8px;
+    --gap: 24px;
 
     --light: #FFF6E5;
     --light-tint: #FFFFFF;
@@ -120,19 +120,8 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--primary);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 2.5rem;
-    font-weight: normal;
-  }
-
-  @media (min-width: 970px) {
-    h1, h2, h3, h4, h5, h6 {
-      font-size: 4rem;
-    }
-  }
-
-  p, a {
-    text-transform: uppercase;
+  a {
+    text-decoration: none;
   }
 `;
 

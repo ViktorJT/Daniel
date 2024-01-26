@@ -1,115 +1,57 @@
 import styled from "styled-components";
 
 export const StyledProject = styled.section`
-  counter-increment: project;
+  padding: var(--gap);
   display: flex;
+  width: 100%;
 
-  ::before {
-    content: counter(project, decimal-leading-zero);
-    letter-spacing: 0.25vw;
-    margin-top: -10px;
-    text-align: right;
-    padding-right: 1.25vw;
+  flex-flow: row wrap;
+  flex: 1 1 100%;
+  gap: var(--gap);
 
-    width: 5vw;
+  .asset {
+    display: block;
+    flex: 0 1 50%;
 
-    @media (max-width: 970px) {
-      margin-top: -40px;
-      padding-left: 2vw;
-      padding-right: 0;
-      width: 2vw;
+    &:hover {
+      cursor: pointer;
+    }
+
+    & > * {
+      pointer-events: none;
     }
   }
 
-  .wrapper {
-    border-top: 1px solid;
-    border-color: var(--secondary);
-
+  .details {
     display: inherit;
-    flex-flow: row wrap;
-    flex: 1 1 100%;
+    flex-flow: column nowrap;
+    flex: 0 1 33%;
+    align-self: flex-end;
     gap: var(--gap);
 
-    .details {
-      display: inherit;
-      flex-flow: row wrap;
-      flex: 1 1 400px;
-      align-items: flex-end;
-      max-height: 640px;
-
-      a {
-        color: var(--secondary);
-        text-decoration: none;
-        font-size: 4rem;
-        flex: 1 1 100%;
-        padding: 64px 0;
-        line-height: 100%;
-        text-transform: none;
-
-        &:hover {
-          color: var(--secondary-shade);
-        }
-
-        @media (max-width: 970px) {
-          word-break: break-word;
-          padding: 0 0 40px 0;
-          font-size: 2.5rem;
-        }
-      }
-
-      p {
-        flex: 1 0 50%;
-        width: 100%;
-        font-size: .8rem;
-
-        span {
-          display: block;
-          font-size: 1rem;
-        }
-      }
-
-      p:last-of-type {
-        text-align: right;
-      }
-    }
-
-    .asset {
-      display: block;
-      flex: 1 0 50%;
-      transition: all 0.3s;
-      filter: grayscale(0%);
+    a {
+      color: var(--secondary);
+      font-size: 2rem;
+      line-height: 100%;
 
       &:hover {
-        cursor: pointer;
-        filter: grayscale(80%);
-      }
-
-      & > * {
-        pointer-events: none;
-      }
-
-    }
-
-    @media (max-width: 970px) {
-      .asset {
-        order: -1;
-      }
-
-      .details {
-        align-items: flex-start;
+        color: var(--secondary-shade);
       }
     }
-  }
 
-  ::after {
-    content: "";
-    border-top: solid 1px;
-    border-color: var(--secondary);
+    .meta {
+      display: inherit;
+      flex-flow: inherit;
 
-    width: 5vw;
+      p {
+        width: 100%;
+        font-size: 0.8rem;
+      }
+    }
 
-    @media (max-width: 970px) {
-      width: 2vw;
+    .divider {
+      border-bottom: 1px solid var(--secondary-shade);
+      width: 40px;
     }
   }
 `;

@@ -11,7 +11,7 @@ export async function getHome() {
           slug
           client
           director
-          stillsPhotographer
+          photographer
           photoProject
           featuredMedia {
             __typename
@@ -85,7 +85,7 @@ export async function getHome() {
         homes[0].projects[i].featuredMedia = unpacked;
         return unpacked;
       }
-    }
+    },
   );
 
   return { home: homes[0], featuredMedias, contacts };
