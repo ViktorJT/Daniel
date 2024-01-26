@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer";
-import GlobalStyles from "../components/GlobalStyles";
+import GlobalStyles from "../components/GlobalStyles/GlobalStyles";
 import Navigation from "../components/Navigation";
 
 const StyledLayout = styled.main`
@@ -19,24 +19,42 @@ const StyledUnderConstruction = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 function UnderConstruction() {
   return (
-    <StyledUnderConstruction><h1>This page is under construction</h1></StyledUnderConstruction>
-  )
+    <StyledUnderConstruction>
+      <h1>This page is under construction</h1>
+    </StyledUnderConstruction>
+  );
 }
 
 function MyApp({ Component, pageProps }: any) {
   const [theme, setTheme] = useState("dark");
 
-  return process.env.UNDER_CONSTRUCTION === "true" ? <UnderConstruction /> : (
+  return process.env.UNDER_CONSTRUCTION === "true" ? (
+    <UnderConstruction />
+  ) : (
     <>
       <Head>
         <title>Daniel Arfwedson</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
       </Head>
       <GlobalStyles />
       <StyledLayout>

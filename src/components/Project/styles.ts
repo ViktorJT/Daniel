@@ -11,7 +11,7 @@ export const StyledProject = styled.section`
 
   .asset {
     display: block;
-    flex: 0 1 50%;
+    flex: 0 1 56%;
 
     &:hover {
       cursor: pointer;
@@ -25,7 +25,6 @@ export const StyledProject = styled.section`
   .details {
     display: inherit;
     flex-flow: column nowrap;
-    flex: 0 1 33%;
     align-self: flex-end;
     gap: var(--gap);
 
