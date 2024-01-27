@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
 
     --layout: var(--two-col);
 
-    --display-small: 2rem;
+    --display-small: 1.6rem;
     --display-large: 3rem;
 
     --text-small: .85rem;
