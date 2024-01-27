@@ -12,7 +12,6 @@ export async function getHome() {
           client
           director
           photographer
-          photoProject
           featuredMedia {
             __typename
             ... on Media {

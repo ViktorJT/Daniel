@@ -14,7 +14,6 @@ const Project = ({
   director,
   featuredMedia,
   photographer,
-  photoProject = false,
 }: any) => {
   const router = useRouter();
   return (
@@ -26,19 +25,18 @@ const Project = ({
             <span>Client</span>
             {client}
           </p>
-          {photoProject
-            ? photographer && (
-                <p>
-                  <span>Photographer</span>
-                  {photographer}
-                </p>
-              )
-            : director && (
-                <p>
-                  <span>Director</span>
-                  {director}
-                </p>
-              )}
+          {photographer && (
+            <p>
+              <span>Photographer</span>
+              {photographer}
+            </p>
+          )}
+          {director && (
+            <p>
+              <span>Director</span>
+              {director}
+            </p>
+          )}
         </div>
         <div onClick={() => router.push(slug)} className="asset">
           {featuredMedia.__typename === "Media" ? (
