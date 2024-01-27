@@ -7,58 +7,61 @@ import { useRouter } from "next/router";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
-const Project = ({ slug, title, client, director, featuredMedia, stillsPhotographer, photoProject = false }: any) => {
+const Project = ({
+  slug,
+  title,
+  client,
+  director,
+  featuredMedia,
+  photographer,
+  photoProject = false,
+}: any) => {
   const router = useRouter();
   return (
     <StyledProject>
       <div className="wrapper">
         <div className="details">
-          <Link href={slug}>
-            {title}
-          </Link>
+          <Link href={slug}>{title}</Link>
           <p>
             <span>Client</span>
             {client}
           </p>
           {photoProject
-            ? stillsPhotographer && (
-              <p>
-                <span>Photographer</span>
-                {stillsPhotographer}
-              </p>
-            )
+            ? photographer && (
+                <p>
+                  <span>Photographer</span>
+                  {photographer}
+                </p>
+              )
             : director && (
-              <p>
-                <span>Director</span>
-                {director}
-              </p>
-            )
-          }
+                <p>
+                  <span>Director</span>
+                  {director}
+                </p>
+              )}
         </div>
         <div onClick={() => router.push(slug)} className="asset">
-          {featuredMedia.__typename === "Media"
-            ? (
-              <Image
-                alt=""
-                src={featuredMedia.url}
-                layout="responsive"
-                objectFit="contain"
-                {...featuredMedia}
-              />
-            )
-            : (
-              <ReactPlayer
-                playing
-                muted
-                loop
-                width="100%"
-                height="100%"
-                config={{
-                  playerOptions: { responsive: true },
-                }}
-                {...featuredMedia}
-              />
-            )}
+          {featuredMedia.__typename === "Media" ? (
+            <Image
+              alt=""
+              src={featuredMedia.url}
+              layout="responsive"
+              objectFit="contain"
+              {...featuredMedia}
+            />
+          ) : (
+            <ReactPlayer
+              playing
+              muted
+              loop
+              width="100%"
+              height="100%"
+              config={{
+                playerOptions: { responsive: true },
+              }}
+              {...featuredMedia}
+            />
+          )}
         </div>
       </div>
     </StyledProject>
