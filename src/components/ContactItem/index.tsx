@@ -1,42 +1,28 @@
 import styled from "styled-components";
 
-const Link = styled.a<any>`
-  text-decoration: none;
-  color: var(--secondary);
-
-  p:last-of-type {
-    font-weight: ${({ heading }) => heading ? "normal" : "bold"}
-  }
-
-  &:hover {
-    color: var(--secondary-tint);
-  }
-`;
+import { StyledContactLink } from "./styles";
 
 const ContactItem = ({ heading = false, type, value, label }: any) => {
   switch (type) {
     case "Email":
       return (
-        <Link heading href={`mailto:${value}`}>
-          {heading && <p className="heading">{label}</p>}
-          <p className="value">{heading ? value : label}</p>
-        </Link>
+        <StyledContactLink href={`mailto:${value}`}>
+          <p className="value">{value}</p>
+        </StyledContactLink>
       );
     case "Phone":
       return (
-        <Link
-          heading
+        <StyledContactLink
           href={`tel:${value.trim().replace(/ /g, "").replace(/\+/g, "00")}}`}
         >
-          {heading && <p className="heading">{label}</p>}
-          <p className="value">{heading ? value : label}</p>
-        </Link>
+          <p className="value">{value}</p>
+        </StyledContactLink>
       );
     case "Link":
       return (
-        <Link heading href={value} target="_blank">
+        <StyledContactLink heading href={value} target="_blank">
           <p className="value">{label}</p>
-        </Link>
+        </StyledContactLink>
       );
     default:
       return <></>;

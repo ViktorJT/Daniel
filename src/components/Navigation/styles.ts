@@ -1,84 +1,31 @@
 import styled from "styled-components";
 
-export const StyledLayout = styled.main`
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100%;
-  width: 100%;
-`;
-
-export const StyledThemeSwitcher = styled.button`
-  background-color: var(--primary-tint);
-  border: none;
-  padding: 8px 12px;
-  width: 72px;
-  border-radius: 24px;
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-
-  svg.active {
-    opacity: 1;
-  }
-
-  svg {
-    fill: var(--secondary);
-    opacity: 0.3;
-  }
-
-  @media (max-width: 970px) {
-    width: 40px;
-    svg {
-      display: none;
-    }
-    svg.active {
-      display: block;
-    }
-  }
-`;
-
 export const StyledNavigation = styled.nav`
-  z-index: 99;
-  position: fixed;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 6vh;
-  backdrop-filter: blur(3px) saturate(90%);
+  display: grid;
 
-  ul {
-    padding: 0 5vw;
-    width: 100%;
-    margin: 0 auto;
+  grid-template-columns: var(--layout);
 
+  gap: var(--spacer);
+
+  padding: var(--gap) var(--spacer);
+
+  div {
     display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
 
-    align-items: center;
-
-    li a {
-      text-decoration: none;
-      color: var(--secondary);
+    a {
+      font-size: var(--heading);
     }
 
-    li.home {
-      flex-grow: 1;
-    }
+    ul {
+      display: inherit;
+      flex-flow: column nowrap;
+      align-items: flex-end;
 
-    li.theme {
-      margin-left: 2rem;
-    }
-
-    @media (max-width: 970px) {
-      padding: 0 2vw;
-
-      li.theme {
-        margin-left: 16px;
-      }
-
-      li.about {
-        font-size: .8rem;
+      li:not(.active) a {
+        color: var(--primary-tint);
       }
     }
   }

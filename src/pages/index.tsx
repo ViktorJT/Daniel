@@ -1,43 +1,56 @@
+import { useState } from "react";
+import styled from "styled-components";
+import dynamic from "next/dynamic";
+
 import type { NextPage } from "next";
 
-import styled from "styled-components";
-
 import Project from "../components/Project/";
-import Hero from "../components/Hero/";
+import Modal from "../components/Modal";
+
+const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
 import { getHome } from "../queries/getHome";
+import { StyledPage } from "../styles/homepage";
 
-const StyledPage = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  counter-reset: 'project';
-  
-  gap: var(--spacer);
-`;
+const Home: NextPage<any> = ({ heading, featuredMedias, projects }) => {
+  const [activeVideo, setActiveVideo] = useState<string>();
 
-const Home: NextPage<any> = (
-  { heading, featuredMedias, projects },
-) => {
   return (
     <StyledPage>
-      <Hero heading={heading} featuredMedias={featuredMedias} />
       {projects.map(({ id, ...project }: any, i: number) => (
         <Project
           key={`h-${i}-${id}`}
+          setActiveVideo={setActiveVideo}
           {...project}
         />
       ))}
+
+      <Modal isOpen={activeVideo} onClose={() => setActiveVideo(undefined)}>
+        <ReactPlayer
+          loop
+          controls
+          playing
+          height="100%"
+          width="100%"
+          url={activeVideo}
+          config={{
+            playerOptions: {
+              responsive: true,
+            },
+          }}
+        />
+      </Modal>
     </StyledPage>
   );
 };
 
 export async function getStaticProps() {
-  const { home, featuredMedias, contacts } = await getHome();
+  const { home } = await getHome();
 
-  if (!home) return { notFound: true }
+  if (!home) return { notFound: true };
 
   return {
-    props: { ...home, contacts, featuredMedias: featuredMedias.reverse() },
+    props: home,
   };
 }
 

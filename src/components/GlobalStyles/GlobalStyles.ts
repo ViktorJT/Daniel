@@ -1,27 +1,33 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-
   :root {
     --containerWidth: 1440px;
-    --spacer: 160px;
-    --gap: 40px;
+    --spacer: 8px;
+    --gap: 24px;
 
-    --light: #FFF6E5;
-    --light-tint: #FFFFFF;
-    --light-shade: #FFDFB8;
+    --two-col: 1fr 40%;
+    --one-col: 1fr;
 
-    --dark: #1C1C1C;
-    --dark-shade: #000000;
-    --dark-tint: #2B2B2B;
+    --layout: var(--two-col);
 
-    --primary: var(--dark);
-    --primary-tint: var(--dark-tint);
-    --primary-shade: var(--dark-shade);
+    --display-small: 2rem;
+    --display-large: 3rem;
 
-    --secondary: var(--light);
-    --secondary-tint: var(--light-tint);
-    --secondary-shade: var(--light-shade);
+    --text-small: .85rem;
+    --text-large: 1.15rem;
+
+    --heading: var(--display-large);
+    --body: var(--text-large);
+
+    --primary: #2C2C2C;
+    --primary-shade: #000000;
+    --primary-tint: #999999;
+    --primary-accent: #FF8C00;
+
+    --secondary: #FFF6E5;
+    --secondary-tint: #FFFFFF;
+    --secondary-shade: #FFDFBB;
   }
 
   @font-face {
@@ -91,7 +97,8 @@ const GlobalStyles = createGlobalStyle`
   *:before,
   *:after {
     box-sizing: border-box;
-    line-height: 1.45;
+    line-height: 1.25;
+    text-wrap: balance;
     font-family: 'Neue Montreal', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
@@ -116,23 +123,38 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    color: var(--secondary);
-    background-color: var(--primary);
+    font-size: var(--body);
+    color: var(--primary);
+    background-color: var(--secondary-tint);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-size: 2.5rem;
-    font-weight: normal;
+    font-size: var(--display-small);
+    font-weight: 400;
   }
 
-  @media (min-width: 970px) {
-    h1, h2, h3, h4, h5, h6 {
-      font-size: 4rem;
+  a {
+    text-decoration: none;
+    color: var(--primary);
+
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: var(--primary-accent) !important;
+  }
+
+  .scroll-lock {
+    overflow: hidden;
+  }
+
+  @media only screen and (max-width: 900px) {
+    :root {
+      --layout: (--one-col);
+
+      --heading: var(--display-small);
+      --body: var(--text-small);
     }
-  }
-
-  p, a {
-    text-transform: uppercase;
   }
 `;
 

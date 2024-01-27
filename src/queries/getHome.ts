@@ -7,48 +7,26 @@ export async function getHome() {
         heading
         projects(first: 100) {
           id
+
           title
           slug
+
           client
           director
           photographer
-          featuredMedia {
-            __typename
-            ... on Media {
-              media {
-                id
-                url
-                height
-                width
-              }
-            }
-            ... on VimeoLink {
-              id
-              url
-            }
+
+          video
+          thumbnail {
+            id
+            url
+            height
+            width
           }
+
           projectMedia {
             __typename
-            ... on Media {
-              media {
-                id
-                url
-                height
-                width
-              }
-            }
-            ... on VimeoLink {
-              id
-              url
-            }
           }
         }
-      }
-      contacts {
-        id
-        type
-        label
-        value
       }
     }
   `;
@@ -60,32 +38,7 @@ export async function getHome() {
     },
   });
 
-  const { homes, contacts }: any = await client.request(query);
+  const { homes }: any = await client.request(query);
 
-  const featuredMedias = homes[0].projects.map(
-    ({ title, slug, featuredMedia }: any, i: number) => {
-      if (featuredMedia.__typename === "VimeoLink") {
-        const unpacked = {
-          title,
-          slug,
-          ...featuredMedia,
-        };
-
-        homes[0].projects[i].featuredMedia = unpacked;
-        return unpacked;
-      } else if (featuredMedia.__typename === "Media") {
-        const unpacked = {
-          title,
-          slug,
-          __typename: featuredMedia.__typename,
-          ...featuredMedia.media,
-        };
-
-        homes[0].projects[i].featuredMedia = unpacked;
-        return unpacked;
-      }
-    },
-  );
-
-  return { home: homes[0], featuredMedias, contacts };
+  return { home: homes[0] };
 }

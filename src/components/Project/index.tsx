@@ -1,9 +1,8 @@
-import { StyledProject } from "./styles";
-import Image from "next/image";
-
+import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useRouter } from "next/router";
+
+import { StyledDetails, StyledThumbnail } from "./styles";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
@@ -12,57 +11,41 @@ const Project = ({
   title,
   client,
   director,
-  featuredMedia,
   photographer,
+  projectMedia,
+  video,
+  thumbnail,
+  setActiveVideo,
 }: any) => {
   const router = useRouter();
+
+  const onClick = () => {
+    if (video) {
+      setActiveVideo(video);
+    } else if (projectMedia?.length) {
+      router.push(slug);
+    }
+  };
+
   return (
-    <StyledProject>
-      <div className="wrapper">
-        <div className="details">
-          <Link href={slug}>{title}</Link>
-          <p>
-            <span>Client</span>
-            {client}
-          </p>
-          {photographer && (
-            <p>
-              <span>Photographer</span>
-              {photographer}
-            </p>
-          )}
-          {director && (
-            <p>
-              <span>Director</span>
-              {director}
-            </p>
-          )}
+    <>
+      <StyledThumbnail
+        alt=""
+        onClick={onClick}
+        layout="responsive"
+        src={thumbnail.url}
+        {...thumbnail}
+      />
+      <StyledDetails className="details">
+        <p onClick={onClick}>{title}</p>
+        <div className="meta">
+          {[client, director, photographer].map((meta, i) => (
+            <p key={i}>{meta}</p>
+          ))}
         </div>
-        <div onClick={() => router.push(slug)} className="asset">
-          {featuredMedia.__typename === "Media" ? (
-            <Image
-              alt=""
-              src={featuredMedia.url}
-              layout="responsive"
-              objectFit="contain"
-              {...featuredMedia}
-            />
-          ) : (
-            <ReactPlayer
-              playing
-              muted
-              loop
-              width="100%"
-              height="100%"
-              config={{
-                playerOptions: { responsive: true },
-              }}
-              {...featuredMedia}
-            />
-          )}
-        </div>
-      </div>
-    </StyledProject>
+        <span className="divider" />
+      </StyledDetails>
+    </>
   );
 };
 

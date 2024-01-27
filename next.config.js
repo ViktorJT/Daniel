@@ -1,5 +1,3 @@
-// Config got from Renaud ROHLINGER <https://twitter.com/onirenaud
-
 /** @type {import('next').NextConfig} */
 const plugins = require("next-compose-plugins");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
@@ -8,8 +6,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const nextConfig = {
   i18n: {
-    locales: ['en'],
-    defaultLocale: 'en',
+    locales: ["en"],
+    defaultLocale: "en",
     localeDetection: false,
   },
   images: {
@@ -35,48 +33,4 @@ const nextConfig = {
   },
 };
 
-module.exports = plugins(
-  [
-    [
-      {
-        workboxOpts: {
-          swDest: process.env.NEXT_EXPORT
-            ? "service-worker.js"
-            : "static/service-worker.js",
-          runtimeCaching: [
-            {
-              urlPattern: /^https?.*/,
-              handler: "NetworkFirst",
-              options: {
-                cacheName: "offlineCache",
-                expiration: {
-                  maxEntries: 200,
-                },
-              },
-            },
-          ],
-        },
-        async rewrites() {
-          return [
-            {
-              source: "/service-worker.js",
-              destination: "/_next/static/service-worker.js",
-            },
-          ];
-        },
-      },
-    ],
-    withBundleAnalyzer,
-  ],
-  nextConfig
-);
-
-// const nextConfig = {
-//     reactStrictMode: true,
-//     compiler: {
-//         // ssr and displayName are configured by default
-//         styledComponents: true,
-//     },
-// };
-
-// module.exports = nextConfig
+module.exports = plugins([[{}], withBundleAnalyzer], nextConfig);
