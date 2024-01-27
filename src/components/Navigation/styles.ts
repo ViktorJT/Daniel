@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const StyledNavigation = styled.nav`
   display: grid;
-  padding: 0 var(--spacer);
 
   grid-template-columns: var(--layout);
 
   gap: var(--spacer);
 
-  padding-bottom: var(--gap);
+  padding: var(--gap) var(--spacer);
 
   div {
     display: flex;

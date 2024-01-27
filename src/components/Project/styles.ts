@@ -1,14 +1,20 @@
 import styled from "styled-components";
+import Image from "next/legacy/image"; // @todo upgrade from legacy version
 
 export const StyledDetails = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-self: flex-end;
   gap: var(--gap);
-  padding: var(--spacer);
+  padding: 0 var(--spacer);
 
-  a {
+  & > p {
     font-size: var(--display-small);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-accent);
+    }
   }
 
   .meta {
@@ -33,14 +39,16 @@ export const StyledDetails = styled.div`
   }
 `;
 
-export const StyledAsset = styled.div`
-  display: block;
+export const StyledThumbnail = styled(Image)`
+  transition: filter 0.3s ease;
+  filter: grayscale(40%);
 
   &:hover {
     cursor: pointer;
+    filter: grayscale(0%);
   }
 
-  & > * {
-    pointer-events: none;
+  @media only screen and (max-width: 900px) {
+    filter: grayscale(0%);
   }
 `;

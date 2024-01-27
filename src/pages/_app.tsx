@@ -1,25 +1,10 @@
-import Head from "next/head";
-import { useState } from "react";
 import styled from "styled-components";
-import Footer from "../components/Footer";
+import Head from "next/head";
+
 import GlobalStyles from "../components/GlobalStyles/GlobalStyles";
 import Navigation from "../components/Navigation";
 
-const StyledLayout = styled.main`
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100%;
-  width: 100%;
-`;
-
-const StyledUnderConstruction = styled.section`
-  height: 100vh;
-  height: 100svh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import { StyledLayout, StyledUnderConstruction } from "../styles/layout";
 
 function UnderConstruction() {
   return (
@@ -58,7 +43,6 @@ function MyApp({ Component, pageProps }: any) {
       <StyledLayout>
         <Navigation />
         <Component {...pageProps} />
-        <Footer contacts={pageProps.contacts || []} />
       </StyledLayout>
     </>
   );

@@ -23,6 +23,7 @@ const GlobalStyles = createGlobalStyle`
     --primary: #2C2C2C;
     --primary-shade: #000000;
     --primary-tint: #999999;
+    --primary-accent: #FF8C00;
 
     --secondary: #FFF6E5;
     --secondary-tint: #FFFFFF;
@@ -131,11 +132,15 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     color: var(--primary);
 
-    transition: color 0.3s;
+    transition: color 0.3s ease;
   }
 
   a:hover {
-    color: var(--primary-shade) !important;
+    color: var(--primary-accent) !important;
+  }
+
+  .scroll-lock {
+    overflow: hidden;
   }
 
   @media only screen and (max-width: 900px) {

@@ -1,54 +1,43 @@
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import Link from "next/link";
 
-import { StyledAsset, StyledDetails } from "./styles";
+import { StyledDetails, StyledThumbnail } from "./styles";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
 const Project = ({
   slug,
   title,
-  featuredMedia,
   client,
   director,
   photographer,
   projectMedia,
+  video,
+  thumbnail,
+  setActiveVideo,
 }: any) => {
   const router = useRouter();
 
   const onClick = () => {
-    if (projectMedia?.length >= 1)
-  }
+    if (video) {
+      setActiveVideo(video);
+    } else if (projectMedia?.length) {
+      router.push(slug);
+    }
+  };
 
   return (
     <>
-      <StyledAsset onClick={() => router.push(slug)} className="asset">
-        {featuredMedia.__typename === "Media" ? (
-          <Image
-            alt=""
-            src={featuredMedia.url}
-            layout="responsive"
-            objectFit="contain"
-            {...featuredMedia}
-          />
-        ) : (
-          <ReactPlayer
-            playing
-            muted
-            loop
-            width="100%"
-            height="100%"
-            config={{
-              playerOptions: { responsive: true },
-            }}
-            {...featuredMedia}
-          />
-        )}
-      </StyledAsset>
+      <StyledThumbnail
+        alt=""
+        onClick={onClick}
+        layout="responsive"
+        src={thumbnail.url}
+        {...thumbnail}
+      />
       <StyledDetails className="details">
-        <Link href={slug}>{title}</Link>
+        <p onClick={onClick}>{title}</p>
         <div className="meta">
           {[client, director, photographer].map((meta, i) => (
             <p key={i}>{meta}</p>
