@@ -1,19 +1,33 @@
 import styled from "styled-components";
 
 export const StyledNavigation = styled.nav`
-  display: flex;
-  flex: 0 1 50%;
-  justify-content: space-between;
+  display: grid;
+  padding: 0 var(--spacer);
 
-  flex-flow: row wrap;
+  grid-template-columns: var(--layout);
 
-  a {
-    font-size: 4rem;
-  }
+  gap: var(--spacer);
 
-  ul {
-    display: inherit;
-    flex-flow: column nowrap;
-    align-items: flex-end;
+  padding-bottom: var(--gap);
+
+  div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    a {
+      font-size: var(--heading);
+    }
+
+    ul {
+      display: inherit;
+      flex-flow: column nowrap;
+      align-items: flex-end;
+
+      li:not(.active) a {
+        color: var(--primary-tint);
+      }
+    }
   }
 `;

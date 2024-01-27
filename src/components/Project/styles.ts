@@ -1,51 +1,40 @@
 import styled from "styled-components";
 
-export const StyledProject = styled.section`
-  padding: var(--gap);
+export const StyledDetails = styled.div`
   display: flex;
-  width: 100%;
-
-  flex-flow: row wrap;
-  flex: 1 1 100%;
+  flex-flow: column nowrap;
+  align-self: flex-end;
   gap: var(--gap);
+  padding: 0 var(--spacer);
 
-  .asset {
-    display: block;
-    flex: 0 1 64%;
+  a {
+    font-size: var(--display-small);
+    line-height: 100%;
+  }
 
-    &:hover {
-      cursor: pointer;
-    }
+  .meta {
+    display: inherit;
+    flex-flow: inherit;
 
-    & > * {
-      pointer-events: none;
+    p {
+      width: 100%;
     }
   }
 
-  .details {
-    display: inherit;
-    flex-flow: column nowrap;
-    align-self: flex-end;
-    gap: var(--gap);
+  .divider {
+    border-bottom: 1.25px solid var(--primary);
+    width: 40px;
+  }
+`;
 
-    a {
-      font-size: 2rem;
-      line-height: 100%;
-    }
+export const StyledAsset = styled.div`
+  display: block;
 
-    .meta {
-      display: inherit;
-      flex-flow: inherit;
+  &:hover {
+    cursor: pointer;
+  }
 
-      p {
-        width: 100%;
-        font-size: 0.8rem;
-      }
-    }
-
-    .divider {
-      border-bottom: 1px solid var(--secondary-shade);
-      width: 40px;
-    }
+  & > * {
+    pointer-events: none;
   }
 `;

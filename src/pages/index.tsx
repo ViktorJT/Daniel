@@ -7,9 +7,9 @@ import Project from "../components/Project/";
 import { getHome } from "../queries/getHome";
 
 const StyledPage = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  counter-reset: "project";
+  display: grid;
+
+  grid-template-columns: var(--layout);
 
   gap: var(--spacer);
 `;

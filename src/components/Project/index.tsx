@@ -1,9 +1,9 @@
-import { StyledProject } from "./styles";
-import Image from "next/image";
-
-import dynamic from "next/dynamic";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import Link from "next/link";
+
+import { StyledAsset, StyledDetails } from "./styles";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
@@ -18,8 +18,8 @@ const Project = ({
 }: any) => {
   const router = useRouter();
   return (
-    <StyledProject>
-      <div onClick={() => router.push(slug)} className="asset">
+    <>
+      <StyledAsset onClick={() => router.push(slug)} className="asset">
         {featuredMedia.__typename === "Media" ? (
           <Image
             alt=""
@@ -41,8 +41,8 @@ const Project = ({
             {...featuredMedia}
           />
         )}
-      </div>
-      <div className="details">
+      </StyledAsset>
+      <StyledDetails className="details">
         <Link href={slug}>{title}</Link>
         <div className="meta">
           {[client, director, photographer].map((meta, i) => (
@@ -50,8 +50,8 @@ const Project = ({
           ))}
         </div>
         <span className="divider" />
-      </div>
-    </StyledProject>
+      </StyledDetails>
+    </>
   );
 };
 

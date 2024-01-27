@@ -30,8 +30,6 @@ function UnderConstruction() {
 }
 
 function MyApp({ Component, pageProps }: any) {
-  const [theme, setTheme] = useState("dark");
-
   return process.env.UNDER_CONSTRUCTION === "true" ? (
     <UnderConstruction />
   ) : (
@@ -58,8 +56,8 @@ function MyApp({ Component, pageProps }: any) {
       </Head>
       <GlobalStyles />
       <StyledLayout>
-        <Navigation theme={theme} setTheme={setTheme} />
-        <Component theme={theme} {...pageProps} />
+        <Navigation />
+        <Component {...pageProps} />
         <Footer contacts={pageProps.contacts || []} />
       </StyledLayout>
     </>

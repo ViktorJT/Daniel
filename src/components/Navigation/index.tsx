@@ -1,31 +1,37 @@
+import { useRouter } from "next/router";
 import Link from "next/link";
-import Moon from "./icons/moon.svg";
-import Sun from "./icons/sun.svg";
+import { clsx } from "clsx";
+
 import { StyledNavigation } from "./styles";
 
-const Navigation = (theme: any) => {
+const Navigation = () => {
+  const { asPath } = useRouter();
+
+  const links = [
+    { href: "/", label: "Work" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
     <StyledNavigation>
-      <Link as="a" href="/">
-        Daniel Arfwedson
-      </Link>
-      <ul>
-        <li>
-          <Link as="a" href="/about">
-            Work
-          </Link>
-        </li>
-        <li>
-          <Link as="a" href="/about">
-            About
-          </Link>
-        </li>
-        <li>
-          <Link as="a" href="/about">
-            Contact
-          </Link>
-        </li>
-      </ul>
+      <div>
+        <Link as="a" href="/">
+          Daniel Arfwedson
+        </Link>
+        <ul>
+          {links.map(({ href, label }, i) => {
+            console.log({ href });
+            return (
+              <li key={href} className={clsx(asPath === href && "active")}>
+                <Link as="a" href={href}>
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </StyledNavigation>
   );
 };
