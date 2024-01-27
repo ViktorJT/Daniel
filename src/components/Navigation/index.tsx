@@ -10,8 +10,20 @@ const Navigation = (theme: any) => {
         Daniel Arfwedson
       </Link>
       <ul>
-        <li className="about">
-          <Link href="/about">About</Link>
+        <li>
+          <Link as="a" href="/about">
+            Work
+          </Link>
+        </li>
+        <li>
+          <Link as="a" href="/about">
+            About
+          </Link>
+        </li>
+        <li>
+          <Link as="a" href="/about">
+            Contact
+          </Link>
         </li>
       </ul>
     </StyledNavigation>

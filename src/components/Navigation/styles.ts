@@ -3,14 +3,17 @@ import styled from "styled-components";
 export const StyledNavigation = styled.nav`
   display: flex;
   flex: 0 1 50%;
-  align-items: center;
   justify-content: space-between;
 
-  ul {
-    display: flex;
+  flex-flow: row wrap;
 
-    li a {
-      color: var(--secondary);
-    }
+  a {
+    font-size: 4rem;
+  }
+
+  ul {
+    display: inherit;
+    flex-flow: column nowrap;
+    align-items: flex-end;
   }
 `;

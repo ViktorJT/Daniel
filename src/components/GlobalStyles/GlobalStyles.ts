@@ -116,12 +116,19 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    color: var(--secondary);
-    background-color: var(--primary);
+    color: var(--primary);
+    background-color: var(--secondary);
   }
 
   a {
     text-decoration: none;
+    color: var(--primary);
+
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: var(--secondary-shade);
   }
 `;
 

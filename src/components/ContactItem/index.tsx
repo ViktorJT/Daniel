@@ -5,11 +5,7 @@ const Link = styled.a<any>`
   color: var(--secondary);
 
   p:last-of-type {
-    font-weight: ${({ heading }) => heading ? "normal" : "bold"}
-  }
-
-  &:hover {
-    color: var(--secondary-tint);
+    font-weight: ${({ heading }) => (heading ? "normal" : "bold")};
   }
 `;
 
@@ -17,7 +13,7 @@ const ContactItem = ({ heading = false, type, value, label }: any) => {
   switch (type) {
     case "Email":
       return (
-        <Link heading href={`mailto:${value}`}>
+        <Link as="a" heading href={`mailto:${value}`}>
           {heading && <p className="heading">{label}</p>}
           <p className="value">{heading ? value : label}</p>
         </Link>
@@ -25,6 +21,7 @@ const ContactItem = ({ heading = false, type, value, label }: any) => {
     case "Phone":
       return (
         <Link
+          as="a"
           heading
           href={`tel:${value.trim().replace(/ /g, "").replace(/\+/g, "00")}}`}
         >
@@ -34,7 +31,7 @@ const ContactItem = ({ heading = false, type, value, label }: any) => {
       );
     case "Link":
       return (
-        <Link heading href={value} target="_blank">
+        <Link as="a" heading href={value} target="_blank">
           <p className="value">{label}</p>
         </Link>
       );

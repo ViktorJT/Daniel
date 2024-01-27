@@ -11,7 +11,7 @@ export const StyledProject = styled.section`
 
   .asset {
     display: block;
-    flex: 0 1 56%;
+    flex: 0 1 64%;
 
     &:hover {
       cursor: pointer;
@@ -29,13 +29,8 @@ export const StyledProject = styled.section`
     gap: var(--gap);
 
     a {
-      color: var(--secondary);
       font-size: 2rem;
       line-height: 100%;
-
-      &:hover {
-        color: var(--secondary-shade);
-      }
     }
 
     .meta {
