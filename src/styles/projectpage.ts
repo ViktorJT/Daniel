@@ -1,17 +1,29 @@
 import styled from "styled-components";
 
+export const StyledPage = styled.div`
+  position: relative;
+  display: grid;
+
+  grid-template-columns: var(--layout);
+
+  gap: var(--spacer);
+`;
+
 export const StyledIntro = styled.section`
   div {
-    margin: 0 auto;
-    padding: 80px 5vw;
+    position: sticky;
+    top: var(--gap);
+
     display: flex;
     flex-flow: row wrap;
+
+    gap: var(--gap);
+    padding: 0 var(--spacer);
 
     justify-content: space-between;
 
     h2 {
       flex: 1 1 560px;
-      line-height: 1.16;
     }
 
     ul {
@@ -23,7 +35,6 @@ export const StyledIntro = styled.section`
       gap: 24px;
 
       padding-top: 10px;
-      text-align: right;
 
       li {
         flex: 1 1 40%;

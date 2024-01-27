@@ -22,10 +22,7 @@ const Project: NextPage<any> = ({
   dop,
   agency,
   production,
-  featuredMedia,
   projectMedia,
-  previousProject,
-  nextProject,
 }) => {
   return (
     <StyledPage>

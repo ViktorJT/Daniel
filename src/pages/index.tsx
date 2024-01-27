@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 
@@ -14,10 +14,6 @@ import { StyledPage } from "../styles/homepage";
 
 const Home: NextPage<any> = ({ heading, featuredMedias, projects }) => {
   const [activeVideo, setActiveVideo] = useState<string>();
-
-  useEffect(() => {
-    console.log(activeVideo);
-  }, [activeVideo]);
 
   return (
     <StyledPage>

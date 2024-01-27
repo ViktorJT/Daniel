@@ -10,7 +10,12 @@ const Navigation = () => {
   const links = [
     { href: "/", label: "Work" },
     { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+    {
+      href: "mailto:daniel.arfwedson@icloud.com",
+      label: "Contact",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
   ];
 
   return (
@@ -18,9 +23,12 @@ const Navigation = () => {
       <div>
         <Link href="/">Daniel Arfwedson</Link>
         <ul>
-          {links.map(({ href, label }, i) => (
-            <li key={href} className={clsx(asPath === href && "active")}>
-              <Link href={href}>{label}</Link>
+          {links.map(({ label, ...link }, i) => (
+            <li
+              key={link.href}
+              className={clsx(asPath === link.href && "active")}
+            >
+              <Link {...link}>{label}</Link>
             </li>
           ))}
         </ul>
