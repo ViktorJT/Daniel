@@ -5,11 +5,10 @@ export const StyledDetails = styled.div`
   flex-flow: column nowrap;
   align-self: flex-end;
   gap: var(--gap);
-  padding: 0 var(--spacer);
+  padding: var(--spacer);
 
   a {
     font-size: var(--display-small);
-    line-height: 100%;
   }
 
   .meta {
@@ -22,8 +21,15 @@ export const StyledDetails = styled.div`
   }
 
   .divider {
+    visibility: visible;
     border-bottom: 1.25px solid var(--primary);
     width: 40px;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .divider {
+      visibility: hidden;
+    }
   }
 `;
 

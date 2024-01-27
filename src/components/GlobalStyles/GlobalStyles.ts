@@ -96,7 +96,7 @@ const GlobalStyles = createGlobalStyle`
   *:before,
   *:after {
     box-sizing: border-box;
-    line-height: 1.45;
+    line-height: 1.25;
     text-wrap: balance;
     font-family: 'Neue Montreal', sans-serif;
     -webkit-font-smoothing: antialiased;

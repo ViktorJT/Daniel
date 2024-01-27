@@ -16,20 +16,13 @@ const Navigation = () => {
   return (
     <StyledNavigation>
       <div>
-        <Link as="a" href="/">
-          Daniel Arfwedson
-        </Link>
+        <Link href="/">Daniel Arfwedson</Link>
         <ul>
-          {links.map(({ href, label }, i) => {
-            console.log({ href });
-            return (
-              <li key={href} className={clsx(asPath === href && "active")}>
-                <Link as="a" href={href}>
-                  {label}
-                </Link>
-              </li>
-            );
-          })}
+          {links.map(({ href, label }, i) => (
+            <li key={href} className={clsx(asPath === href && "active")}>
+              <Link href={href}>{label}</Link>
+            </li>
+          ))}
         </ul>
       </div>
     </StyledNavigation>

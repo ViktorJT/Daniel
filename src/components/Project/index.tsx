@@ -8,15 +8,20 @@ import { StyledAsset, StyledDetails } from "./styles";
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
 const Project = ({
-  photoProject = false,
   slug,
   title,
   featuredMedia,
   client,
   director,
   photographer,
+  projectMedia,
 }: any) => {
   const router = useRouter();
+
+  const onClick = () => {
+    if (projectMedia?.length >= 1)
+  }
+
   return (
     <>
       <StyledAsset onClick={() => router.push(slug)} className="asset">
