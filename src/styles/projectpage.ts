@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const StyledPage = styled.div`
-  position: relative;
-  display: grid;
-
-  grid-template-columns: var(--layout);
-
-  gap: var(--spacer);
-`;
-
 export const StyledIntro = styled.section`
   div {
     position: sticky;
@@ -32,7 +23,7 @@ export const StyledIntro = styled.section`
       flex-flow: inherit;
       justify-content: space-between;
 
-      gap: 24px;
+      gap: var(--spacer);
 
       padding-top: 10px;
 
@@ -49,6 +40,18 @@ export const StyledIntro = styled.section`
       }
     }
   }
+
+  @media only screen and (max-width: 900px) {
+    grid-row: 1;
+
+    h2 {
+      visibility: hidden;
+    }
+
+    div {
+      position: static;
+    }
+  }
 `;
 
 export const StyledAssets = styled.section`
@@ -60,7 +63,7 @@ export const StyledAssets = styled.section`
 
     display: flex;
     flex-flow: row wrap;
-    gap: 40px;
+    gap: var(--spacer);
 
     & > * {
       flex-basis: 45%;
@@ -71,5 +74,9 @@ export const StyledAssets = styled.section`
     .large {
       flex-basis: 100%;
     }
+  }
+
+  @media only screen and (max-width: 900px) {
+    grid-row: 2;
   }
 `;
