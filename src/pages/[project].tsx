@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 
 import styled from "styled-components";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 
+import Image from "next/legacy/image"; // @todo upgrade from legacy
 import Link from "next/link";
 
 import { getHome } from "../queries/getHome";
@@ -37,7 +37,14 @@ const Project: NextPage<any> = ({
                 key={`pm-${i}-${id}`}
                 className={large ? "large" : undefined}
               >
-                <Image priority fill alt="" src={url} {...asset} />
+                <Image
+                  priority
+                  alt=""
+                  src={url}
+                  layout="responsive"
+                  objectFit="contain"
+                  {...asset}
+                />
               </div>
             ),
           )}

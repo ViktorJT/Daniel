@@ -11,6 +11,7 @@ export const StyledDetails = styled.div`
   & > p {
     font-size: var(--display-small);
     cursor: pointer;
+    transition: color 0.3s ease;
 
     &:hover {
       color: var(--primary-accent);

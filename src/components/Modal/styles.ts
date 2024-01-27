@@ -24,4 +24,10 @@ export const StyledModal = styled.div`
 
     width: 80%;
   }
+
+  @media only screen and (max-width: 900px) {
+    & > div {
+      width: 98%;
+    }
+  }
 `;
