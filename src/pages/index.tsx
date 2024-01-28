@@ -4,13 +4,13 @@ import dynamic from "next/dynamic";
 
 import type { NextPage } from "next";
 
+import { StyledPage } from "../styles/homepage";
+import { getHome } from "../queries/getHome";
+
 import Project from "../components/Project/";
 import Modal from "../components/Modal";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
-
-import { getHome } from "../queries/getHome";
-import { StyledPage } from "../styles/homepage";
 
 const Home: NextPage<any> = ({ heading, featuredMedias, projects }) => {
   const [activeVideo, setActiveVideo] = useState<string>();
