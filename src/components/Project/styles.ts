@@ -2,39 +2,69 @@ import styled from "styled-components";
 import Image from "next/legacy/image"; // @todo upgrade from legacy version
 
 export const StyledDetails = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  align-self: flex-end;
-  gap: var(--gap);
-  padding: 0 var(--spacer);
+  position: relative;
+  padding-bottom: var(--gap);
 
-  & > p {
-    font-size: var(--display-small);
-    cursor: pointer;
-    transition: color 0.3s ease;
+  div {
+    display: flex;
+    flex-flow: row wrap;
 
-    &:hover {
-      color: var(--primary-accent);
+    gap: var(--gap);
+    padding: var(--spacer);
+
+    justify-content: space-between;
+
+    h2 {
+      flex: 1 1 560px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: var(--primary-accent);
+      }
+    }
+
+    ul {
+      flex: 1 1 33%;
+      display: inherit;
+      flex-flow: inherit;
+      justify-content: space-between;
+
+      gap: var(--gap);
+
+      padding-top: 10px;
+
+      li {
+        flex: 1 1 40%;
+      }
+
+      li p:first-of-type {
+        letter-spacing: 1.5px;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--primary-tint);
+      }
+
+      li p:last-of-type {
+        font-size: 1rem;
+      }
     }
   }
 
-  .meta {
-    display: inherit;
-    flex-flow: inherit;
-
-    p {
-      width: 100%;
-    }
-  }
-
-  .divider {
+  &::after {
     visibility: visible;
-    border-bottom: 1.25px solid var(--primary);
+    position: absolute;
+    display: block;
+    content: "";
     width: 40px;
+    height: 1.25px;
+    background-color: var(--primary-tint);
+    bottom: 0;
+    left: var(--spacer);
   }
 
   @media only screen and (max-width: 900px) {
-    .divider {
+    &::after {
       visibility: hidden;
     }
   }

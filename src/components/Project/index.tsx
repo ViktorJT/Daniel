@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import { StyledDetails, StyledThumbnail } from "./styles";
+import { StyledIntro } from "../../styles/projectpage";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
@@ -12,9 +13,13 @@ const Project = ({
   client,
   director,
   photographer,
+  production,
+  dop,
   projectMedia,
   video,
   thumbnail,
+  editor,
+  post,
   setActiveVideo,
 }: any) => {
   const router = useRouter();
@@ -36,14 +41,52 @@ const Project = ({
         src={thumbnail.url}
         {...thumbnail}
       />
-      <StyledDetails className="details">
-        <p onClick={onClick}>{title}</p>
-        <div className="meta">
-          {[client, director, photographer].map((meta, i) => (
-            <p key={i}>{meta}</p>
-          ))}
+      <StyledDetails>
+        <div>
+          <h2 onClick={onClick}>{title}</h2>
+          <ul>
+            <li>
+              <p>Client</p>
+              <p>{client}</p>
+            </li>
+            {director && (
+              <li>
+                <p>Director</p>
+                <p>{director}</p>
+              </li>
+            )}
+            {production && (
+              <li>
+                <p>Production</p>
+                <p>{production}</p>
+              </li>
+            )}
+            {dop && (
+              <li>
+                <p>DoP</p>
+                <p>{dop}</p>
+              </li>
+            )}
+            {photographer && (
+              <li>
+                <p>Photographer</p>
+                <p>{photographer}</p>
+              </li>
+            )}
+            {post && (
+              <li>
+                <p>Post</p>
+                <p>{post}</p>
+              </li>
+            )}
+            {editor && (
+              <li>
+                <p>Editor</p>
+                <p>{editor}</p>
+              </li>
+            )}
+          </ul>
         </div>
-        <span className="divider" />
       </StyledDetails>
     </>
   );

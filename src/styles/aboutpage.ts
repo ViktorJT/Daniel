@@ -18,8 +18,6 @@ export const StyledHeading = styled.div`
   flex-flow: column nowrap;
   padding: var(--spacer);
 
-  align-items: center;
-
   gap: var(--gap);
 
   div > * {

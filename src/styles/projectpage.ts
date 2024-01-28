@@ -23,7 +23,7 @@ export const StyledIntro = styled.section`
       flex-flow: inherit;
       justify-content: space-between;
 
-      gap: var(--spacer);
+      gap: var(--gap);
 
       padding-top: 10px;
 
@@ -32,11 +32,14 @@ export const StyledIntro = styled.section`
       }
 
       li p:first-of-type {
-        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--primary-tint);
       }
 
       li p:last-of-type {
-        font-size: 0.8rem;
+        font-size: 1rem;
       }
     }
   }

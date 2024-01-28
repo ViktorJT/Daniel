@@ -13,7 +13,10 @@ export async function getHome() {
 
           client
           director
+          production
           photographer
+          post
+          editor
 
           video
           thumbnail {

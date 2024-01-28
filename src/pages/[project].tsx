@@ -20,6 +20,8 @@ const Project: NextPage<any> = ({
   client,
   photographer,
   dop,
+  post,
+  editor,
   agency,
   production,
   projectMedia,
@@ -83,6 +85,18 @@ const Project: NextPage<any> = ({
               <li>
                 <p>Photographer</p>
                 <p>{photographer}</p>
+              </li>
+            )}
+            {post && (
+              <li>
+                <p>Post</p>
+                <p>{post}</p>
+              </li>
+            )}
+            {editor && (
+              <li>
+                <p>Editor</p>
+                <p>{editor}</p>
               </li>
             )}
           </ul>

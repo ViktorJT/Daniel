@@ -9,11 +9,13 @@ export async function getProject(slug: string) {
         slug
 
         client
-        director
         agency
+        director
         production
-        dop
         photographer
+        dop
+        post
+        editor
 
         projectMedia(first: 100) {
           __typename
