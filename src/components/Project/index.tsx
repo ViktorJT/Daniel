@@ -45,10 +45,12 @@ const Project = ({
         <div>
           <h2 onClick={onClick}>{title}</h2>
           <ul>
-            <li>
-              <p>Client</p>
-              <p>{client}</p>
-            </li>
+            {client && (
+              <li>
+                <p>Client</p>
+                <p>{client}</p>
+              </li>
+            )}
             {director && (
               <li>
                 <p>Director</p>

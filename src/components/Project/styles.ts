@@ -4,17 +4,21 @@ import Image from "next/legacy/image"; // @todo upgrade from legacy version
 export const StyledDetails = styled.div`
   position: relative;
   padding-bottom: var(--gap);
+  padding-right: var(--spacer);
+
+  max-width: 560px;
 
   div {
+    height: 100%;
     display: flex;
     flex-flow: row wrap;
+    align-content: end;
 
     gap: var(--gap);
     padding: var(--spacer);
 
-    justify-content: space-between;
-
     h2 {
+      font-size: var(--subheading);
       flex: 1 1 560px;
       cursor: pointer;
       transition: color 0.3s ease;
@@ -27,7 +31,7 @@ export const StyledDetails = styled.div`
     ul {
       flex: 1 1 33%;
       display: inherit;
-      flex-flow: inherit;
+      flex-flow: row wrap;
       justify-content: space-between;
 
       gap: var(--gap);

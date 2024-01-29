@@ -53,26 +53,28 @@ const Project: NextPage<any> = ({
         <div>
           <h2>{title}</h2>
           <ul>
-            <li>
-              <p>Client</p>
-              <p>{client}</p>
-            </li>
-            {director && (
-              <li>
-                <p>Director</p>
-                <p>{director}</p>
-              </li>
-            )}
             {agency && (
               <li>
                 <p>Agency</p>
                 <p>{agency}</p>
               </li>
             )}
+            {client && (
+              <li>
+                <p>Client</p>
+                <p>{client}</p>
+              </li>
+            )}
             {production && (
               <li>
                 <p>Production</p>
                 <p>{production}</p>
+              </li>
+            )}
+            {director && (
+              <li>
+                <p>Director</p>
+                <p>{director}</p>
               </li>
             )}
             {dop && (
@@ -87,16 +89,16 @@ const Project: NextPage<any> = ({
                 <p>{photographer}</p>
               </li>
             )}
-            {post && (
-              <li>
-                <p>Post</p>
-                <p>{post}</p>
-              </li>
-            )}
             {editor && (
               <li>
                 <p>Editor</p>
                 <p>{editor}</p>
+              </li>
+            )}
+            {post && (
+              <li>
+                <p>Post</p>
+                <p>{post}</p>
               </li>
             )}
           </ul>

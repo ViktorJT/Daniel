@@ -19,6 +19,10 @@ export const StyledNavigation = styled.nav`
       font-size: var(--heading);
     }
 
+    .logo {
+      font-size: var(--heading);
+    }
+
     ul {
       display: inherit;
       flex-flow: column nowrap;

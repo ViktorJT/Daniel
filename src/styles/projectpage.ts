@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const StyledIntro = styled.section`
+  max-width: 560px;
+
   div {
     position: sticky;
     top: var(--gap);
@@ -15,12 +17,13 @@ export const StyledIntro = styled.section`
 
     h2 {
       flex: 1 1 560px;
+      font-size: var(--subheading);
     }
 
     ul {
       flex: 1 1 33%;
       display: inherit;
-      flex-flow: inherit;
+      flex-flow: row wrap;
       justify-content: space-between;
 
       gap: var(--gap);

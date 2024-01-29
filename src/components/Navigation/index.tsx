@@ -21,7 +21,9 @@ const Navigation = () => {
   return (
     <StyledNavigation>
       <div>
-        <Link href="/">Daniel Arfwedson</Link>
+        <Link className="logo" href="/">
+          Daniel Arfwedson
+        </Link>
         <ul>
           {links.map(({ label, ...link }, i) => (
             <li

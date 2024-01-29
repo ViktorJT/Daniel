@@ -12,12 +12,14 @@ const GlobalStyles = createGlobalStyle`
     --layout: var(--two-col);
 
     --display-small: 1.6rem;
+    --display-medium: 2rem;
     --display-large: 3rem;
 
     --text-small: .85rem;
     --text-large: 1.15rem;
 
     --heading: var(--display-large);
+    --subheading: var(--display-medium);
     --body: var(--text-large);
 
     --primary: #2C2C2C;
@@ -129,7 +131,6 @@ const GlobalStyles = createGlobalStyle`
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-size: var(--display-small);
     font-weight: 400;
   }
 
@@ -152,7 +153,8 @@ const GlobalStyles = createGlobalStyle`
     :root {
       --layout: (--one-col);
 
-      --heading: var(--display-small);
+      --heading: var(--display-medium);
+      --subheading: var(--display-small);
       --body: var(--text-small);
     }
   }
