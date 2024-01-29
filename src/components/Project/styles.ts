@@ -15,7 +15,7 @@ export const StyledDetails = styled.div`
     align-content: end;
 
     gap: var(--gap);
-    padding: var(--spacer);
+    padding: var(--gap) var(--spacer);
 
     h2 {
       font-size: var(--subheading);

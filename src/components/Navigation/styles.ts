@@ -14,6 +14,7 @@ export const StyledNavigation = styled.nav`
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: flex-start;
+    padding-bottom: var(--gap);
 
     a {
       font-size: var(--heading);
