@@ -53,16 +53,16 @@ const Project: NextPage<any> = ({
         <div>
           <h2>{title}</h2>
           <ul>
-            {agency && (
-              <li>
-                <p>Agency</p>
-                <p>{agency}</p>
-              </li>
-            )}
             {client && (
               <li>
                 <p>Client</p>
                 <p>{client}</p>
+              </li>
+            )}
+            {agency && (
+              <li>
+                <p>Agency</p>
+                <p>{agency}</p>
               </li>
             )}
             {production && (

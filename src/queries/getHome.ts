@@ -14,6 +14,7 @@ export async function getHome() {
           client
           director
           production
+          dop
           photographer
           post
           editor

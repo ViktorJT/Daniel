@@ -51,16 +51,16 @@ const Project = ({
                 <p>{client}</p>
               </li>
             )}
-            {director && (
-              <li>
-                <p>Director</p>
-                <p>{director}</p>
-              </li>
-            )}
             {production && (
               <li>
                 <p>Production</p>
                 <p>{production}</p>
+              </li>
+            )}
+            {director && (
+              <li>
+                <p>Director</p>
+                <p>{director}</p>
               </li>
             )}
             {dop && (
@@ -75,16 +75,16 @@ const Project = ({
                 <p>{photographer}</p>
               </li>
             )}
-            {post && (
-              <li>
-                <p>Post</p>
-                <p>{post}</p>
-              </li>
-            )}
             {editor && (
               <li>
                 <p>Editor</p>
                 <p>{editor}</p>
+              </li>
+            )}
+            {post && (
+              <li>
+                <p>Post</p>
+                <p>{post}</p>
               </li>
             )}
           </ul>
