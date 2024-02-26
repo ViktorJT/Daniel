@@ -5,7 +5,6 @@ const MAIN_URL = "https://www.danielarfwedson.com";
 function generateSiteMap(projects) {
   return `<?xml version="1.0" encoding="UTF-8"?>
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-     <!--We manually set the two URLs we know already-->
      <url>
        <loc>${MAIN_URL}</loc>
      </url>
