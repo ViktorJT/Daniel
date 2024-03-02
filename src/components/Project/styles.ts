@@ -42,15 +42,18 @@ export const StyledDetails = styled.div`
         flex: 1 1 40%;
       }
 
-      li p:first-of-type {
+      li p {
         letter-spacing: 1.5px;
         font-size: 11px;
         text-transform: uppercase;
         color: var(--primary-tint);
       }
 
-      li p:last-of-type {
+      li ul p {
+        letter-spacing: 1px;
         font-size: 1rem;
+        text-transform: none;
+        color: var(--primary);
       }
     }
   }
@@ -75,15 +78,10 @@ export const StyledDetails = styled.div`
 `;
 
 export const StyledThumbnail = styled(Image)`
-  transition: filter 0.3s ease;
-  filter: grayscale(40%);
+  transition: transform 0.3s ease;
 
   &:hover {
+    transform: scale(1.025);
     cursor: pointer;
-    filter: grayscale(0%);
-  }
-
-  @media only screen and (max-width: 900px) {
-    filter: grayscale(0%);
   }
 `;

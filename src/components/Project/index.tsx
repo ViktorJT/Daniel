@@ -7,20 +7,38 @@ import { StyledIntro } from "../../styles/projectpage";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
+const Meta = ({ data }: { data: string[] }) => (
+  <ul>
+    {data.map((d: string, i: number) => {
+      const moreThanOneAndNotLast = data.length > 1 && i !== data.length - 1;
+
+      return (
+        <li key={`${i}-${d.toLowerCase().replaceAll(" ", "-")}`}>
+          <p>
+            {d}
+            {moreThanOneAndNotLast ? "," : ""}
+          </p>
+        </li>
+      );
+    })}
+  </ul>
+);
+
 const Project = ({
   slug,
   title,
+  projectMedia,
+  video,
+  thumbnail,
+  setActiveVideo,
+  // metadata
   client,
   director,
   photographer,
   production,
   dop,
-  projectMedia,
-  video,
-  thumbnail,
   editor,
   post,
-  setActiveVideo,
 }: any) => {
   const router = useRouter();
 
@@ -45,46 +63,46 @@ const Project = ({
         <div>
           <h2 onClick={onClick}>{title}</h2>
           <ul>
-            {client && (
+            {!!client.length && (
               <li>
                 <p>Client</p>
-                <p>{client}</p>
+                <Meta data={client} />
               </li>
             )}
-            {production && (
+            {!!production.length && (
               <li>
                 <p>Production</p>
-                <p>{production}</p>
+                <Meta data={production} />
               </li>
             )}
-            {director && (
+            {!!director.length && (
               <li>
                 <p>Director</p>
-                <p>{director}</p>
+                <Meta data={director} />
               </li>
             )}
-            {dop && (
+            {!!dop.length && (
               <li>
                 <p>DoP</p>
-                <p>{dop}</p>
+                <Meta data={dop} />
               </li>
             )}
-            {photographer && (
+            {!!photographer.length && (
               <li>
                 <p>Photographer</p>
-                <p>{photographer}</p>
+                <Meta data={photographer} />
               </li>
             )}
-            {editor && (
+            {!!editor.length && (
               <li>
                 <p>Editor</p>
-                <p>{editor}</p>
+                <Meta data={editor} />
               </li>
             )}
-            {post && (
+            {!!post.length && (
               <li>
                 <p>Post</p>
-                <p>{post}</p>
+                <Meta data={post} />
               </li>
             )}
           </ul>
