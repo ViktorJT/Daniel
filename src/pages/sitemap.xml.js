@@ -31,7 +31,11 @@ function SiteMap() {
 export async function getServerSideProps({ res }) {
   const { home } = await getHome();
 
-  const sitemap = generateSiteMap(home.projects);
+  const projectPages = home.projects.filter(
+    ({ projectMedia }) => projectMedia?.length,
+  );
+
+  const sitemap = generateSiteMap(projectPages);
 
   res.setHeader("Content-Type", "text/xml");
   res.write(sitemap);

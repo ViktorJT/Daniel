@@ -127,12 +127,12 @@ const Project: NextPage<any> = ({
 export async function getStaticPaths() {
   const { home } = await getHome();
 
-  const { projects } = home;
-
-  const paths = projects.map(({ slug }: any) => ({
-    params: { project: slug },
-    locale: "en",
-  }));
+  const paths = home.projects
+    .filter(({ projectMedia }: any) => projectMedia?.length)
+    .map(({ slug }: any) => ({
+      params: { project: slug },
+      locale: "en",
+    }));
 
   return {
     paths,
