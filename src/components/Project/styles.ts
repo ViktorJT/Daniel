@@ -44,7 +44,7 @@ export const StyledDetails = styled.div`
 
       li p {
         letter-spacing: 1.5px;
-        font-size: 11px;
+        font-size: 9px;
         text-transform: uppercase;
         color: var(--primary-tint);
       }
