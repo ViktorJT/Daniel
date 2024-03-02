@@ -12,7 +12,7 @@ import Modal from "../components/Modal";
 
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
-const Home: NextPage<any> = ({ heading, featuredMedias, projects }) => {
+const Home: NextPage<any> = ({ featuredMedias, projects }) => {
   const [activeVideo, setActiveVideo] = useState<string>();
 
   return (

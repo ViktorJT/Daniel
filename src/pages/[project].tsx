@@ -38,14 +38,28 @@ const Project: NextPage<any> = ({
                 key={`pm-${i}-${id}`}
                 className={large ? "large" : undefined}
               >
-                <Image
-                  priority
-                  alt=""
-                  src={url}
-                  layout="responsive"
-                  objectFit="contain"
-                  {...asset}
-                />
+                {asset.video ? (
+                  <ReactPlayer
+                    controls
+                    height="100%"
+                    width="100%"
+                    url={asset.video}
+                    config={{
+                      playerOptions: {
+                        responsive: true,
+                      },
+                    }}
+                  />
+                ) : (
+                  <Image
+                    priority
+                    alt=""
+                    src={url}
+                    layout="responsive"
+                    objectFit="contain"
+                    {...asset}
+                  />
+                )}
               </div>
             ),
           )}

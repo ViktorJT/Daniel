@@ -4,7 +4,6 @@ export async function getHome() {
   const query = gql`
     query getHome {
       homes {
-        heading
         projects(first: 100) {
           id
 

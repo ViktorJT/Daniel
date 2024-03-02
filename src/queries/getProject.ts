@@ -20,6 +20,7 @@ export async function getProject(slug: string) {
         projectMedia(first: 100) {
           __typename
           ... on Media {
+            video
             media {
               id
               url

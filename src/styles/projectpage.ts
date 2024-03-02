@@ -28,7 +28,7 @@ export const StyledIntro = styled.section`
 
       gap: var(--gap);
 
-      padding-top: 10px;
+      padding: 10px 0;
 
       li {
         flex: 1 1 40%;
@@ -82,6 +82,12 @@ export const StyledAssets = styled.section`
 
     .large {
       flex-basis: 100%;
+    }
+
+    @media only screen and (max-width: 450px) {
+      & > * {
+        flex-basis: 100%;
+      }
     }
   }
 
