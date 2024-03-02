@@ -12,6 +12,8 @@ import { getProject } from "../queries/getProject";
 import { StyledAssets, StyledIntro } from "../styles/projectpage";
 import { StyledPage } from "../styles/homepage";
 
+import Meta from "../utils/Meta";
+
 const ReactPlayer = dynamic(() => import("react-player/vimeo"), { ssr: false });
 
 const Project: NextPage<any> = ({
@@ -53,52 +55,52 @@ const Project: NextPage<any> = ({
         <div>
           <h2>{title}</h2>
           <ul>
-            {client && (
+            {!!client.length && (
               <li>
                 <p>Client</p>
-                <p>{client}</p>
+                <Meta data={client} />
               </li>
             )}
-            {agency && (
+            {!!agency.length && (
               <li>
                 <p>Agency</p>
-                <p>{agency}</p>
+                <Meta data={agency} />
               </li>
             )}
-            {production && (
+            {!!production.length && (
               <li>
                 <p>Production</p>
-                <p>{production}</p>
+                <Meta data={production} />
               </li>
             )}
-            {director && (
+            {!!director.length && (
               <li>
                 <p>Director</p>
-                <p>{director}</p>
+                <Meta data={director} />
               </li>
             )}
-            {dop && (
+            {!!dop.length && (
               <li>
                 <p>DoP</p>
-                <p>{dop}</p>
+                <Meta data={dop} />
               </li>
             )}
-            {photographer && (
+            {!!photographer.length && (
               <li>
                 <p>Photographer</p>
-                <p>{photographer}</p>
+                <Meta data={photographer} />
               </li>
             )}
-            {editor && (
+            {!!editor.length && (
               <li>
                 <p>Editor</p>
-                <p>{editor}</p>
+                <Meta data={editor} />
               </li>
             )}
-            {post && (
+            {!!post.length && (
               <li>
                 <p>Post</p>
-                <p>{post}</p>
+                <Meta data={post} />
               </li>
             )}
           </ul>

@@ -34,15 +34,18 @@ export const StyledIntro = styled.section`
         flex: 1 1 40%;
       }
 
-      li p:first-of-type {
+      li p {
         letter-spacing: 1.5px;
         font-size: 11px;
         text-transform: uppercase;
         color: var(--primary-tint);
       }
 
-      li p:last-of-type {
+      li ul p {
+        letter-spacing: 1px;
         font-size: 1rem;
+        text-transform: none;
+        color: var(--primary);
       }
     }
   }
