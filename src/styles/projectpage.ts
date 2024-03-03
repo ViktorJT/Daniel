@@ -28,7 +28,7 @@ export const StyledIntro = styled.section`
 
       gap: var(--gap);
 
-      padding: 10px 0;
+      padding: 2px 0 10px 0;
 
       li {
         flex: 1 1 40%;

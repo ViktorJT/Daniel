@@ -36,7 +36,7 @@ export const StyledDetails = styled.div`
 
       gap: var(--gap);
 
-      padding-top: 10px;
+      padding: 2px 0;
 
       li {
         flex: 1 1 40%;
