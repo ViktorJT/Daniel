@@ -13,12 +13,6 @@ export async function getAbout() {
           value
         }
       }
-      contacts {
-        id
-        type
-        label
-        value
-      }
     }
   `;
 
@@ -29,7 +23,7 @@ export async function getAbout() {
     },
   });
 
-  const { abouts, contacts }: any = await client.request(query);
+  const { abouts }: any = await client.request(query);
 
-  return { about: abouts[0], contacts };
+  return { about: abouts[0] };
 }

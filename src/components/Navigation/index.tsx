@@ -9,13 +9,13 @@ const Navigation = () => {
 
   const links = [
     { href: "/", label: "Work" },
-    { href: "/about", label: "About" },
-    {
-      href: "mailto:daniel.arfwedson@icloud.com",
-      label: "Contact",
-      target: "_blank",
-      rel: "noopener noreferrer",
-    },
+    { href: "/contact", label: "Contact" },
+    // {
+    //   href: "mailto:daniel.arfwedson@icloud.com",
+    //   label: "Contact",
+    //   target: "_blank",
+    //   rel: "noopener noreferrer",
+    // },
   ];
 
   return (
